@@ -1,6 +1,4 @@
 {
-  "plugins": ["jest", "cypress"],
-  "extends": ["eslint:recommended", "next", "plugin:jest/recommended", "plugin:cypress/recommended"],
   "ignorePatterns": ["build/", "translations/"],
   "globals": {
     "fetch": false,
