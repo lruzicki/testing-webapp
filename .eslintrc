@@ -1,4 +1,5 @@
 {
+  "extends": ["next", "prettier"],
   "ignorePatterns": ["build/", "translations/"],
   "globals": {
     "fetch": false,

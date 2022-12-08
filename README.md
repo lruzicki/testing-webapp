@@ -18,3 +18,21 @@ To configure and run the application, navigate to project directory and run the 
  This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
 The application will run on localhost port 3003 by default.
+
+## Build
+
+To run build:
+
+* yarn build
+
+## Tests
+
+To run tests:
+
+* yarn test
+
+## Lint
+
+To run eslint:
+
+* yarn 
