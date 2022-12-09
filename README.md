@@ -35,4 +35,4 @@ To run tests:
 
 To run eslint:
 
-* yarn 
+* yarn lint
