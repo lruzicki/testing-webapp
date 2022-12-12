@@ -36,3 +36,14 @@ To run tests:
 To run eslint:
 
 * yarn lint
+
+## Docker
+
+Application can be deployed in docker container by running
+```shell
+docker-compose up --build 
+```
+or 
+```shell
+ docker-compose up
+```
