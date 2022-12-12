@@ -1,0 +1,8 @@
+version: '3'
+services:
+    web:
+      build: .
+      volumes:
+          - .:/testing-webapp
+      ports:
+        - 3003:3003
