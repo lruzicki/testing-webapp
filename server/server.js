@@ -25,9 +25,6 @@ db.then(db =>{
 
 }).catch(err => console.error('Database connection failed, reason:\n', err))
 
-// get driver connection
-
 app.listen(port, () => {
-  // perform a database connection when server starts
   console.log(`Server is running on port: ${port}`)
 })
