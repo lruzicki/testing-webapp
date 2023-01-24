@@ -47,3 +47,20 @@ or
 ```shell
  docker-compose up
 ```
+
+## Backend 
+Testing application has a simple backend written using express.js. 
+A more detailed description of the backend's part can be found in `/server/readme.MD`. 
+### Setup 
+From the main directory (requires running mongoDB):
+```bash 
+# Go to the directory 
+cd server/
+# Use default environmental variables, which can be adjusted if necessary
+mv .env.example .env 
+yarn install
+yarn dev
+```
+
+Backend service and monogoDB are also setups automatically 
+during `docker-compose up --build` execution. 
