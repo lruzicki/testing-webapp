@@ -15,22 +15,6 @@ show_help() {
   """
 }
 
-healthcheckApiCall() {
-    echo "Sending test request, result:"
-    echo "-----"
-    curl ${API_URL}
-    RETURN=$?
-    if [ $RETURN -eq 7 ];
-    then
-      echo "Api healthcheck call failed, curl returned status code 7"
-      return 1
-    fi
-    echo "-----"
-    echo "Success in calling healtcheck API endpoint"
-    return 0
-}
-
-
 case "$1" in
   "dev" )
     yarn dev
