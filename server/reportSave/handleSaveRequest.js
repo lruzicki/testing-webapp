@@ -46,7 +46,7 @@ module.exports = class ReportUploadRequestHandler {
 
   async saveData() {
     const dataToSave = new TestCaseBuilder(await this.loadData()).buildExecutionResult();
-    await this.jsonSave(dataToSave).catch((err) => console.log(err));
+    await this.jsonSave(dataToSave);
   }
 
   async loadData() {
