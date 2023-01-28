@@ -11,7 +11,7 @@ app.use(cors());
 app.use('/report/upload', apiKeyAuth(/^API_KEY_/)); // Matching all process.env.API_KEY_*
 
 app.use(express.json());
-app.use(require('./routes/record'))
+app.use(require('./routes/record'));
 
 db.then((dataBase) => {
   try {
