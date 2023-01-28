@@ -334,9 +334,6 @@ const TestReport = {
     testSuite: {
       type: 'string',
     },
-    testApp: {
-      type: 'string',
-    },
   },
   required: [
     'meta',

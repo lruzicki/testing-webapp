@@ -120,13 +120,14 @@ module.exports = class TestDataAggregation {
     // Input: attributeMap=[{'id': 10, 'uri': 'uri', ...}, {'id': 12, 'uri': 'uri', ...}], key=id
     // Output: {10: {'id': 10, 'uri': 'uri', ...}, 12: {'id': 12, 'uri': 'uri', ...}}
     return attributeMap.reduce((map, obj) => {
+      const updatedMap = map;
       if (!!map[obj[key]] && unique) {
         throw new Error(`Attribute ${key} is not unique across attribute list ${attributeMap}.`);
       }
 
-      map[obj[key]] = obj;
+      updatedMap[obj[key]] = obj;
 
-      return map;
+      return updatedMap;
     }, {});
   }
 

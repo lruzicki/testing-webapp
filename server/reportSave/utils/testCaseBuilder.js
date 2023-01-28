@@ -23,7 +23,7 @@ module.exports = class TestCaseBuilder {
   buildTestCases() {
     const testCases = [];
     const testCasesMap = new Map(Object.entries(this.aggregatedData.testCases));
-    testCasesMap.forEach((testCase, testCaseId) => {
+    testCasesMap.forEach((testCase) => {
       const { pickleId, id } = testCase;
       const pickle = this.aggregatedData.pickles[pickleId];
       const source = this.aggregatedData.sources[pickle.uri];
