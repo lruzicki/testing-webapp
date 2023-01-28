@@ -4,8 +4,8 @@ Express.js server provides access to report results.
 
 ---
 ## Requirements
-- Node.js
-- Yarn
+- Node.js (Version 16 or greater)
+- Yarn (Version 1.22.5 or greater)
 
 
 ## Install
@@ -46,7 +46,6 @@ Uses `nodemon` for hot reload.
 ## Simple build for production
 
     $ yarn build
-
 
 ## MongoDB
 [To Be added; Information about storage format]

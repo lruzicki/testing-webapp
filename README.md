@@ -50,7 +50,7 @@ or
 
 ## Backend 
 Testing application has a simple backend written using express.js. 
-A more detailed description of the backend's part can be found in `/server/readme.MD`. 
+A more detailed description of the backend's part can be found in `/server/README.md`. 
 ### Setup 
 From the main directory (requires running mongoDB):
 ```bash 
