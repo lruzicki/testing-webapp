@@ -133,8 +133,6 @@ module.exports = class TestDataAggregation {
 
   filterUniqueTestCaseInfoAttribute(testCaseInfo, attributeName) {
     const attributeList = this.filterTestCaseInfoByElement(testCaseInfo, attributeName);
-    this.validateNumberOfElements(attributeList, 1, attributeName);
-
     return attributeList[0];
   }
 
@@ -143,15 +141,5 @@ module.exports = class TestDataAggregation {
     // { attributeName: [Object]}
     // This characteristics is used for filtering elements of desired type.
     return testCaseInfo.filter((i) => !!i[attributeName]).map((i) => i[attributeName]);
-  }
-
-  validateNumberOfElements(elementsArray, expectedElements, elementType) {
-    if (elementsArray.length !== expectedElements) {
-      throw new Error(`
-                Invalid testCaseInfo format, collection should provide exactly ${expectedElements} element(s) of type ${elementType}.
-                It provides ${elementsArray.length}. 
-                ${elementsArray}
-            `);
-    }
   }
 };

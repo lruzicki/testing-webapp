@@ -334,6 +334,9 @@ const TestReport = {
     testSuite: {
       type: 'string',
     },
+    sourceBranch: {
+      type: 'string',
+    },
   },
   required: [
     'meta',
@@ -343,7 +346,7 @@ const TestReport = {
     'buildingBlock',
     'testApp',
     'testSuite',
-    'testApp',
+    'sourceBranch',
   ],
 };
 

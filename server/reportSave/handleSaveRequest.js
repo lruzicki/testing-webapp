@@ -15,11 +15,13 @@ const RequestSchema = {
         buildingBlock: { type: 'string' },
         testSuite: { type: 'string' },
         testApp: { type: 'string' },
+        sourceBranch: { type: 'string' },
       },
       required: [
         'buildingBlock',
         'testSuite',
         'testApp',
+        'sourceBranch',
       ],
     },
   },
@@ -34,19 +36,24 @@ module.exports = class ReportUploadRequestHandler {
     this.req = saveRequest;
     this.res = response;
     this.db_connect = saveRequest.app.locals.reportCollection;
-    this.validateRequest();
-  }
-
-  validateRequest() {
-    const validationResult = validate(this.req, RequestSchema);
-    if (validationResult.errors.length > 0) {
-      this.sendValidationError(validationResult.errors);
-    }
   }
 
   async saveData() {
+    if (!this.isRequestValid()) {
+      return false;
+    }
     const dataToSave = new TestCaseBuilder(await this.loadData()).buildExecutionResult();
     await this.jsonSave(dataToSave);
+    return true;
+  }
+
+  isRequestValid() {
+    const validationResult = validate(this.req, RequestSchema);
+    if (validationResult.errors.length > 0) {
+      this.sendValidationError(validationResult.errors);
+      return false;
+    }
+    return true;
   }
 
   async loadData() {
@@ -77,14 +84,15 @@ module.exports = class ReportUploadRequestHandler {
     report.buildingBlock = this.req.body.buildingBlock;
     report.testSuite = this.req.body.testSuite;
     report.testApp = this.req.body.testApp;
+    report.sourceBranch = this.req.body.sourceBranch;
 
     try {
       const validationResult = validateAgainstSchema(report);
       if (validationResult.errors.length > 0) {
         this.sendValidationError(validationResult.errors);
-      } else {
-        this.saveToDatabase(data);
+        return;
       }
+      this.saveToDatabase(report);
     } catch (err) { this.res.status(500).send(`Error inserting report: ${err}`); }
   }
 
@@ -103,8 +111,7 @@ module.exports = class ReportUploadRequestHandler {
   sendValidationError(errors) {
     this.res.status(400).send({
       success: false,
-      details: 'Invalid report format. Rquired multipart form with: \n-"report" file"\n-"buildingBlock", "testedApplication", "testSuite", "testApp" text fields\n'
-            + `Details on report parsing:\n${errors}\n`,
+      details: `Invalid report format. Details on report parsing:\n${errors}\n`,
     });
   }
 };

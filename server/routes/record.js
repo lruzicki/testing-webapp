@@ -31,6 +31,10 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 reportRoutes.route('/report/upload').post(upload.single('report'), (req, res) => {
+  if (!req.file) {
+    res.status(400).send('Invalid form, file not provided.');
+    return;
+  }
   new ReportUploadRequestHandler(req, res).saveData();
 });
 
