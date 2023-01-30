@@ -35,7 +35,7 @@ reportRoutes.route('/report/upload').post(upload.single('report'), (req, res) =>
     res.status(400).send('Invalid form, file not provided.');
     return;
   }
-  new ReportUploadRequestHandler(req, res).saveData();
+  new ReportUploadRequestHandler(req, res).saveData().catch((err) => res.status(500).send(`Unexpected exception ocurred: ${err}`));
 });
 
 module.exports = reportRoutes;
