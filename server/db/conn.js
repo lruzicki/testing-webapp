@@ -43,7 +43,7 @@ async function getDatabase() {
     const client = new MongoClient(connectionDetails.connectionURI, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
-      serverSelectionTimeoutMS: 2000,
+      serverSelectionTimeoutMS: 5000,
     });
     await client.connect();
     db = await client.db(connectionDetails.databaseName);
