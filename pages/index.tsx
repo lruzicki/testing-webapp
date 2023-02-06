@@ -1,7 +1,14 @@
 import Head from 'next/head'
+import { useCallback } from 'react'
+import { PrimitiveType, useIntl } from 'react-intl'
+import React from 'react'
+import { useRouter } from 'next/router'
 import styles from '../styles/Home.module.css'
 
-export default function HomePage() {
+const HomePage = () => {
+  const { formatMessage } = useIntl()
+  const format = useCallback((id: string) => formatMessage({ id }), [formatMessage])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -10,8 +17,10 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main className={styles.main}>
-        <p>GovStack</p>
+        <p>{format('govstack.title')}</p>
       </main>
     </div>
   )
 }
+
+export default HomePage
