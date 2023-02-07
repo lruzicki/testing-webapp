@@ -1,0 +1,71 @@
+// Variables
+
+// colors
+@background: #FAFAFA;
+
+@success: rgb(4, 129, 18);
+@success-5: rgba(4, 129, 18, 5%);
+@success-20: rgba(4, 129, 18, 20%);
+
+@fail: rgb(207, 11, 11);
+@fail-5: rgba(207, 11, 11, 5%);
+@fail-20: rgba(207, 11, 11, 20%);
+
+@text-main: #282733;
+@text-secondary: #646280;
+@text-nav-and-btn: #07003B;
+
+@accents-and-btn: #325BE3;
+
+@charts-grey: #ECECEC;
+@charts-blue: #6BAEFF;
+@charts-light: #DFECFC;
+@charts-chips-and-perc: #0A0050;
+
+@white: #FFFFFF;
+@stroke: #DFDFEA;
+@blue-5: rgba(150, 168, 227, 5%);
+@blue-10:rgba(150, 168, 227, 10%);
+@blue-15:rgba(150, 168, 227, 15%);
+@blue-20:rgba(150, 168, 227, 20%);
+
+// ----------------------------------
+
+body{
+    background-color: @background;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    color: @text-main;
+    padding: 0;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+}
+
+.btn{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 8px 24px;
+    width: 150px;
+    height: 32px;
+    border: none;
+    border-radius: 4px;
+    background-color: transparent;
+}
+
+.primary-btn:extend(.btn){
+    background-color: @accents-and-btn;
+    color: @white;
+}
+
+.secondary-btn:extend(.btn){
+    border: 1px solid @accents-and-btn;
+    color: @accents-and-btn;
+}
+
+.tertiary-btn:extend(.btn){
+    color: @accents-and-btn;
+}

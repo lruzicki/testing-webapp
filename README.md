@@ -6,7 +6,7 @@ Frontend web application for the GovStack test platform.
 ## Prerequisites
 
  * Node.js (Version 16 or greater)
- * Npm
+ * Yarn
 
 ## Application configuration for development 
 
@@ -48,9 +48,20 @@ or
  docker-compose up
 ```
 
+## Less
+
+Less (which stands for Leaner Style Sheets) is a backwards-compatible language extension for CSS.
+Every `.less` file should be localized in the `styles` folder.
+
+To run less-watch-compiler in terminal:
+```
+yarn less
+```
+
 ## Backend 
 Testing application has a simple backend written using express.js. 
 A more detailed description of the backend's part can be found in `/server/README.md`. 
+
 ### Setup 
 From the main directory (requires running mongoDB):
 ```bash 

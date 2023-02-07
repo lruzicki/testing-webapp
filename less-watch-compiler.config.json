@@ -1,0 +1,9 @@
+{
+    "watchFolder": "styles",
+    "outputFolder": "styles",
+    "includeHidden": false,
+    "sourceMap": false,
+    "runOnce": false,
+    "enableJs": true,
+    "minified":false
+}
