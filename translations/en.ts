@@ -1,4 +1,4 @@
-// Keys should be added alphabetically
+// All guidelines for the translations can be found in the file README.md
 export const en = {
-    "govstack.title": "GovStack",
-}
+  "app.title": "GovStack",
+};
