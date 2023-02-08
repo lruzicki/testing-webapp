@@ -1,0 +1,8 @@
+{
+  "watchFolder": "styles/less",
+  "includeHidden": false,
+  "sourceMap": false,
+  "runOnce": false,
+  "enableJs": true,
+  "minified": false
+}
