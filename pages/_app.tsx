@@ -4,7 +4,6 @@ import { useRouter } from 'next/router'
 import React from 'react'
 import Head from 'next/head'
 import * as translations from '../translations'
-
 import type { AppProps } from 'next/app'
 
 const App = ({ Component, pageProps }: AppProps) => {
