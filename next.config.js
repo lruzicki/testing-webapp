@@ -1,7 +1,9 @@
 /** @type {import('next').NextConfig} */
 
-const withPlugins = require('next-compose-plugins');
 const withLess = require('next-with-less');
+const nextComposePlugins = require('next-compose-plugins');
+
+const { withPlugins } = nextComposePlugins.extend(() => ({}));
 
 const plugins = [
   [
@@ -11,8 +13,16 @@ const plugins = [
     },
   ],
 ];
-
-module.exports = withPlugins(plugins, {
+const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
-});
+  i18n: {
+    locales: ['en'],
+    defaultLocale: 'en',
+  },
+  eslint: {
+    dirs: ['pages', 'utils', 'app', 'components', 'src', '__tests__'],
+  },
+};
+
+module.exports = withPlugins(plugins, nextConfig);

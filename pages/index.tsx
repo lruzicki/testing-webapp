@@ -1,6 +1,12 @@
-import Head from 'next/head'
+import Head from 'next/head';
+import { useCallback } from 'react';
+import { useIntl } from 'react-intl';
+import React from 'react';
 
-export default function HomePage() {
+const HomePage = () => {
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string) => formatMessage({ id }), [formatMessage]);
+
   return (
     <div>
       <Head>
@@ -9,8 +15,10 @@ export default function HomePage() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <p>GovStack</p>
+        <p>{format('app.title')}</p>
       </main>
     </div>
-  )
-}
+  );
+};
+
+export default HomePage;

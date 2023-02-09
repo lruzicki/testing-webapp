@@ -1,5 +1,11 @@
 {
-  "extends": ["next", "prettier"],
+  "plugins": ["jest"],
+  "extends": [
+    "next",
+    "prettier",
+    "eslint:recommended",
+    "plugin:jest/recommended"
+  ],
   "ignorePatterns": ["build/", "translations/"],
   "globals": {
     "fetch": false,
@@ -13,28 +19,42 @@
     "es6": true
   },
   "settings": {
-    "import/core-modules": [
-      "styled-jsx/css"
-    ]
+    "import/core-modules": ["styled-jsx/css"]
   },
   "rules": {
     "template-curly-spacing": "off",
     "quotes": [2, "single"],
-    "semi": [2, "never"],
-    "indent": ["error", 2, {
-      "ignoredNodes": ["TemplateLiteral"],
-      // "SwitchCase": 1,
-      "ArrayExpression": 1,
-      "ObjectExpression": 1,
-      // "offsetTernaryExpressions": true,
-      "ImportDeclaration": 1
-
-    }],
-    "import/order": [2, {
-      "groups": ["builtin", "external", "internal", "parent", "sibling", "index", "object", "type"],
-      "newlines-between": "never"
-    }],
-    "padding-line-between-statements": [2,
+    "semi": [2, "always"],
+    "indent": [
+      "error",
+      2,
+      {
+        "ignoredNodes": ["TemplateLiteral"],
+        // "SwitchCase": 1,
+        "ArrayExpression": 1,
+        "ObjectExpression": 1,
+        // "offsetTernaryExpressions": true,
+        "ImportDeclaration": 1
+      }
+    ],
+    "import/order": [
+      2,
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "newlines-between": "never"
+      }
+    ],
+    "padding-line-between-statements": [
+      2,
       { "blankLine": "always", "prev": "*", "next": "return" },
       { "blankLine": "always", "prev": "block-like", "next": "*" }
     ],
@@ -47,7 +67,23 @@
     "object-shorthand": "error",
     "space-before-blocks": "error",
     "no-trailing-spaces": "error",
-    "no-multiple-empty-lines": ["error", { "max": 1, "maxEOF": 1, "maxBOF": 0 }],
-    "keyword-spacing": "error"
+    "no-multiple-empty-lines": [
+      "error",
+      { "max": 1, "maxEOF": 1, "maxBOF": 0 }
+    ],
+    "keyword-spacing": "error",
+    "object-property-newline": [
+      "error",
+      {
+        "allowMultiplePropertiesPerLine": true
+      }
+    ],
+    "max-len": [
+      "error",
+      {
+        "code": 125,
+        "comments": 125
+      }
+    ]
   }
 }
