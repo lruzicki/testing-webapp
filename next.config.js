@@ -20,6 +20,9 @@ const nextConfig = {
     locales: ['en'],
     defaultLocale: 'en',
   },
+  eslint: {
+    dirs: ['pages', 'utils', 'app', 'components', 'src', '__tests__'],
+  },
 };
 
 module.exports = withPlugins(plugins, nextConfig);

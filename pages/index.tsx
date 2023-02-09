@@ -1,11 +1,11 @@
-import Head from 'next/head'
-import { useCallback } from 'react'
-import { useIntl } from 'react-intl'
-import React from 'react'
+import Head from 'next/head';
+import { useCallback } from 'react';
+import { useIntl } from 'react-intl';
+import React from 'react';
 
 const HomePage = () => {
-  const { formatMessage } = useIntl()
-  const format = useCallback((id: string) => formatMessage({ id }), [formatMessage])
+  const { formatMessage } = useIntl();
+  const format = useCallback((id: string) => formatMessage({ id }), [formatMessage]);
 
   return (
     <div>
@@ -18,7 +18,7 @@ const HomePage = () => {
         <p>{format('app.title')}</p>
       </main>
     </div>
-  )
-}
+  );
+};
 
-export default HomePage
+export default HomePage;

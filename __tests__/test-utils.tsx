@@ -19,7 +19,7 @@ const Providers = ({ children }: ProviderProps) => {
 };
 
 const customRender = ( ui: ReactElement,
-  options?: Omit<RenderOptions, 'wrapper'>) => render(ui, { wrapper: Providers, ...options })
+  options?: Omit<RenderOptions, 'wrapper'>) => render(ui, { wrapper: Providers, ...options });
 
 // override render method
-export { customRender as render }
+export { customRender as render };
