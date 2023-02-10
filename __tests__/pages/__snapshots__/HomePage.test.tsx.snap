@@ -4,9 +4,13 @@ exports[`Unit test for HomePage renders the home page 1`] = `
 <div>
   <div>
     <main>
-      <p>
-        GovStack
-      </p>
+      <div
+        class="main-layout"
+      >
+        <p>
+          GovStack
+        </p>
+      </div>
     </main>
   </div>
 </div>

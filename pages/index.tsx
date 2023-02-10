@@ -1,7 +1,8 @@
+import React from 'react';
 import Head from 'next/head';
 import { useCallback } from 'react';
 import { useIntl } from 'react-intl';
-import React from 'react';
+import MainLayout from '../components/mainLayout/MainLayout';
 
 const HomePage = () => {
   const { formatMessage } = useIntl();
@@ -15,7 +16,10 @@ const HomePage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <main>
-        <p>{format('app.title')}</p>
+        <MainLayout>
+          {/* to remove while first children implement */}
+          <p>{format('app.title')}</p>
+        </MainLayout>
       </main>
     </div>
   );
