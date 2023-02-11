@@ -11,8 +11,8 @@ services:
       image: mongo
       restart: always
       # DB Ports not exposed by default.
-      # ports: 
-      #   - 27017:27017
+      ports: 
+        - 27000:27017
       volumes:
         - mongoData:/data/db
       environment:

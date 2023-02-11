@@ -301,6 +301,7 @@ const TestCase = {
     },
     start: TimeStamp,
     finish: TimeStamp,
+    passed: { type: 'boolean' },
     name: {
       type: 'string',
     },
@@ -312,10 +313,11 @@ const TestCase = {
     'start',
     'finish',
     'name',
+    'passed',
   ],
 };
 
-const TestReport = {
+const TestReportSchema = {
   type: 'object',
   properties: {
     meta: MetaSchema,
@@ -337,6 +339,9 @@ const TestReport = {
     sourceBranch: {
       type: 'string',
     },
+    saveTime: {
+      type: 'integer',
+    },
   },
   required: [
     'meta',
@@ -347,7 +352,8 @@ const TestReport = {
     'testApp',
     'testSuite',
     'sourceBranch',
+    'saveTime',
   ],
 };
 
-module.exports = TestReport;
+module.exports = TestReportSchema;

@@ -4,16 +4,11 @@ const { ObjectId } = require('mongodb');
 
 const reportRoutes = express.Router();
 const ReportUploadRequestHandler = require('../reportSave/handleSaveRequest');
+const ReportProductGetRequestHandler = require('../testResults/handleGetProductRequest');
 
 // This section will help you get a list of all the reports.
 reportRoutes.route('/report').get((req, res) => {
-  const dbConnect = req.app.locals.reportCollection;
-  dbConnect
-    .find({})
-    .toArray((err, result) => {
-      if (err) throw err;
-      res.json(result);
-    });
+  new ReportProductGetRequestHandler(req, res).getReports().catch((err) => res.status(500).send(`Unexpected exception ocurred: ${err}`));
 });
 
 // This section will help you get a single report by id
