@@ -1,8 +1,8 @@
 /* eslint-disable no-console */
 const streamline = require('streamifier');
+
 const readline = require('readline');
 const { validate } = require('jsonschema');
-const { validateAgainstSchema } = require('../db/reportSchemaValidation');
 const TestCaseBuilder = require('./utils/testCaseBuilder');
 
 const RequestSchema = {
@@ -35,15 +35,15 @@ module.exports = class ReportUploadRequestHandler {
   constructor(saveRequest, response) {
     this.req = saveRequest;
     this.res = response;
-    this.db_connect = saveRequest.app.locals.reportCollection;
+    this.dbConnect = saveRequest.app.locals.reportCollection;
   }
 
-  async saveData() {
+  async saveData(repository) {
     if (!this.isRequestValid()) {
       return false;
     }
     const dataToSave = new TestCaseBuilder(await this.loadData()).buildExecutionResult();
-    await this.jsonSave(dataToSave);
+    await this.jsonSave(repository, dataToSave);
     return true;
   }
 
@@ -79,28 +79,26 @@ module.exports = class ReportUploadRequestHandler {
     return items;
   }
 
-  async jsonSave(data) {
+  async jsonSave(repository, data) {
     const report = data;
     report.buildingBlock = this.req.body.buildingBlock;
     report.testSuite = this.req.body.testSuite;
     report.testApp = this.req.body.testApp;
     report.sourceBranch = this.req.body.sourceBranch;
 
-    try {
-      const validationResult = validateAgainstSchema(report);
-      if (validationResult.errors.length > 0) {
-        this.sendValidationError(validationResult.errors);
-        return;
-      }
-      this.saveToDatabase(report);
-    } catch (err) { this.res.status(500).send(`Error inserting report: ${err}`); }
+    this.saveToDatabase(repository, report);
   }
 
-  saveToDatabase(data) {
+  saveToDatabase(repository, data) {
     const { res } = this;
-    this.db_connect.insertOne(data, (err, result) => {
+
+    repository.add(data, (err, result) => {
       if (err) {
-        res.status(400).send(`Error inserting report: ${err}`);
+        if (err.name === 'ValidationError') {
+          res.status(404).send(err);
+        } else {
+          res.status(400).send(`Error inserting report: ${err}`);
+        }
       } else {
         console.log(`Added a new report with id ${result.insertedId}`);
         res.status(201).send({ success: true });

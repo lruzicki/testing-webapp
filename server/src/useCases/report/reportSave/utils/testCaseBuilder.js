@@ -31,6 +31,7 @@ module.exports = class TestCaseBuilder {
       const start = this.aggregatedData.testCasesStarted[id];
       const finish = this.aggregatedData.testCasesFinished[start.id];
       const steps = this.buildTestCaseSteps(pickle);
+      const passed = steps.filter((x) => x.result.status === 'FAILED').length === 0;
       const { name } = pickle;
       testCases.push(new dataModels.TestCase(
         source,
@@ -39,6 +40,7 @@ module.exports = class TestCaseBuilder {
         start,
         finish,
         name,
+        passed,
       ));
     });
 

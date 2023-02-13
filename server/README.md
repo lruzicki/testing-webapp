@@ -23,9 +23,9 @@ The following variables are used:
 * `MONGO_HOST`
 * `MONGO_PORT`
 * `MONGO_DATABASE`
+* `MONGO_CONNECTION_OPTIONS`
 
-Are used to create mongodb connection url. 
-Collection used to store test harness reports is predetermined as `testexecutions`. 
+Are used to create mongodb connection url.
 
 ### Access restriction
 * `API_KEY_*`
