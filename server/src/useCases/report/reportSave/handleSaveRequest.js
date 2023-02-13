@@ -94,7 +94,6 @@ module.exports = class ReportUploadRequestHandler {
 
     repository.add(data, (err, result) => {
       if (err) {
-        console.log('Error Inserting New Data');
         if (err.name === 'ValidationError') {
           res.status(404).send(err);
         } else {
