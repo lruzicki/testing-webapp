@@ -3,7 +3,7 @@ import * as Router from 'next/router';
 import Header from '../../../components/header/Header';
 import { render } from '../../test-utils/test-utils';
 
-describe('Unit tests for Header component', () => {
+describe('Unit tests for Header component:', () => {
   const LOGO_TEST_ID = 'logo';
   const mockedRedirect = jest.fn();
   // @ts-ignore

@@ -1,6 +1,6 @@
 import '../styles/Globals.less';
 import '../components/mainLayout/MainLayout.less';
-import '../components/header/header.less';
+import '../components/header/Header.less';
 import { IntlProvider, } from 'react-intl';
 import { useRouter } from 'next/router';
 import React from 'react';

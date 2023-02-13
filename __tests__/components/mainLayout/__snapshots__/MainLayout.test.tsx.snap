@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit test for MainLayout component render the MainLayout component 1`] = `
+exports[`Unit test for MainLayout component: render the MainLayout component 1`] = `
 <div>
   <div
     class="main-layout"

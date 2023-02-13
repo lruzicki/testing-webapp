@@ -1,7 +1,7 @@
 import MainLayout from '../../../components/mainLayout/MainLayout';
 import { render } from '../../test-utils/test-utils';
 
-describe('Unit test for MainLayout component', () => {
+describe('Unit test for MainLayout component:', () => {
   const childrenExample = <p>Test</p>;
 
   it('render the MainLayout component', () => {
