@@ -9,11 +9,11 @@ module.exports = {
         .then(
           () => {},
           (err) => {
-            console.info('Connection error: error', err);
+            console.errorr('Connection error: ', err);
           },
         )
         .catch((err) => {
-          console.log('ERROR:', err);
+          console.error('ERROR:', err);
         });
     }
 
