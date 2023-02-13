@@ -1,11 +1,14 @@
 import { render, RenderOptions } from '@testing-library/react';
 import React, { ReactElement } from 'react';
 import { IntlProvider } from 'react-intl';
-import * as translations from '../translations';
+import * as translations from '../../translations';
+import { mockNextUseRouter } from './nextMockImplementation';
 
 type ProviderProps = {
   children: React.ReactNode;
 };
+
+mockNextUseRouter();
 
 const Providers = ({ children }: ProviderProps) => {
   const locale = 'en';

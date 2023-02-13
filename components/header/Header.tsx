@@ -11,7 +11,7 @@ const Header = () => {
 
   return (
     <div className='header'>
-      <div className='header-logo' onClick={handleBackToHomePage}>
+      <div className='header-logo' onClick={handleBackToHomePage} data-testid='logo'>
         <img src='/images/logo.png' alt='logo' />
       </div>
     </div>

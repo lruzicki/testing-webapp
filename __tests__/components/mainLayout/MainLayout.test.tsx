@@ -1,10 +1,10 @@
 import MainLayout from '../../../components/mainLayout/MainLayout';
-import { render } from '../../test-utils';
+import { render } from '../../test-utils/test-utils';
 
-describe('Unit test for HomePage', () => {
+describe('Unit test for MainLayout component', () => {
   const childrenExample = <p>Test</p>;
 
-  it('renders the home page', () => {
+  it('render the MainLayout component', () => {
     const { container } = render(<MainLayout>{childrenExample}</MainLayout>);
 
     expect(container).toMatchSnapshot();

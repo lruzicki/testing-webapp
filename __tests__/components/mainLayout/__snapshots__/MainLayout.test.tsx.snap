@@ -1,10 +1,23 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit test for HomePage renders the home page 1`] = `
+exports[`Unit test for MainLayout component render the MainLayout component 1`] = `
 <div>
   <div
     class="main-layout"
   >
+    <div
+      class="header"
+    >
+      <div
+        class="header-logo"
+        data-testid="logo"
+      >
+        <img
+          alt="logo"
+          src="/images/logo.png"
+        />
+      </div>
+    </div>
     <p>
       Test
     </p>

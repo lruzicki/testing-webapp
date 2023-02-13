@@ -1,17 +1,9 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit test for HomePage renders the home page 1`] = `
+exports[`Unit test for HomePage render the Home page 1`] = `
 <div>
   <div>
-    <main>
-      <div
-        class="main-layout"
-      >
-        <p>
-          GovStack
-        </p>
-      </div>
-    </main>
+    <main />
   </div>
 </div>
 `;
