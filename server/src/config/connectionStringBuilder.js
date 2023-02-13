@@ -7,7 +7,7 @@ module.exports = class MongoConnection {
   }
 
   getConnection = () => {
-    const envConnectionOptions = process.env.MONGO_CONNECITON_OPTIONS;
+    const envConnectionOptions = process.env.MONGO_CONNECTION_OPTIONS;
     const defaultConnectionOptions = 'maxPoolSize=20&w=majority';
     const conn = {
       username: process.env.MONGO_USERNAME,
