@@ -1,5 +1,5 @@
-import '../styles/globals.less';
-import '../components/mainLayout/mainLayout.less';
+import '../styles/Globals.less';
+import '../components/mainLayout/MainLayout.less';
 import '../components/header/header.less';
 import { IntlProvider, } from 'react-intl';
 import { useRouter } from 'next/router';

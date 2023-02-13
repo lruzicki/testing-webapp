@@ -10,13 +10,14 @@ class TestCaseStep {
 }
 
 class TestCase {
-  constructor(source, gherkinDocument, steps, start, finish, name) {
+  constructor(source, gherkinDocument, steps, start, finish, name, passed) {
     this.source = source;
     this.gherkinDocument = gherkinDocument;
     this.steps = steps;
     this.start = start;
     this.finish = finish;
     this.name = name;
+    this.passed = passed;
   }
 }
 
@@ -26,6 +27,7 @@ class TestExecution {
     this.start = start;
     this.finish = finish;
     this.testCases = testCases;
+    this.saveTime = Date.now();
   }
 }
 
