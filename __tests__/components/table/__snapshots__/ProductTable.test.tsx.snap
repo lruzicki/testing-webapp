@@ -1,0 +1,76 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for ProductTable component: should render the ProductTable component and match snapshot 1`] = `
+<div>
+  <div
+    class="table"
+  >
+    <div
+      class="table-results-count"
+    >
+      <p>
+        0
+         results
+      </p>
+    </div>
+    <div
+      class="table-body"
+    >
+      <div
+        class="product-table-header"
+      >
+        <div
+          class="empty-space"
+        />
+        <div
+          class="product-table-content"
+        >
+          <div>
+            <p>
+              Product Name
+            </p>
+          </div>
+          <div>
+            <p>
+              Building Blocks
+            </p>
+          </div>
+          <div>
+            <p>
+              Last Update
+            </p>
+          </div>
+          <div>
+            <p>
+              Overall Compatibility
+            </p>
+          </div>
+        </div>
+      </div>
+      <div
+        class="product-table-row"
+      >
+        <div
+          class="details-arrow"
+        />
+        <div
+          class="product-table-content"
+        >
+          <div>
+            <p />
+          </div>
+          <div>
+            <p />
+          </div>
+          <div>
+            <p />
+          </div>
+          <div>
+            <p />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

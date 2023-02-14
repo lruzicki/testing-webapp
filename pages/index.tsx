@@ -1,6 +1,6 @@
 import React from 'react';
 import Head from 'next/head';
-import Table from '../components/table/Table';
+import ProductTable from '../components/table/ProductTable';
 
 const HomePage = () => {
   return (
@@ -11,7 +11,7 @@ const HomePage = () => {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <main>
-        <Table />
+        <ProductTable />
       </main>
     </div>
   );

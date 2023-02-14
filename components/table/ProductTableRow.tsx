@@ -1,9 +1,9 @@
 import React from 'react';
 
-const TableRow = () => (
+const ProductTableRow = () => (
   <div className='product-table-row'>
     <div className='details-arrow'></div>
-    <div className='product-table-sections'>
+    <div className='product-table-content'>
       <div>
         <p></p>
       </div>
@@ -20,4 +20,4 @@ const TableRow = () => (
   </div>
 );
 
-export default TableRow;
+export default ProductTableRow;

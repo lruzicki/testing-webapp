@@ -1,9 +1,9 @@
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
-import TableHeader from './TableHeader';
-import TableRow from './TableRow';
+import ProductTableHeader from './ProductTableHeader';
+import ProductTableRow from './ProductTableRow';
 
-const Table = () => {
+const ProductTable = () => {
   const { formatMessage } = useIntl();
   const format = useCallback(
     (id: string) => formatMessage({ id }),
@@ -13,14 +13,14 @@ const Table = () => {
   return (
     <div className='table'>
       <div className='table-results-count'>
-        <p>{format('table.result.plural.label')}</p>
+        <p>0{format('table.result.plural.label')}</p>
       </div>
       <div className='table-body'>
-        <TableHeader />
-        <TableRow />
+        <ProductTableHeader />
+        <ProductTableRow />
       </div>
     </div>
   );
 };
 
-export default Table;
+export default ProductTable;
