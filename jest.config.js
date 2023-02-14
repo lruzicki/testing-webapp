@@ -18,7 +18,7 @@ const customJestConfig = {
   testPathIgnorePatterns: [
     '<rootDir>/node_modules/',
     '<rootDir>/.next/',
-    '__tests__/test-utils.tsx',
+    '__tests__/test-utils/',
   ],
 };
 
