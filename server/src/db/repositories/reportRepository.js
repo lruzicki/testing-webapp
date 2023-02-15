@@ -36,6 +36,7 @@ function getLatestReportPipeline(filters) {
         },
         compatibilities: {
           $push: {
+            id: '$latest.id',
             buildingBlock: '$_id.buildingBlock',
             timestamp: '$latest.date',
             saveTime: '$latest.saveTime',
