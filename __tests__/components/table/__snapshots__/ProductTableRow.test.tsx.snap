@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for ProductTableRow component: should render the ProductTableRow component and match snapshot 1`] = `
+<div>
+  <div
+    class="product-table-row"
+  >
+    <div
+      class="details-arrow"
+    />
+    <div
+      class="product-table-content"
+    >
+      <div>
+        <p />
+      </div>
+      <div>
+        <p />
+      </div>
+      <div>
+        <p />
+      </div>
+      <div>
+        <p />
+      </div>
+    </div>
+  </div>
+</div>
+`;
