@@ -12,7 +12,9 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
       class="product-table-content"
     >
       <div>
-        <p />
+        <p>
+          Test Product
+        </p>
       </div>
       <div>
         <p />

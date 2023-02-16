@@ -1,11 +1,16 @@
 import React from 'react';
+import { ProductsType } from '../../service/types';
 
-const ProductTableRow = () => (
+type Props = {
+  product: ProductsType;
+};
+
+const ProductTableRow = ({ product }: Props) => (
   <div className='product-table-row'>
     <div className='details-arrow'></div>
     <div className='product-table-content'>
       <div>
-        <p></p>
+        <p>{product._id.testApp}</p>
       </div>
       <div>
         <p></p>

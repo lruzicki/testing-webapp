@@ -9,8 +9,8 @@ exports[`Unit tests for ProductTable component: should render the ProductTable c
       class="table-results-count"
     >
       <p>
-        0
-         results
+        1
+         result
       </p>
     </div>
     <div
@@ -48,25 +48,31 @@ exports[`Unit tests for ProductTable component: should render the ProductTable c
         </div>
       </div>
       <div
-        class="product-table-row"
+        class="product-table-row-section"
       >
         <div
-          class="details-arrow"
-        />
-        <div
-          class="product-table-content"
+          class="product-table-row"
         >
-          <div>
-            <p />
-          </div>
-          <div>
-            <p />
-          </div>
-          <div>
-            <p />
-          </div>
-          <div>
-            <p />
+          <div
+            class="details-arrow"
+          />
+          <div
+            class="product-table-content"
+          >
+            <div>
+              <p>
+                Test Product
+              </p>
+            </div>
+            <div>
+              <p />
+            </div>
+            <div>
+              <p />
+            </div>
+            <div>
+              <p />
+            </div>
           </div>
         </div>
       </div>
