@@ -6,5 +6,6 @@ export const en = {
 
   'table.last_update.label': 'Last Update',
   'table.overall_compatibility.label': 'Overall Compatibility',
+  'table.result.label': ' result',
   'table.result.plural.label': ' results',
 };
