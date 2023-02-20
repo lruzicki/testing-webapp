@@ -1,4 +1,5 @@
-import React, { createRef, useEffect, useState } from 'react';
+import React, { useCallback, useEffect } from 'react';
+import debounce from 'lodash.debounce';
 import { ProductsType } from '../../service/types';
 import BBImage from './BuildingBlocksImage';
 
@@ -7,18 +8,26 @@ type Props = {
 };
 
 const ProductTableRow = ({ product }: Props) => {
-  const bbImageContainer = createRef<HTMLDivElement>();
-  const [bbImageOverflow, setBBImageOverflow] = useState(false);
+  const bbImageContainer = React.useRef<HTMLDivElement | null>(null);
+  const [numberOfHidenBBImages, setNumberOfHidenBBImages] = React.useState<Number | null>(null);
 
-  useEffect(() => {
-    const bbImg = bbImageContainer.current;
+  const productCompatibilitiesLength = product.compatibilities.length;
 
-    if (bbImg) {
-      const productOverflow =
-        bbImg.offsetHeight < bbImg.scrollHeight || bbImg.offsetWidth < bbImg.scrollWidth;
-      setBBImageOverflow(productOverflow);
+  const getContainerSize = useCallback(() => {
+    const container = bbImageContainer.current;
+    if (container && productCompatibilitiesLength > 0) {
+      const numberOfVisibleBBImageinContainer = productCompatibilitiesLength - Math.floor((container.clientWidth || 0) / 28);
+
+      setNumberOfHidenBBImages(Math.max(0, numberOfVisibleBBImageinContainer));
     }
-  }, [bbImageOverflow, bbImageContainer]);
+  }, [productCompatibilitiesLength]);
+
+  useEffect(getContainerSize, [getContainerSize]);
+
+  useEffect(
+    () => window.addEventListener('resize', debounce(getContainerSize, 100)),
+    [getContainerSize]
+  );
 
   return (
     <div className='product-table-row'>
@@ -30,15 +39,18 @@ const ProductTableRow = ({ product }: Props) => {
         <div className='table-bb-section'>
           <div className='table-bb-image' ref={bbImageContainer}>
             {product.compatibilities.map((bb, bbIdx) => (
-              <BBImage imagePath={bb.buildingBlock} key={`bb-image-${bbIdx}`} />
+              <BBImage
+                imagePath={bb.buildingBlock}
+                key={`bb-image-${bbIdx}`}
+              />
             ))}
           </div>
           <div>
-            {bbImageOverflow && (
-              <div className='overflow-count'>
-                <p>+3</p>
+            {numberOfHidenBBImages ? (
+              <div className='overflow-count' data-testid='bb-rest-count'>
+                <p>{`+${numberOfHidenBBImages}`}</p>
               </div>
-            )}
+            ): null}
           </div>
         </div>
         <div>

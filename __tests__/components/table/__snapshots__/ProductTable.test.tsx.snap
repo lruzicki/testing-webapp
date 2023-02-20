@@ -64,8 +64,35 @@ exports[`Unit tests for ProductTable component: should render the ProductTable c
                 Test Product
               </p>
             </div>
-            <div>
-              <p />
+            <div
+              class="table-bb-section"
+            >
+              <div
+                class="table-bb-image"
+              >
+                <img
+                  alt="Logo for: Building block label"
+                  class="bb-image"
+                  data-nimg="1"
+                  decoding="async"
+                  height="18"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75"
+                  srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75 2x"
+                  style="color: transparent;"
+                  width="18"
+                />
+              </div>
+              <div>
+                <div
+                  class="overflow-count"
+                  data-testid="bb-rest-count"
+                >
+                  <p>
+                    +1
+                  </p>
+                </div>
+              </div>
             </div>
             <div>
               <p />
