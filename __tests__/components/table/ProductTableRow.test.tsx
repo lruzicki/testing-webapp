@@ -44,7 +44,7 @@ describe('Unit tests for ProductTableRow component:', () => {
     expect(queryByTestId(REST_COUNT_TEST_ID)).toBeNull();
   });
 
-  it('when container of items has width 100px and is overflowing.', async () => {
+  it('when container of items has width 100px and is overflowing.', () => {
     mockedContainerWidth(100);
 
     const { getByTestId } = render(
@@ -64,7 +64,7 @@ describe('Unit tests for ProductTableRow component:', () => {
     expect(getByTestId(REST_COUNT_TEST_ID)).toHaveTextContent('+1');
   });
 
-  it('when container of items has width 50px and is overflowing.', async () => {
+  it('when container of items has width 50px and is overflowing.', () => {
     mockedContainerWidth(50);
 
     const { getByTestId } = render(
