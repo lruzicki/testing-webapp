@@ -67,38 +67,41 @@ exports[`Unit tests for ProductTable component: should render the ProductTable c
             <div
               class="table-bb-section"
             >
+              <div
+                class="table-bb-image"
+              >
+                <img
+                  alt="Logo for: Building block label"
+                  class="bb-image"
+                  data-nimg="1"
+                  decoding="async"
+                  height="18"
+                  loading="lazy"
+                  src="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75"
+                  srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75 2x"
+                  style="color: transparent;"
+                  width="18"
+                />
+              </div>
               <div>
                 <div
-                  class="table-bb-image"
-                  style="width: 0px;"
+                  class="overflow-count"
+                  data-testid="bb-rest-count"
                 >
-                  <img
-                    alt="Logo for: Building block label"
-                    class="bb-image"
-                    data-nimg="1"
-                    decoding="async"
-                    height="18"
-                    loading="lazy"
-                    src="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75"
-                    srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75 2x"
-                    style="color: transparent;"
-                    width="18"
-                  />
-                </div>
-                <div>
-                  <div
-                    class="overflow-count"
-                    data-testid="bb-rest-count"
-                  >
-                    <p>
-                      +1
-                    </p>
-                  </div>
+                  <p>
+                    +1
+                  </p>
                 </div>
               </div>
             </div>
-            <div>
-              <p />
+            <div
+              data-testid="product-last-update"
+            >
+              <p
+                class="product-last-update"
+              >
+                1/20/1970
+              </p>
             </div>
             <div>
               <p />
