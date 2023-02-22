@@ -19,35 +19,44 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
       <div
         class="table-bb-section"
       >
-        <div
-          class="table-bb-image"
-        >
-          <img
-            alt="Logo for: Building block label"
-            class="bb-image"
-            data-nimg="1"
-            decoding="async"
-            height="18"
-            loading="lazy"
-            src="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75"
-            srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75 2x"
-            style="color: transparent;"
-            width="18"
-          />
-        </div>
         <div>
           <div
-            class="overflow-count"
-            data-testid="bb-rest-count"
+            class="table-bb-image"
+            style="width: 0px;"
           >
-            <p>
-              +1
-            </p>
+            <img
+              alt="Logo for: Building block label"
+              class="bb-image"
+              data-nimg="1"
+              decoding="async"
+              height="18"
+              loading="lazy"
+              src="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75"
+              srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75 2x"
+              style="color: transparent;"
+              width="18"
+            />
+          </div>
+          <div>
+            <div
+              class="overflow-count"
+              data-testid="bb-rest-count"
+            >
+              <p>
+                +1
+              </p>
+            </div>
           </div>
         </div>
       </div>
-      <div>
-        <p />
+      <div
+        data-testid="product-last-update"
+      >
+        <p
+          class="product-last-update"
+        >
+          1/20/1970
+        </p>
       </div>
       <div>
         <p />
@@ -76,13 +85,20 @@ exports[`Unit tests for ProductTableRow component: when product compatibilities 
       <div
         class="table-bb-section"
       >
-        <div
-          class="table-bb-image"
-        />
-        <div />
+        <div>
+          <div
+            class="table-bb-image"
+            style="width: 75%;"
+          />
+          <div />
+        </div>
       </div>
-      <div>
-        <p />
+      <div
+        data-testid="product-last-update"
+      >
+        <p
+          class="product-last-update"
+        />
       </div>
       <div>
         <p />
