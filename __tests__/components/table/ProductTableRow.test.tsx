@@ -61,7 +61,7 @@ describe('Unit tests for ProductTableRow component:', () => {
       />
     );
 
-    expect(getByTestId(REST_COUNT_TEST_ID)).toHaveTextContent('+1');
+    expect(getByTestId(REST_COUNT_TEST_ID)).toHaveTextContent('+2');
   });
 
   it('when container of items has width 50px and is overflowing.', () => {

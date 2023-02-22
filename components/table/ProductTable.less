@@ -75,17 +75,21 @@
   align-items: center;
 }
 
+.table-bb-section > div:first-of-type:extend(.flex-row) {
+  width: 100%;
+  align-items: center;
+}
+
 .table-bb-image {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
-  width: 75%;
   height: 48px;
   overflow: hidden;
+  gap: 10px;
 }
 
 .bb-image {
-  padding-right: 10px;
   padding-top: 15px;
   padding-bottom: 15px;
   filter: invert(30%) sepia(96%) saturate(2946%) hue-rotate(221deg)
