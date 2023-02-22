@@ -69,3 +69,44 @@
 .icon-sort {
   font-size: initial;
 }
+
+.table-bb-section {
+  display: flex;
+  align-items: center;
+}
+
+.table-bb-section > div:first-of-type:extend(.flex-row) {
+  width: 100%;
+  align-items: center;
+}
+
+.table-bb-image {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  height: 48px;
+  overflow: hidden;
+  gap: 10px;
+}
+
+.bb-image {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  filter: invert(30%) sepia(96%) saturate(2946%) hue-rotate(221deg)
+    brightness(92%) contrast(94%);
+}
+
+.overflow-count {
+  display: flex;
+  align-items: center;
+  height: 48px;
+  background-color: @blue-10;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+}
+
+.overflow-count > p {
+  margin: auto;
+  color: @accents-and-btn;
+}

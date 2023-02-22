@@ -16,8 +16,76 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
           Test Product
         </p>
       </div>
+      <div
+        class="table-bb-section"
+      >
+        <div>
+          <div
+            class="table-bb-image"
+            style="width: 0px;"
+          >
+            <img
+              alt="Logo for: Building block label"
+              class="bb-image"
+              data-nimg="1"
+              decoding="async"
+              height="18"
+              loading="lazy"
+              src="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75"
+              srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75 2x"
+              style="color: transparent;"
+              width="18"
+            />
+          </div>
+          <div>
+            <div
+              class="overflow-count"
+              data-testid="bb-rest-count"
+            >
+              <p>
+                +1
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
       <div>
         <p />
+      </div>
+      <div>
+        <p />
+      </div>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit tests for ProductTableRow component: when product compatibilities length is equal to 0. 1`] = `
+<div>
+  <div
+    class="product-table-row"
+  >
+    <div
+      class="details-arrow"
+    />
+    <div
+      class="product-table-content"
+    >
+      <div>
+        <p>
+          Test Product
+        </p>
+      </div>
+      <div
+        class="table-bb-section"
+      >
+        <div>
+          <div
+            class="table-bb-image"
+            style="width: 75%;"
+          />
+          <div />
+        </div>
       </div>
       <div>
         <p />

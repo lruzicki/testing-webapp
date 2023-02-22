@@ -2,6 +2,8 @@
 export const en = {
   'building_block.plural.label': 'Building Blocks',
 
+  'image.alt.logoFor': 'Logo for: {name}',
+
   'product_name.label': 'Product Name',
 
   'table.last_update.label': 'Last Update',
