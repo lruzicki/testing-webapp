@@ -1,5 +1,6 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import debounce from 'lodash.debounce';
+import { useRouter } from 'next/router';
 import { ProductsType } from '../../service/types';
 import BBImage from './BuildingBlocksImage';
 
@@ -9,8 +10,12 @@ type Props = {
 
 const ProductTableRow = ({ product }: Props) => {
   const bbContentContainer = React.useRef<HTMLDivElement | null>(null);
-  const [numberOfHidenBBImages, setNumberOfHidenBBImages] = useState<Number | null>(null);
+  const [numberOfHidenBBImages, setNumberOfHidenBBImages] = React.useState<Number | null>(null);
   const [imageSectionWidth, setImageSectionWidth] = useState<string | undefined>();
+  const [productLastUpdate, setProductLastUpdate] = useState<string>('');
+
+  const router = useRouter();
+  const { locale } = router;
 
   const productCompatibilitiesLength = product.compatibilities.length;
 
@@ -31,6 +36,15 @@ const ProductTableRow = ({ product }: Props) => {
     () => window.addEventListener('resize', debounce(getContainerSize, 20)),
     [getContainerSize]
   );
+
+  useEffect(() => {
+    const sortedTimeStamp = product.compatibilities.map((bb) => bb.timestamp).sort().reverse()[0];
+    if (sortedTimeStamp) {
+      setProductLastUpdate(new Date(sortedTimeStamp).toLocaleDateString(locale));
+    } else {
+      setProductLastUpdate('');
+    }
+  }, [product.compatibilities, locale]);
 
   return (
     <div className='product-table-row'>
@@ -58,8 +72,8 @@ const ProductTableRow = ({ product }: Props) => {
             </div>
           </div>
         </div>
-        <div>
-          <p></p>
+        <div data-testid='product-last-update'>
+          <p className='product-last-update'>{productLastUpdate}</p>
         </div>
         <div>
           <p></p>

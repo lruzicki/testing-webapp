@@ -49,8 +49,14 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
           </div>
         </div>
       </div>
-      <div>
-        <p />
+      <div
+        data-testid="product-last-update"
+      >
+        <p
+          class="product-last-update"
+        >
+          1/20/1970
+        </p>
       </div>
       <div>
         <p />
@@ -87,8 +93,12 @@ exports[`Unit tests for ProductTableRow component: when product compatibilities 
           <div />
         </div>
       </div>
-      <div>
-        <p />
+      <div
+        data-testid="product-last-update"
+      >
+        <p
+          class="product-last-update"
+        />
       </div>
       <div>
         <p />

@@ -18,6 +18,7 @@ const mockedContainerWidth = (clientWidth: number) =>
 
 describe('Unit tests for ProductTableRow component:', () => {
   const REST_COUNT_TEST_ID = 'bb-rest-count';
+  const LAST_UPDATE_TEST_ID = 'product-last-update';
 
   it('should render the ProductTableRow component and match snapshot', () => {
     const { container } = render(<ProductTableRow product={productsList} />);
@@ -83,4 +84,48 @@ describe('Unit tests for ProductTableRow component:', () => {
 
     expect(getByTestId(REST_COUNT_TEST_ID)).toHaveTextContent('+3');
   });
+
+  it('when product compatibilities timestamp is undefined', () => {
+    const { getByTestId } = render(
+      <ProductTableRow
+        product={{
+          ...productsList,
+          compatibilities: [],
+        }}
+      />
+    );
+
+    expect(getByTestId(LAST_UPDATE_TEST_ID)).toHaveTextContent('');
+  });
+
+  it('when product compatibilities timestamp is defined', () => {
+    const { getByTestId } = render(
+      <ProductTableRow
+        product={{
+          ...productsList,
+          compatibilities: [
+            ...productsList.compatibilities,
+            {
+              id: '07112c0a-8263-4717-92ce-c52bca785624',
+              buildingBlock: 'mobility_management',
+              timestamp: 1,
+              saveTime: 1659380963000,
+              testsPassed: 2,
+              testsFailed: 2,
+            },
+            {
+              id: '07112c0a-8263-4717-92ce-c52bca785624',
+              buildingBlock: 'mobility_management',
+              timestamp: 1676985138783,
+              saveTime: 1659380963000,
+              testsPassed: 2,
+              testsFailed: 2,
+            }],
+        }}
+      />
+    );
+
+    expect(getByTestId(LAST_UPDATE_TEST_ID)).toHaveTextContent('2/21/2023');
+  });
+
 });
