@@ -79,6 +79,7 @@ export const mockedProductList = [
         compatibility: 0.3455,
       },
     ],
+    overallCompatibility: 1,
   },
   {
     _id: { testApp: 'Subin', testSuite: 'Technology', sourceBranch: 'a' },
@@ -90,7 +91,7 @@ export const mockedProductList = [
         saveTime: 1670490781000,
         testsPassed: 12,
         testsFailed: 7,
-        compatibility: 0.5455,
+        compatibility: 0.3455,
       },
       {
         id: '0ba8dcdc-0c12-4a7e-b9c6-e7674379cf15',
@@ -102,6 +103,7 @@ export const mockedProductList = [
         compatibility: 0.3455,
       },
     ],
+    overallCompatibility: 0.1323,
   },
   {
     _id: {
@@ -155,6 +157,7 @@ export const mockedProductList = [
       //   testsFailed: 5,
       // },
     ],
+    overallCompatibility: 0.5323,
   },
   {
     _id: {
@@ -173,6 +176,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.7723,
   },
   {
     _id: {
@@ -191,6 +195,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -209,6 +214,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -227,6 +233,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Treeflex', testSuite: 'n/a', sourceBranch: 'porttitor' },
@@ -241,6 +248,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Biodex', testSuite: 'Finance', sourceBranch: 'venenatis' },
@@ -255,6 +263,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Subin', testSuite: 'Technology', sourceBranch: 'a' },
@@ -269,6 +278,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -287,6 +297,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -305,6 +316,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -323,6 +335,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -341,6 +354,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -359,6 +373,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Treeflex', testSuite: 'n/a', sourceBranch: 'porttitor' },
@@ -373,6 +388,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Biodex', testSuite: 'Finance', sourceBranch: 'venenatis' },
@@ -387,6 +403,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Subin', testSuite: 'Technology', sourceBranch: 'a' },
@@ -401,6 +418,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -419,6 +437,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -437,6 +456,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -455,6 +475,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -473,6 +494,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -491,6 +513,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Treeflex', testSuite: 'n/a', sourceBranch: 'porttitor' },
@@ -505,6 +528,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Biodex', testSuite: 'Finance', sourceBranch: 'venenatis' },
@@ -519,6 +543,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Subin', testSuite: 'Technology', sourceBranch: 'a' },
@@ -533,6 +558,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -551,6 +577,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -569,6 +596,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -587,6 +615,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -605,6 +634,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -623,6 +653,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Treeflex', testSuite: 'n/a', sourceBranch: 'porttitor' },
@@ -637,6 +668,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Biodex', testSuite: 'Finance', sourceBranch: 'venenatis' },
@@ -651,6 +683,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Subin', testSuite: 'Technology', sourceBranch: 'a' },
@@ -665,6 +698,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -683,6 +717,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -701,6 +736,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -719,6 +755,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -737,6 +774,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: {
@@ -755,6 +793,7 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
   {
     _id: { testApp: 'Treeflex', testSuite: 'n/a', sourceBranch: 'porttitor' },
@@ -769,5 +808,6 @@ export const mockedProductList = [
         compatibility: 0.2455,
       },
     ],
+    overallCompatibility: 0.2323,
   },
 ];
