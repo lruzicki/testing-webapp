@@ -14,9 +14,9 @@ export const en = {
   'app.tests_passed.label': 'Tests Passed',
   'app.tests_failed.label': 'Tests Failed',
   'app.compatibility.label': 'Compatibility',
+  'app.scroll-loader.message': 'Loading more data...',
 
   'building_block.label': 'Building Block',
-
   'building_block.plural.label': 'Building Blocks',
 
   'image.alt.logoFor': 'Logo for: {name}',
