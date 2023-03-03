@@ -1,4 +1,4 @@
-import { ProductsType } from '../../../../service/types';
+import { BuildingBlockType, ProductsType } from '../../../../service/types';
 
 export const productsList: ProductsType = {
   _id: {
@@ -18,4 +18,14 @@ export const productsList: ProductsType = {
     },
   ],
   overallCompatibility: 0.2355,
+};
+
+export const buildingBlock: BuildingBlockType = {
+  id: '07112c0a-8263-4717-92ce-c52bca785624',
+  buildingBlock: 'mobility_management',
+  timestamp: 1,
+  saveTime: 1659380963000,
+  testsPassed: 2,
+  testsFailed: 2,
+  compatibility: 0.3455,
 };

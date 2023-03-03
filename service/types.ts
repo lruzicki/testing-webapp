@@ -1,4 +1,4 @@
-export type CompatibilitiesType = {
+export type BuildingBlockType = {
   id: string;
   buildingBlock: string; // Building block label
   timestamp: number; // Execution time from test [seconds]
@@ -14,7 +14,7 @@ export type ProductsType = {
     testSuite: string; // Test suite label
     sourceBranch: string; // Branch on which tests were executed
   };
-  compatibilities: CompatibilitiesType[];
+  compatibilities: BuildingBlockType[];
   overallCompatibility: number;
 };
 
