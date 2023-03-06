@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { getProductsList } from '../../service/serviceAPI';
+import { getProductsList, getProductListCount } from '../../service/serviceAPI';
 import { ProductsType } from '../../service/types';
 import { moreMockedProductList } from '../../service/mockedData';
 import InfiniteScrollCustomLoader from '../InfiniteScrollLoader';
@@ -10,6 +10,7 @@ import ProductTableRow from './ProductTableRow';
 
 const ProductTable = () => {
   const [productsList, setProductsList] = useState<ProductsType[]>([]);
+  const [productListLength, setProductListLength] = useState<number>(0)
   const [hasMoreData, setHasMoreData] = useState<boolean>(true);
   const { formatMessage } = useIntl();
   const format = useCallback(
@@ -17,16 +18,20 @@ const ProductTable = () => {
     [formatMessage]
   );
 
-  useEffect(() => {
-    const products = getProductsList();
+  const fetchProductsList = async () => {
+    const products = await getProductsList();
+    // const count = await getProductListCount()
     setProductsList(products);
-  }, []);
+    setProductListLength(5)
+  }
 
-  const productListLength = productsList.length;
+  useEffect(() => {
+    fetchProductsList()
+  }, [])
 
   const handleLoadMoreData = () => {
     // mocked response
-    setProductsList([...productsList, ...moreMockedProductList]);
+    // setProductsList([...productsList, ...moreMockedProductList]);
     setHasMoreData(false);
   };
 
