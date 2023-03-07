@@ -1,7 +1,7 @@
 const ReportModel = require('../schemas/report');
 
 // eslint-disable-next-line class-methods-use-this, no-unused-vars
-function getLatestReportPipeline(filters) {
+function getLatestReportPipeline() {
   return [
     {
       $match: {
@@ -159,12 +159,29 @@ const repository = () => {
   };
 
   const aggregateByProduct = (filters, callback) => {
-    ReportModel.aggregate(getLatestReportPipeline(filters)).exec(callback);
+    const aggregation = ReportModel.aggregate(getLatestReportPipeline());
+
+    if (filters.offset !== undefined) {
+      aggregation.append({ $skip: filters.offset });
+    }
+
+    if (filters.limit !== undefined) {
+      aggregation.append({ $limit: filters.limit });
+    }
+
+    aggregation.exec(callback);
+  };
+
+  const productsCount = (callback) => {
+    ReportModel.aggregate(getLatestReportPipeline())
+      .append([{ $count: 'count' }])
+      .exec(callback);
   };
 
   return {
     add,
     aggregateByProduct,
+    productsCount,
   };
 };
 
