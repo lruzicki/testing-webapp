@@ -6,6 +6,7 @@ import '../components/Definition.less';
 import '../components/table/SubTable.less';
 import '../components/Definition.less';
 import 'react-tooltip/dist/react-tooltip.css';
+import '../components/TestSummary.less'
 import { IntlProvider } from 'react-intl';
 import { useRouter } from 'next/router';
 import React from 'react';
