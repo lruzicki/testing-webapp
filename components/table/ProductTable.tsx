@@ -49,7 +49,7 @@ const ProductTable = () => {
     if (data.status) {
       setProductsList([...productsList, ...data.data]);
     } else {
-      setProductsList([...productsList])
+      setProductsList([...productsList]);
     }
   }, [productsList]);
 
