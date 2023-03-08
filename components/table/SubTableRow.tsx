@@ -12,7 +12,7 @@ const SubTableRow = ({ buildingBlock }: Props) => {
       <div></div>
       <div className='sub-table-row-bb' data-testid='bb-name'>
         <BBImage imagePath={buildingBlock.buildingBlock} />
-        <p>{buildingBlock.buildingBlock}</p>
+        <p>{(buildingBlock.buildingBlock).replace(/bb-|-/g, ' ')}</p>
       </div>
       <div className='sub-table-content-tests'>
         <div data-testid='tests-passed'>

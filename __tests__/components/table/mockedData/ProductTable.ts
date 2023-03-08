@@ -1,6 +1,6 @@
 import { BuildingBlockType, ProductsType } from '../../../../service/types';
 
-export const productsList: ProductsType = {
+export const mockedProduct: ProductsType = {
   _id: {
     testApp: 'Test Product',
     testSuite: 'Test suite',

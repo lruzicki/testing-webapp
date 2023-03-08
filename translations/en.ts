@@ -11,6 +11,8 @@ export const en = {
   'app.definition.note':
     'Note: Technical/API compliance is only a part of the full GovStack compliance process',
   'app.definition.title': 'GovStack Building Block Compliance Platform',
+  'app.error_fetching_data.message':
+    'Error fetching data. Please try again later.',
   'app.tests_passed.label': 'Tests Passed',
   'app.tests_failed.label': 'Tests Failed',
   'app.compatibility.label': 'Compatibility',
@@ -21,9 +23,10 @@ export const en = {
 
   'image.alt.logoFor': 'Logo for: {name}',
 
-  'product_name.label': 'Product Name',
+  'software_name.label': 'Software Name',
 
   'table.last_update.label': 'Last Update',
+  'table.no_result_count.message': 'No results count found',
   'table.overall_compatibility.label': 'Overall Compatibility',
   'table.result.label': ' result',
   'table.result.plural.label': ' results',

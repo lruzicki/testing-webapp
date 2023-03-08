@@ -1,0 +1,14 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for TableErrorHandling component: should render the SubTable TableErrorHandling and match snapshot 1`] = `
+<div>
+  <div
+    class="table-error-handling"
+    data-testid="table-error"
+  >
+    <p>
+      Error fetching data. Please try again later.
+    </p>
+  </div>
+</div>
+`;

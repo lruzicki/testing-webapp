@@ -44,7 +44,7 @@ const ProductTableRow = ({ product }: Props) => {
   );
 
   useEffect(() => {
-    const sortedTimeStamp = product.compatibilities.map((bb) => bb.timestamp).sort().reverse()[0];
+    const sortedTimeStamp = product.compatibilities.map((bb) => bb.saveTime).sort().reverse()[0];
     if (sortedTimeStamp) {
       setProductLastUpdate(new Date(sortedTimeStamp).toLocaleDateString(locale));
     } else {
@@ -60,6 +60,7 @@ const ProductTableRow = ({ product }: Props) => {
     <>
       <div
         className={classNames('product-table-row', { 'product-table-row-opened': isSubTableOpen })}
+        data-testid={`product-table-row-${product._id.testApp}`}
         onClick={handleShowSubTable}
       >
         <div className='details-arrow'>

@@ -1,10 +1,12 @@
-import { mockedProductList } from './mockedData';
 import { ProductsListType } from './types';
 
-// const baseUrl = 'https://my.backend';
+const baseUrl = 'http://34.238.75.167:5000';
 
-export const getProductsList = async () => {
-  return await fetch(`http://34.238.75.167:5000/report`, {
+type Success<T> = { status: true; data: T };
+type Failure = { status: false; error: Error };
+
+export const getData = async (offset: number) => {
+  return await fetch(`${baseUrl}/report/?limit=20&offset=${offset}`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -16,17 +18,17 @@ export const getProductsList = async () => {
       }
       return response.json();
     })
-    .then((actualData) => {
-      console.log('actualData', actualData);
-      return actualData;
+    .then<Success<ProductsListType>>((actualData) => {
+      return { data: actualData, status: true };
     })
-    .catch((error) => {
-      return [[]];
+    .catch<Failure>((error) => {
+      console.log('error', error);
+      return { error, status: false };
     });
 };
 
 export const getProductListCount = async () => {
-  return await fetch(`http://34.238.75.167:5000/report/count`, {
+  return await fetch(`${baseUrl}/report/count`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
@@ -38,7 +40,16 @@ export const getProductListCount = async () => {
       }
       return response.json();
     })
-    .catch((error) => {
-      return [[]];
+    .then<Success<number>>((actualCount) => {
+      return {
+        status: true,
+        data: actualCount.count,
+      };
+    })
+    .catch<Failure>((error) => {
+      return {
+        status: false,
+        error,
+      };
     });
 };

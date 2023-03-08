@@ -12,7 +12,7 @@ const ProductTableHeader = () => {
     <div className='product-table-header'>
       <div></div>
       <div>
-        <p>{format('product_name.label')}</p>
+        <p>{format('software_name.label')}</p>
       </div>
       <div>
         <p>{format('building_block.plural.label')}</p>

@@ -1,7 +1,7 @@
 import React from 'react';
 import ProductTableRow from '../../../components/table/ProductTableRow';
 import { render } from '../../test-utils/test-utils';
-import { productsList } from './mockedData/ProductTable';
+import { mockedProduct } from './mockedData/ProductTable';
 
 const mockedContainerWidth = (clientWidth: number) =>
   // @ts-ignore
@@ -22,14 +22,14 @@ describe('Unit tests for ProductTableRow component:', () => {
   const OVERALL_COMPATIBILITY_TEST_ID = 'product-overall-compatibility';
 
   it('should render the ProductTableRow component and match snapshot', () => {
-    const { container } = render(<ProductTableRow product={productsList} />);
+    const { container } = render(<ProductTableRow product={mockedProduct} />);
 
     expect(container).toMatchSnapshot();
   });
 
   it('when product compatibilities length is equal to 0.', async () => {
     const { container, queryByTestId } = render(
-      <ProductTableRow product={{ ...productsList, compatibilities: [] }} />
+      <ProductTableRow product={{ ...mockedProduct, compatibilities: [] }} />
     );
 
     expect(queryByTestId(REST_COUNT_TEST_ID)).toBeNull();
@@ -40,7 +40,7 @@ describe('Unit tests for ProductTableRow component:', () => {
     mockedContainerWidth(40);
 
     const { queryByTestId } = render(
-      <ProductTableRow product={productsList} />
+      <ProductTableRow product={mockedProduct} />
     );
 
     expect(queryByTestId(REST_COUNT_TEST_ID)).toBeNull();
@@ -52,12 +52,12 @@ describe('Unit tests for ProductTableRow component:', () => {
     const { getByTestId } = render(
       <ProductTableRow
         product={{
-          ...productsList,
+          ...mockedProduct,
           compatibilities: [
-            ...productsList.compatibilities,
-            ...productsList.compatibilities,
-            ...productsList.compatibilities,
-            ...productsList.compatibilities,
+            ...mockedProduct.compatibilities,
+            ...mockedProduct.compatibilities,
+            ...mockedProduct.compatibilities,
+            ...mockedProduct.compatibilities,
           ],
         }}
       />
@@ -72,12 +72,12 @@ describe('Unit tests for ProductTableRow component:', () => {
     const { getByTestId } = render(
       <ProductTableRow
         product={{
-          ...productsList,
+          ...mockedProduct,
           compatibilities: [
-            ...productsList.compatibilities,
-            ...productsList.compatibilities,
-            ...productsList.compatibilities,
-            ...productsList.compatibilities,
+            ...mockedProduct.compatibilities,
+            ...mockedProduct.compatibilities,
+            ...mockedProduct.compatibilities,
+            ...mockedProduct.compatibilities,
           ],
         }}
       />
@@ -90,7 +90,7 @@ describe('Unit tests for ProductTableRow component:', () => {
     const { getByTestId } = render(
       <ProductTableRow
         product={{
-          ...productsList,
+          ...mockedProduct,
           compatibilities: [],
         }}
       />
@@ -103,9 +103,9 @@ describe('Unit tests for ProductTableRow component:', () => {
     const { getByTestId } = render(
       <ProductTableRow
         product={{
-          ...productsList,
+          ...mockedProduct,
           compatibilities: [
-            ...productsList.compatibilities,
+            ...mockedProduct.compatibilities,
             {
               id: '07112c0a-8263-4717-92ce-c52bca785624',
               buildingBlock: 'mobility_management',
@@ -128,14 +128,14 @@ describe('Unit tests for ProductTableRow component:', () => {
       />
     );
 
-    expect(getByTestId(LAST_UPDATE_TEST_ID)).toHaveTextContent('2/21/2023');
+    expect(getByTestId(LAST_UPDATE_TEST_ID)).toHaveTextContent('2/12/2023');
   });
 
   it('should overall compatibility has proper value', () => {
     mockedContainerWidth(40);
 
     const { queryByTestId } = render(
-      <ProductTableRow product={productsList} />
+      <ProductTableRow product={mockedProduct} />
     );
 
     expect(queryByTestId(OVERALL_COMPATIBILITY_TEST_ID)).toHaveTextContent('23%');
