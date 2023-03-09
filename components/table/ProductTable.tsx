@@ -1,16 +1,19 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import InfiniteScroll from 'react-infinite-scroll-component';
-import { getProductsList } from '../../service/serviceAPI';
+import { getData, getProductListCount } from '../../service/serviceAPI';
 import { ProductsType } from '../../service/types';
-import { moreMockedProductList } from '../../service/mockedData';
 import InfiniteScrollCustomLoader from '../InfiniteScrollLoader';
 import ProductTableHeader from './ProductTableHeader';
 import ProductTableRow from './ProductTableRow';
+import TableErrorHandling from './TableErrorHandling';
 
 const ProductTable = () => {
   const [productsList, setProductsList] = useState<ProductsType[]>([]);
-  const [hasMoreData, setHasMoreData] = useState<boolean>(true);
+  const [productListLength, setProductListLength] = useState<number>(0);
+  const [isErrorFetchingData, setIsErrorFetchingData] = useState<boolean>(false);
+  const [isErrorFetchingCount, setIsErrorFetchingCount] = useState<boolean>(false);
+
   const { formatMessage } = useIntl();
   const format = useCallback(
     (id: string) => formatMessage({ id }),
@@ -18,44 +21,74 @@ const ProductTable = () => {
   );
 
   useEffect(() => {
-    const products = getProductsList();
-    setProductsList(products);
+    fetchData();
   }, []);
 
-  const productListLength = productsList.length;
+  const fetchData = async () => {
+    const [data, count] = await Promise.all([
+      getData(0),
+      getProductListCount(),
+    ]);
 
-  const handleLoadMoreData = () => {
-    // mocked response
-    setProductsList([...productsList, ...moreMockedProductList]);
-    setHasMoreData(false);
+    if (data.status) {
+      setProductsList(data.data);
+    } else {
+      setIsErrorFetchingData(true);
+    }
+
+    if (count.status) {
+      setProductListLength(count.data);
+    } else {
+      setIsErrorFetchingCount(true);
+    }
   };
+
+  const handleLoadMoreData = useCallback(async () => {
+    const data = await getData(productsList.length);
+
+    if (data.status) {
+      setProductsList([...productsList, ...data.data]);
+    } else {
+      setProductsList([...productsList]);
+    }
+  }, [productsList]);
 
   return (
     <div className='table'>
       <div className='table-results-count'>
         <p>
-          {productListLength}
-          {productListLength === 1
+          {isErrorFetchingCount ? format('table.no_result_count.message') : productListLength}
+        </p>
+        <p>
+          {isErrorFetchingCount ? null : productListLength === 1
             ? format('table.result.label')
             : format('table.result.plural.label')}
         </p>
       </div>
       <div className='table-body'>
         <ProductTableHeader />
-        <div id='scrollableDiv' className='product-table-row-section'>
-          <InfiniteScroll
-            scrollableTarget='scrollableDiv'
-            dataLength={40}
-            next={handleLoadMoreData}
-            hasMore={hasMoreData}
-            loader={<InfiniteScrollCustomLoader />}
-            style={{ overflowX: 'hidden' }}
-          >
-            {productsList.map((product, key) => (
-              <ProductTableRow product={product} key={`product-${key}`} />
-            ))}
-          </InfiniteScroll>
-        </div>
+        {isErrorFetchingData ? (
+          <TableErrorHandling />
+        ) : (
+          <div id='scrollableDiv' className='product-table-row-section'>
+            <InfiniteScroll
+              scrollableTarget='scrollableDiv'
+              dataLength={productsList?.length ?? 0}
+              next={handleLoadMoreData}
+              hasMore={
+                isErrorFetchingData
+                  ? false
+                  : productListLength > productsList?.length
+              }
+              loader={<InfiniteScrollCustomLoader />}
+              style={{ overflowX: 'hidden' }}
+            >
+              {productsList.map((product, key) => (
+                <ProductTableRow product={product} key={`product-${key}`} />
+              ))}
+            </InfiniteScroll>
+          </div>
+        )}
       </div>
     </div>
   );

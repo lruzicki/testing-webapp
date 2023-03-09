@@ -8,7 +8,7 @@ exports[`Unit tests for ProductTableHeader component: should render the ProductT
     <div />
     <div>
       <p>
-        Product Name
+        Software Name
       </p>
     </div>
     <div>
