@@ -1,23 +1,10 @@
-import { GetServerSideProps, GetStaticProps, NextPageContext } from 'next';
 import { useRouter } from 'next/router';
-import { ParsedUrlQuery } from 'querystring';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import BBImage from './table/BuildingBlocksImage';
 
-type Props = {
-  bbId: string;
-  buildingBlock: string;
-  compatibility: number;
-  id: string;
-  productName: string;
-  saveTime: number;
-  testsFailed: number;
-  testsPassed: number;
-  timestamp: number;
-};
-
 const TestSummary = () => {
+  const router = useRouter();
   const { formatMessage } = useIntl();
 
   const format = useCallback(
@@ -25,28 +12,29 @@ const TestSummary = () => {
     [formatMessage]
   );
 
+  const { buildingBlock, bbId } = router.query;
+
   return (
-    <div className='test-summary-component'>
+    <div className='test-summary-component' data-testid='test-summary-component'>
       <div className='test-summary-row test-summary-header'>
-        <div>{`${format('building_block.label')}:`}</div>
-        <div>{`${format('app.tests_passed.label')}:`}</div>
-        <div>{`${format('app.tests_failed.label')}:`}</div>
-        <div>{`${format('app.compatibility.label')}:`}</div>
+        <div data-testid='test-summary-bb-header'>{`${format('building_block.label')}:`}</div>
+        <div data-testid='test-summary-passed-header'>{`${format('app.tests_passed.label')}:`}</div>
+        <div data-testid='test-summary-failed-header'>{`${format('app.tests_failed.label')}:`}</div>
+        <div data-testid='test-summary-compatibility-header'>{`${format('app.compatibility.label')}:`}</div>
       </div>
-      {/* <div className='test-summary-row test-summary-label'>
-        <div className='test-summary-bb'>
-          <BBImage */}
-      // @ts-ignore
-      {/* imagePath={buildingBlock}
+      <div className='test-summary-row test-summary-label'>
+        <div className='test-summary-bb' data-testid='test-summary-bb-label'>
+          <BBImage
+            // @ts-ignore
+            imagePath={buildingBlock}
             customStyle='test-summary-icon'
           />
           <p>{buildingBlock}</p>
         </div>
-        <div>{testsPassed}</div>
-        <div>{testsFailed}</div> */}
-      {/* @ts-ignore */}
-      {/* <div>{`${Math.floor(compatibility * 100)}%`}</div> */}
-      {/* </div> */}
+        {/* <div data-testid='test-summary-passed-label'>{testsPassed}</div>
+        <div data-testid='test-summary-failed-label'>{testsFailed}</div> */}
+        {/* <div data-testid='test-summary-compatibility-label'>{`${Math.floor(compatibility * 100)}%`}</div> */}
+      </div>
     </div>
   );
 };

@@ -2,7 +2,8 @@ import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
-import TestSummary from '../../components/TestSummary';
+import Link from 'next/link';
+import TestSummary from '../../../components/TestSummary';
 
 const TestResultPage = () => {
   const router = useRouter();
@@ -12,35 +13,26 @@ const TestResultPage = () => {
     (id: string) => formatMessage({ id }),
     [formatMessage]
   );
-  const {
-    buildingBlock,
-    compatibility,
-    id,
-    productName,
-    testsFailed,
-    testsPassed,
-  } = router.query;
-  const handleBackToProductsList = () => {
-    router.push('/');
-  };
+
+  const { productName } = router.query;
 
   return (
     <main>
       <div className='test-result-page'>
-        <button
+        <Link
           className='back-to-home-page-btn'
-          onClick={handleBackToProductsList}
+          href={'/'}
+          data-testid='test-result-page-link'
         >
           {format('result_page.back_to_product_list')}
-        </button>
-        <div className='test-result-title'>
+        </Link>
+        <div className='test-result-title' data-testid='test-result-page-title'>
           <p>{format('result_page.title')}</p>
           <FaQuoteLeft className='quote' />
-          <p>{router.query.productName}</p>
+          <p>{productName}</p>
           <FaQuoteRight className='quote' />
         </div>
-        {/* @ts-ignore */}
-        <TestSummary xx={router.query} />
+        <TestSummary />
       </div>
     </main>
   );

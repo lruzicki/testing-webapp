@@ -2,7 +2,6 @@ import React from 'react';
 import { ProductsType } from '../../service/types';
 import SubTableHeader from './SubTableHeader';
 import SubTableRow from './SubTableRow';
-import SubTableRow from './SubTableRow';
 
 type Props = {
   product: ProductsType;
@@ -15,12 +14,6 @@ const SubTable = ({ product }: Props) => {
       {product.compatibilities.map((buildingBlock, bbIdx) => (
         <SubTableRow
           productName={product._id.testApp}
-          buildingBlock={buildingBlock}
-          key={`buildingBlock-${bbIdx}`}
-        />
-      ))}
-      {product.compatibilities.map((buildingBlock, bbIdx) => (
-        <SubTableRow
           buildingBlock={buildingBlock}
           key={`buildingBlock-${bbIdx}`}
         />
