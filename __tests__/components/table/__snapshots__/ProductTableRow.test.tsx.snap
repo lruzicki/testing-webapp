@@ -42,27 +42,41 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
           class="table-bb-image"
           style="width: 0px;"
         >
-          <img
-            alt="Logo for: Building block label"
-            class="bb-image"
-            data-nimg="1"
-            decoding="async"
-            height="18"
-            loading="lazy"
-            src="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75"
-            srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75 2x"
-            style="color: transparent;"
-            width="18"
-          />
+          <div
+            data-tooltip-content="Building block label"
+            data-tooltip-id="my-tooltip"
+            id="xxx"
+          >
+            <img
+              alt="Logo for: Building block label"
+              class="bb-image"
+              data-nimg="1"
+              decoding="async"
+              height="18"
+              loading="lazy"
+              src="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75"
+              srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75 2x"
+              style="color: transparent;"
+              width="18"
+            />
+            <div
+              class="global-tooltip"
+            />
+          </div>
         </div>
         <div>
           <div
             class="overflow-count"
             data-testid="bb-rest-count"
+            data-tooltip-content="Building block label"
+            data-tooltip-id="my-tooltip"
           >
             <p>
               +1
             </p>
+            <div
+              class="global-tooltip"
+            />
           </div>
         </div>
       </div>

@@ -3,6 +3,10 @@ import ProductTableRow from '../../../components/table/ProductTableRow';
 import { render } from '../../test-utils/test-utils';
 import { mockedProduct } from './mockedData/ProductTable';
 
+jest.mock('react-tooltip', () => ({
+  Tooltip: () => null
+}));
+
 const mockedContainerWidth = (clientWidth: number) =>
   // @ts-ignore
   jest.spyOn(React, 'useRef').mockImplementation((v) => {
