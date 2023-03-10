@@ -5,7 +5,15 @@ import LoadingBar from './LoadingBar';
 import BBImage from './table/BuildingBlocksImage';
 
 type Props = {
-  bbSummary: BuildingBlockType | undefined;
+  bbId: string;
+  buildingBlock: string;
+  compatibility: number;
+  id: string;
+  productName: string;
+  saveTime: number;
+  testsFailed: number;
+  testsPassed: number;
+  timestamp: number;
 };
 
 const TestSummary = ({ bbSummary }: Props) => {
@@ -14,6 +22,8 @@ const TestSummary = ({ bbSummary }: Props) => {
     (id: string) => formatMessage({ id }),
     [formatMessage]
   );
+
+  const { buildingBlock, bbId } = router.query;
 
   return (
     <div

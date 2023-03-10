@@ -45,7 +45,11 @@ exports[`Unit tests for SubTable component: should render the SubTable component
     </div>
     <a
       class="sub-table-link"
+<<<<<<< HEAD
       href="/Test Product/bb-messaging/234bj3bj4b23jr"
+=======
+      href="/Test Product/Building block label/234bj3bj4b23jr"
+>>>>>>> 8987729 (TECH-414: Added unit tests, updated snapshots, changed page path)
     >
       <div
         class="sub-table-row"
@@ -56,19 +60,32 @@ exports[`Unit tests for SubTable component: should render the SubTable component
           data-testid="bb-name"
         >
           <img
+<<<<<<< HEAD
             alt="Logo for: bb-messaging"
+=======
+            alt="Logo for: Building block label"
+>>>>>>> 8987729 (TECH-414: Added unit tests, updated snapshots, changed page path)
             class="bb-image"
             data-nimg="1"
             decoding="async"
             height="18"
             loading="lazy"
+<<<<<<< HEAD
             src="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=48&q=75"
             srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=48&q=75 2x"
+=======
+            src="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75"
+            srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75 2x"
+>>>>>>> 8987729 (TECH-414: Added unit tests, updated snapshots, changed page path)
             style="color: transparent;"
             width="18"
           />
           <p>
+<<<<<<< HEAD
             Messaging
+=======
+            Building block label
+>>>>>>> 8987729 (TECH-414: Added unit tests, updated snapshots, changed page path)
           </p>
         </div>
         <div

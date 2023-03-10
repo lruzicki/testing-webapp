@@ -1,7 +1,4 @@
-import Link from 'next/link';
-import React, { useCallback } from 'react';
-import { useIntl } from 'react-intl';
-import { RiArrowRightSLine } from 'react-icons/ri';
+import React from 'react';
 import { BuildingBlockType } from '../../service/types';
 import BBImage from './BuildingBlocksImage';
 
