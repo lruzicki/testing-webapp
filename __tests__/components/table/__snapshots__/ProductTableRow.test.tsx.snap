@@ -44,8 +44,8 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
         >
           <div
             data-tooltip-content="Building block label"
-            data-tooltip-id="my-tooltip"
-            id="xxx"
+            data-tooltip-id="text-tooltip"
+            data-tooltip-offset="-1"
           >
             <img
               alt="Logo for: Building block label"
@@ -60,7 +60,7 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
               width="18"
             />
             <div
-              class="global-tooltip"
+              class="text-tooltip"
             />
           </div>
         </div>
@@ -69,13 +69,13 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
             class="overflow-count"
             data-testid="bb-rest-count"
             data-tooltip-content="Building block label"
-            data-tooltip-id="my-tooltip"
+            data-tooltip-id="text-tooltip"
           >
             <p>
               +1
             </p>
             <div
-              class="global-tooltip"
+              class="text-tooltip"
             />
           </div>
         </div>

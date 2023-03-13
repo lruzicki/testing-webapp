@@ -4,7 +4,7 @@ import { useRouter } from 'next/router';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import classNames from 'classnames';
 import { ProductsType } from '../../service/types';
-import CustomTooltip from '../CustomTooltip';
+import TextTooltip from '../TextTooltip';
 import BBImage from './BuildingBlocksImage';
 import SubTable from './SubTable';
 
@@ -89,15 +89,15 @@ const ProductTableRow = ({ product }: Props) => {
             <div className='table-bb-image' style={{ width: imageSectionWidth ?? '75%' }} >
               {product.compatibilities.map((bb, bbIdx) => (
                 <div
-                  id='xxx'
-                  data-tooltip-id='my-tooltip'
+                  data-tooltip-id='text-tooltip'
+                  data-tooltip-offset={-1}
                   data-tooltip-content={(bb.buildingBlock).replace(/bb-|-|_/g, ' ')}
                   key={`bb-image-${bbIdx}`}
                 >
                   <BBImage
                     imagePath={bb.buildingBlock}
                   />
-                  <CustomTooltip />
+                  <TextTooltip />
                 </div>
               ))}
             </div>
@@ -107,11 +107,11 @@ const ProductTableRow = ({ product }: Props) => {
                 <div
                   className='overflow-count'
                   data-testid='bb-rest-count'
-                  data-tooltip-id='my-tooltip'
+                  data-tooltip-id='text-tooltip'
                   data-tooltip-content={listOfHiddenBBImages?.map((bb) => bb.replace(/bb-|-|_/g, ' ')).join(', ')}
                 >
                   <p>{`+${numberOfHidenBBImages}`}</p>
-                  <CustomTooltip />
+                  <TextTooltip />
                 </div>
               ) : null}
             </div>
