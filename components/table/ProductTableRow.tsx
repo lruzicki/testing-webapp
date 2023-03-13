@@ -1,9 +1,10 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import debounce from 'lodash.debounce';
 import { useRouter } from 'next/router';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import classNames from 'classnames';
 import { ProductsType } from '../../service/types';
+import TextTooltip from '../TextTooltip';
 import BBImage from './BuildingBlocksImage';
 import SubTable from './SubTable';
 
@@ -13,7 +14,7 @@ type Props = {
 
 const ProductTableRow = ({ product }: Props) => {
   const bbContentContainer = React.useRef<HTMLDivElement | null>(null);
-  const [numberOfHidenBBImages, setNumberOfHidenBBImages] = useState<Number | null>(null);
+  const [numberOfHidenBBImages, setNumberOfHidenBBImages] = useState<Number | any>(null);
   const [imageSectionWidth, setImageSectionWidth] = useState<string | undefined>();
   const [productLastUpdate, setProductLastUpdate] = useState<string>('');
   const [isSubTableOpen, setSubTableOpen] = useState<boolean>(false);
@@ -56,6 +57,16 @@ const ProductTableRow = ({ product }: Props) => {
     setSubTableOpen(!isSubTableOpen);
   };
 
+  const listOfHiddenBBImages = useMemo(() => {
+    if (!product) {
+      return null;
+    }
+
+    return product.compatibilities
+      .slice((product.compatibilities.length - numberOfHidenBBImages))
+      .map((bb) => bb.buildingBlock);
+  }, [numberOfHidenBBImages, product]);
+
   return (
     <>
       <div
@@ -77,16 +88,30 @@ const ProductTableRow = ({ product }: Props) => {
           <div ref={bbContentContainer}>
             <div className='table-bb-image' style={{ width: imageSectionWidth ?? '75%' }} >
               {product.compatibilities.map((bb, bbIdx) => (
-                <BBImage
-                  imagePath={bb.buildingBlock}
+                <div
+                  data-tooltip-id='text-tooltip'
+                  data-tooltip-offset={-1}
+                  data-tooltip-content={(bb.buildingBlock).replace(/bb-|-|_/g, ' ')}
                   key={`bb-image-${bbIdx}`}
-                />
+                >
+                  <BBImage
+                    imagePath={bb.buildingBlock}
+                  />
+                  <TextTooltip />
+                </div>
               ))}
             </div>
             <div>
               {numberOfHidenBBImages ? (
-                <div className='overflow-count' data-testid='bb-rest-count'>
+                // @ts-ignore
+                <div
+                  className='overflow-count'
+                  data-testid='bb-rest-count'
+                  data-tooltip-id='text-tooltip'
+                  data-tooltip-content={listOfHiddenBBImages?.map((bb) => bb.replace(/bb-|-|_/g, ' ')).join(', ')}
+                >
                   <p>{`+${numberOfHidenBBImages}`}</p>
+                  <TextTooltip />
                 </div>
               ) : null}
             </div>
