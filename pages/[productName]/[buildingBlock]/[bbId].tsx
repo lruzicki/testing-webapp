@@ -4,6 +4,7 @@ import { useIntl } from 'react-intl';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 import Link from 'next/link';
 import TestSummary from '../../../components/TestSummary';
+import TestResultTable from '../../../components/table/TestResultTable';
 import { getBuildingBlockTestResults } from '../../../service/serviceAPI';
 import { BuildingBlockTestSummary } from '../../../service/types';
 
@@ -51,6 +52,7 @@ const TestResultPage = () => {
           <FaQuoteRight className='quote' />
         </div>
         <TestSummary bbSummary={bbTestSummary?.compatibilities} />
+        <TestResultTable />
       </div>
     </main>
   );

@@ -34,6 +34,11 @@ export const en = {
   'table.result.label': ' result',
   'table.result.plural.label': ' results',
 
+  'test_table.category.label': 'Category',
+  'test_table.last_update.label': 'Last update:',
+  'test_table.name.label': 'Name',
+  'test_table.status.label': 'Status',
+
   // ---------------------------------------------------------------------
   // This is translation for each building block
   'bb-cloud-infrastructure-hosting': 'Cloud and Infrastructure Hosting',
