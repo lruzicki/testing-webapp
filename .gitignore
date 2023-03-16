@@ -37,3 +37,7 @@ next-env.d.ts
 
 # visual studio config
 .vscode
+
+# Deployment .env file
+deployment/.env
+
