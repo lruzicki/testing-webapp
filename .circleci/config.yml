@@ -26,7 +26,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "SHA256:Pif9TBswveMCEOCwswNicR42jp6oTb3/YXG7HoJ5GkU"
+            - "d1:b2:46:4e:a2:e8:3b:10:0b:49:78:06:fa:92:25:52"
       - run:
           command: bash deployment/deploy.sh
           name: Deploy to test server
