@@ -28,8 +28,8 @@ jobs:
           fingerprints:
             - "d1:b2:46:4e:a2:e8:3b:10:0b:49:78:06:fa:92:25:52"
       - run:
-        command: "echo 'testing.govstack.global ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBT1ahvcqpq5hbTR3UCczN0wwEKYErxDJzQnN4v5UhfBS0jvtycX9hyQ15XGmeUth91EsC7If+R+avbGfFyprew=' >> ~/.ssh/known_hosts"
-        name: Add known host for SSH
+          command: echo 'testing.govstack.global ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBBT1ahvcqpq5hbTR3UCczN0wwEKYErxDJzQnN4v5UhfBS0jvtycX9hyQ15XGmeUth91EsC7If+R+avbGfFyprew=' >> ~/.ssh/known_hosts
+          name: Add known host for SSH
       - run:
           command: bash deployment/deploy.sh
           name: Deploy to test server
