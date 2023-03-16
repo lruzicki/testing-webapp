@@ -20,6 +20,8 @@ jobs:
           command: yarn test
           name: Run YARN tests
   deploy:
+    docker:
+      - image: cimg/base
     steps:
       - run:
           command: bash deployment/deploy.sh
