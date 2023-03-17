@@ -1,4 +1,3 @@
-/* eslint-disable operator-linebreak */
 /* eslint-disable no-param-reassign */
 /* eslint-disable object-curly-newline */
 /* eslint-disable no-console */
@@ -44,16 +43,11 @@ module.exports = class ReportGetProductDetailsRequestHandler {
         return items;
       }, []);
 
-      aggregatedResult.data.forEach((element) => {
-        delete element.uri;
-      });
-
       Object.assign(aggregatedResult, { count: aggregatedResult.data.length });
 
-      aggregatedResult.data =
-        offset !== undefined
-          ? aggregatedResult.data.slice(offset, limit + offset)
-          : aggregatedResult.data.slice(0, limit);
+      aggregatedResult.data = offset !== undefined
+        ? aggregatedResult.data.slice(offset, limit + offset)
+        : aggregatedResult.data.slice(0, limit);
 
       this.res.json(aggregatedResult);
     });
