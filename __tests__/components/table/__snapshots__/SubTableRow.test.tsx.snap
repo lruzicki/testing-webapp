@@ -11,19 +11,19 @@ exports[`Unit tests for SubTableRow component: should render the SubTableRow com
       data-testid="bb-name"
     >
       <img
-        alt="Logo for: mobility_management"
+        alt="Logo for: bb-payments"
         class="bb-image"
         data-nimg="1"
         decoding="async"
         height="18"
         loading="lazy"
-        src="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fmobility_management.png&w=48&q=75"
-        srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fmobility_management.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2Fmobility_management.png&w=48&q=75 2x"
+        src="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-payments.png&w=48&q=75"
+        srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-payments.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-payments.png&w=48&q=75 2x"
         style="color: transparent;"
         width="18"
       />
       <p>
-        mobility_management
+        Payments
       </p>
     </div>
     <div

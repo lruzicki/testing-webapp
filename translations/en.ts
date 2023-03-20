@@ -30,4 +30,21 @@ export const en = {
   'table.overall_compatibility.label': 'Overall Compatibility',
   'table.result.label': ' result',
   'table.result.plural.label': ' results',
+
+  // ---------------------------------------------------------------------
+  // This is translation for each building block
+  'bb-cloud-infrastructure-hosting': 'Cloud and Infrastructure Hosting',
+  'bb-consent': 'Consent management',
+  'bb-digital-registries': 'Digital Registries',
+  'bb-emarketplace': 'eMarketplace',
+  'bb-esignature': 'eSignature',
+  'bb-gis': 'Geographic Information System (GIS)',
+  'bb-identity': 'Identification and Authentication',
+  'bb-information-mediator': 'Information Mediator',
+  'bb-messaging': 'Messaging',
+  'bb-payments': 'Payments',
+  'bb-registration': 'Registration',
+  'bb-schedular': 'Schedular',
+  'bb-ux': 'User Experience (UI/UX)',
+  'bb-workflow': 'Workflow Engine',
 };

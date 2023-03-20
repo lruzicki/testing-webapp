@@ -112,7 +112,7 @@ describe('Unit tests for ProductTableRow component:', () => {
             ...mockedProduct.compatibilities,
             {
               id: '07112c0a-8263-4717-92ce-c52bca785624',
-              buildingBlock: 'mobility_management',
+              buildingBlock: 'bb-payments',
               timestamp: 1,
               saveTime: 1659380963000,
               testsPassed: 2,
@@ -121,7 +121,7 @@ describe('Unit tests for ProductTableRow component:', () => {
             },
             {
               id: '07112c0a-8263-4717-92ce-c52bca785624',
-              buildingBlock: 'mobility_management',
+              buildingBlock: 'bb-payments',
               timestamp: 1676985138783,
               saveTime: 1659380963000,
               testsPassed: 2,

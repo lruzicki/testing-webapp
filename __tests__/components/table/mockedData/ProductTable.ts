@@ -9,7 +9,7 @@ export const mockedProduct: ProductsType = {
   compatibilities: [
     {
       id: '234bj3bj4b23jr',
-      buildingBlock: 'Building block label',
+      buildingBlock: 'bb-messaging',
       timestamp: 1674924957,
       saveTime: 1676213907348,
       testsPassed: 30,
@@ -22,7 +22,7 @@ export const mockedProduct: ProductsType = {
 
 export const buildingBlock: BuildingBlockType = {
   id: '07112c0a-8263-4717-92ce-c52bca785624',
-  buildingBlock: 'mobility_management',
+  buildingBlock: 'bb-payments',
   timestamp: 1,
   saveTime: 1659380963000,
   testsPassed: 2,

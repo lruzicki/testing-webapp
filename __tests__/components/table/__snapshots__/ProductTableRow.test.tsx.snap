@@ -43,19 +43,19 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
           style="width: 0px;"
         >
           <div
-            data-tooltip-content="Building block label"
+            data-tooltip-content="Messaging"
             data-tooltip-id="text-tooltip"
             data-tooltip-offset="-1"
           >
             <img
-              alt="Logo for: Building block label"
+              alt="Logo for: bb-messaging"
               class="bb-image"
               data-nimg="1"
               decoding="async"
               height="18"
               loading="lazy"
-              src="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75"
-              srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2FBuilding%20block%20label.png&w=48&q=75 2x"
+              src="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=48&q=75"
+              srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=48&q=75 2x"
               style="color: transparent;"
               width="18"
             />
@@ -68,7 +68,7 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
           <div
             class="overflow-count"
             data-testid="bb-rest-count"
-            data-tooltip-content="Building block label"
+            data-tooltip-content="Messaging"
             data-tooltip-id="text-tooltip"
           >
             <p>
