@@ -1,10 +1,9 @@
-/* eslint-disable object-curly-newline */
 const mongoose = require('mongoose');
 const ReportModel = require('../schemas/report');
 
 const { ObjectId } = mongoose.Types;
 
-// eslint-disable-next-line class-methods-use-this, no-unused-vars
+// class-methods-use-this
 function getLatestReportPipeline() {
   return [
     {
@@ -156,7 +155,7 @@ function getLatestReportPipeline() {
   ];
 }
 
-// eslint-disable-next-line class-methods-use-this, no-unused-vars
+// class-methods-use-this
 function getReportDetailsPipeline(id) {
   return [
     {
@@ -285,7 +284,7 @@ const repository = () => {
     return newReport.save(callback);
   };
 
-  const aggregateByProduct = (filters, callback) => {
+  const aggregateCompatibilityByProduct = (filters, callback) => {
     const aggregation = ReportModel.aggregate(getLatestReportPipeline());
 
     if (filters.offset !== undefined) {
@@ -299,7 +298,7 @@ const repository = () => {
     aggregation.exec(callback);
   };
 
-  const aggregateByProductId = (productId, callback) => {
+  const aggregateBBDetailsByProductId = (productId, callback) => {
     ReportModel.aggregate(getReportDetailsPipeline(productId.id)).exec(callback);
   };
 
@@ -311,8 +310,8 @@ const repository = () => {
 
   return {
     add,
-    aggregateByProduct,
-    aggregateByProductId,
+    aggregateCompatibilityByProduct,
+    aggregateBBDetailsByProductId,
     productsCount,
   };
 };

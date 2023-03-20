@@ -1,5 +1,4 @@
 /* eslint-disable no-param-reassign */
-/* eslint-disable object-curly-newline */
 /* eslint-disable no-console */
 
 module.exports = class ReportGetProductDetailsRequestHandler {
@@ -13,27 +12,23 @@ module.exports = class ReportGetProductDetailsRequestHandler {
     const { limit, offset } = this.req.query;
     const { id } = this.req.params;
 
-    repository.aggregateByProductId({ id }, async (err, result) => {
+    repository.aggregateBBDetailsByProductId({ id }, async (err, result) => {
       if (err) {
         console.error(err);
         this.res
           .status(500)
-          .send(`Failed to fetch detailed report summary. Details: \n\t${err}\nPlease contact administrator.`);
+          .send(`Failed to fetch detailed report summary. Details: \n\t${err}`);
         return;
       }
 
       const aggregatedResult = result[0];
 
       let tempItem = {};
+      // reduce received data to one per endpoint - database returns one per scenario
       aggregatedResult.data = aggregatedResult.data.reduce((items, item) => {
-        const { uri, passed, method, endpoint } = item;
+        const { uri, passed } = item;
 
         if (tempItem.uri !== uri) {
-          // sliced by @method= length
-          item.method = method.length > 0 ? method[0].slice(8) : '';
-          // sliced by @endpoint= length
-          item.endpoint = endpoint.length > 0 ? endpoint[0].slice(10) : '';
-
           items.push(item);
         } else if (tempItem.passed !== passed && !passed) {
           items.find((i) => i.uri === uri).passed = passed;
@@ -42,6 +37,14 @@ module.exports = class ReportGetProductDetailsRequestHandler {
         tempItem = item;
         return items;
       }, []);
+
+      aggregatedResult.data.forEach((item) => {
+        const { method, endpoint } = item;
+        // slice by @method= length
+        item.method = method.length > 0 ? method[0].slice(8) : '';
+        // slice by @endpoint= length
+        item.endpoint = endpoint.length > 0 ? endpoint[0].slice(10) : '';
+      });
 
       Object.assign(aggregatedResult, { count: aggregatedResult.data.length });
 

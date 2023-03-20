@@ -1,4 +1,3 @@
-/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-console */
 
 module.exports = class ReportGetProductRequestHandler {
@@ -11,10 +10,10 @@ module.exports = class ReportGetProductRequestHandler {
   async getReports(repository) {
     const { limit, offset } = this.req.query;
 
-    repository.aggregateByProduct({ limit, offset }, async (err, result) => {
+    repository.aggregateCompatibilityByProduct({ limit, offset }, async (err, result) => {
       if (err) {
         console.error(err);
-        this.res.status(500).send(`Failed to fetch report summary. Details: \n\t${err}\nPlease contact administrator.`);
+        this.res.status(500).send(`Failed to fetch report summary. Details: \n\t${err}`);
         return;
       }
       this.res.json(result);

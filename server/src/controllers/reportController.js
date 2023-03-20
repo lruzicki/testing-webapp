@@ -14,25 +14,25 @@ const reportController = (reportDbRepository, reportDbRepositoryImpl) => {
 
     new ReportUploadRequestHandler(req, res)
       .saveData(repository)
-      .catch((err) => res.status(500).send(`Unexpected exception ocurred: ${err}`));
+      .catch((err) => res.status(500).send(`Unexpected exception occurred: ${err}`));
   };
 
   const getProductCompatibility = (req, res) => {
     new ReportProductGetRequestHandler(req, res)
       .getReports(repository)
-      .catch((err) => res.status(500).send(`Unexpected exception ocurred: ${err}`));
+      .catch((err) => res.status(500).send(`Unexpected exception occurred: ${err}`));
   };
 
   const getProductsCount = (req, res) => {
     new ProductCountRequestHandler(req, res)
       .getProductsCount(repository)
-      .catch((err) => res.status(500).send(`Unexpected exception ocurred: ${err}`));
+      .catch((err) => res.status(500).send(`Unexpected exception occurred: ${err}`));
   };
 
   const getProductDetails = (req, res) => {
     new ProductDetailsRequestHandler(req, res)
       .getProductDetails(repository)
-      .catch((err) => res.status(500).send(`Unexpected exception ocurred: ${err}`));
+      .catch((err) => res.status(500).send(`Unexpected exception occurred: ${err}`));
   };
 
   return {
