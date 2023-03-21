@@ -3,6 +3,7 @@ import debounce from 'lodash.debounce';
 import { useRouter } from 'next/router';
 import { RiArrowDownSLine, RiArrowUpSLine } from 'react-icons/ri';
 import classNames from 'classnames';
+import { useIntl } from 'react-intl';
 import { ProductsType } from '../../service/types';
 import TextTooltip from '../TextTooltip';
 import BBImage from './BuildingBlocksImage';
@@ -21,6 +22,12 @@ const ProductTableRow = ({ product }: Props) => {
 
   const router = useRouter();
   const { locale } = router;
+
+  const { formatMessage } = useIntl();
+  const format = useCallback(
+    (id: string) => formatMessage({ id }),
+    [formatMessage]
+  );
 
   const productCompatibilitiesLength = product.compatibilities.length;
 
@@ -91,7 +98,7 @@ const ProductTableRow = ({ product }: Props) => {
                 <div
                   data-tooltip-id='text-tooltip'
                   data-tooltip-offset={-1}
-                  data-tooltip-content={(bb.buildingBlock).replace(/bb-|-|_/g, ' ')}
+                  data-tooltip-content={format(bb.buildingBlock)}
                   key={`bb-image-${bbIdx}`}
                 >
                   <BBImage
@@ -108,7 +115,7 @@ const ProductTableRow = ({ product }: Props) => {
                   className='overflow-count'
                   data-testid='bb-rest-count'
                   data-tooltip-id='text-tooltip'
-                  data-tooltip-content={listOfHiddenBBImages?.map((bb) => bb.replace(/bb-|-|_/g, ' ')).join(', ')}
+                  data-tooltip-content={listOfHiddenBBImages?.map((bb) => format(bb)).join(', ')}
                 >
                   <p>{`+${numberOfHidenBBImages}`}</p>
                   <TextTooltip />

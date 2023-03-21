@@ -1,4 +1,5 @@
-import React from 'react';
+import React, { useCallback } from 'react';
+import { useIntl } from 'react-intl';
 import { BuildingBlockType } from '../../service/types';
 import BBImage from './BuildingBlocksImage';
 
@@ -7,12 +8,18 @@ type Props = {
 };
 
 const SubTableRow = ({ buildingBlock }: Props) => {
+  const { formatMessage } = useIntl();
+  const format = useCallback(
+    (id: string) => formatMessage({ id }),
+    [formatMessage]
+  );
+
   return (
     <div className='sub-table-row'>
       <div></div>
       <div className='sub-table-row-bb' data-testid='bb-name'>
         <BBImage imagePath={buildingBlock.buildingBlock} />
-        <p>{(buildingBlock.buildingBlock).replace(/bb-|-/g, ' ')}</p>
+        <p>{format(buildingBlock.buildingBlock)}</p>
       </div>
       <div className='sub-table-content-tests'>
         <div data-testid='tests-passed'>

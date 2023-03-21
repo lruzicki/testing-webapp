@@ -24,7 +24,7 @@ describe('Unit tests for SubTableRow component:', () => {
       />
     );
 
-    expect(getByTestId(BB_NAME_TEST_ID)).toHaveTextContent('mobility_management');
+    expect(getByTestId(BB_NAME_TEST_ID)).toHaveTextContent('Payments');
     expect(getByTestId(TESTS_PASSED_TEST_ID)).toHaveTextContent('2');
     expect(getByTestId(TESTS_FAILED_TEST_ID)).toHaveTextContent('2');
     expect(getByTestId(COMPATIBILITY_TEST_ID)).toHaveTextContent('34%');
