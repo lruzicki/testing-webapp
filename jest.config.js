@@ -13,8 +13,7 @@ const customJestConfig = {
     '^@/components/(.*)$': '<rootDir>/components/$1',
 
     '^@/pages/(.*)$': '<rootDir>/pages/$1',
-    'react-markdown':
-      '<rootDir>/node_modules/react-markdown/react-markdown.min.js',
+    'react-markdown': '<rootDir>/node_modules/react-markdown/react-markdown.min.js',
   },
   testEnvironment: 'jest-environment-jsdom',
   testPathIgnorePatterns: [
@@ -22,6 +21,7 @@ const customJestConfig = {
     '<rootDir>/.next/',
     '__tests__/test-utils/',
     '/mockedData/',
+    '<rootDir>/server/',
   ],
 };
 
