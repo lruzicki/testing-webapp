@@ -44,9 +44,11 @@ module.exports = class ReportGetProductDetailsRequestHandler {
 
       // build response object
       const finalResult = {};
-      Object.assign(finalResult, { compatibilities: aggregatedResult.compatibilities });
-      Object.assign(finalResult, { data: paginatedAggregatedData });
-      Object.assign(finalResult, { count: aggregatedData.length });
+      Object.assign(finalResult, {
+        compatibilities: aggregatedResult.compatibilities,
+        data: paginatedAggregatedData,
+        count: aggregatedData.length,
+      });
 
       this.res.json(finalResult);
     });
