@@ -3,7 +3,6 @@ const ReportModel = require('../schemas/report');
 
 const { ObjectId } = mongoose.Types;
 
-// class-methods-use-this
 function getLatestReportPipeline() {
   return [
     {
@@ -155,7 +154,6 @@ function getLatestReportPipeline() {
   ];
 }
 
-// class-methods-use-this
 function getReportDetailsPipeline(id) {
   return [
     {
@@ -253,22 +251,38 @@ function getReportDetailsPipeline(id) {
           $push: {
             uri: '$testCases.gherkinDocument.uri',
             method: {
-              $filter: {
-                input: '$testCases.gherkinDocument.feature.tags.name',
-                cond: {
-                  $regexMatch: { input: '$$tags', regex: /^@method=/ },
+              $substr: [
+                {
+                  $first: {
+                    $filter: {
+                      input: '$testCases.gherkinDocument.feature.tags.name',
+                      cond: {
+                        $regexMatch: { input: '$$tags', regex: /^@method=/ },
+                      },
+                      as: 'tags',
+                    },
+                  },
                 },
-                as: 'tags',
-              },
+                8,
+                -1,
+              ],
             },
             endpoint: {
-              $filter: {
-                input: '$testCases.gherkinDocument.feature.tags.name',
-                cond: {
-                  $regexMatch: { input: '$$tags', regex: /^@endpoint=/ },
+              $substr: [
+                {
+                  $first: {
+                    $filter: {
+                      input: '$testCases.gherkinDocument.feature.tags.name',
+                      cond: {
+                        $regexMatch: { input: '$$tags', regex: /^@endpoint=/ },
+                      },
+                      as: 'tags',
+                    },
+                  },
                 },
-                as: 'tags',
-              },
+                10,
+                -1,
+              ],
             },
             passed: '$testCases.passed',
           },

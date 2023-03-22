@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
 
@@ -15,44 +16,39 @@ module.exports = class ReportGetProductDetailsRequestHandler {
     repository.aggregateBBDetailsByProductId({ id }, async (err, result) => {
       if (err) {
         console.error(err);
-        this.res
-          .status(500)
-          .send(`Failed to fetch detailed report summary. Details: \n\t${err}`);
+        this.res.status(500).send(`Failed to fetch detailed report summary. Details: \n\t${err}`);
         return;
       }
 
       const aggregatedResult = result[0];
 
-      let tempItem = {};
-      // reduce received data to one per endpoint - database returns one per scenario
-      aggregatedResult.data = aggregatedResult.data.reduce((items, item) => {
-        const { uri, passed } = item;
+      /*  reduce to one item per endpoint, where we always prefer
+      the ones that didn't pass over the ones that did  */
+      const aggregatedData = aggregatedResult.data.reduce((items, item) => {
+        const lastItemIndex = items.length - 1;
+        const lastItem = items[lastItemIndex];
 
-        if (tempItem.uri !== uri) {
+        if (lastItem === undefined || item.uri !== lastItem.uri) {
+          // add new item
           items.push(item);
-        } else if (tempItem.passed !== passed && !passed) {
-          items.find((i) => i.uri === uri).passed = passed;
+        } else if (!item.passed) {
+          // replace with the failed item
+          items[lastItemIndex] = item;
         }
 
-        tempItem = item;
         return items;
       }, []);
 
-      aggregatedResult.data.forEach((item) => {
-        const { method, endpoint } = item;
-        // slice by @method= length
-        item.method = method.length > 0 ? method[0].slice(8) : '';
-        // slice by @endpoint= length
-        item.endpoint = endpoint.length > 0 ? endpoint[0].slice(10) : '';
-      });
+      const paginatedAggregatedData = offset !== undefined
+        ? aggregatedData.slice(offset, limit + offset) : aggregatedData.slice(0, limit);
 
-      Object.assign(aggregatedResult, { count: aggregatedResult.data.length });
+      // build response object
+      const finalResult = {};
+      Object.assign(finalResult, { compatibilities: aggregatedResult.compatibilities });
+      Object.assign(finalResult, { data: paginatedAggregatedData });
+      Object.assign(finalResult, { count: aggregatedData.length });
 
-      aggregatedResult.data = offset !== undefined
-        ? aggregatedResult.data.slice(offset, limit + offset)
-        : aggregatedResult.data.slice(0, limit);
-
-      this.res.json(aggregatedResult);
+      this.res.json(finalResult);
     });
   }
 };
