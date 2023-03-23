@@ -26,9 +26,9 @@ module.exports = class ReportGetProductDetailsRequestHandler {
       the ones that didn't pass over the ones that did  */
       const aggregatedData = aggregatedResult.data.reduce((items, item) => {
         const lastItemIndex = items.length - 1;
-        const lastItem = items[lastItemIndex];
+        const lastItem = lastItemIndex < 0 ? null : items[lastItemIndex];
 
-        if (lastItem === undefined || item.uri !== lastItem.uri) {
+        if (lastItem === null || item.uri !== lastItem.uri) {
           // add new item
           items.push(item);
         } else if (!item.passed) {
