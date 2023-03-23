@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Unit tests for TestSummary component: should render the component and match snapshot 1`] = `
+exports[`Unit tests for TestSummary component: should render the component when BB is defined and match snapshot 1`] = `
 <div>
   <div
     class="test-summary-component"
@@ -38,20 +38,50 @@ exports[`Unit tests for TestSummary component: should render the component and m
         data-testid="test-summary-bb-label"
       >
         <img
-          alt="Logo for: "
+          alt="Logo for: bb-payments"
           class="bb-image test-summary-icon"
           data-nimg="1"
           decoding="async"
           height="18"
           loading="lazy"
-          src="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fundefined.png&w=48&q=75"
-          srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fundefined.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2Fundefined.png&w=48&q=75 2x"
+          src="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-payments.png&w=48&q=75"
+          srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-payments.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-payments.png&w=48&q=75 2x"
           style="color: transparent;"
           width="18"
         />
-        <p />
+        <p>
+          Payments
+        </p>
+      </div>
+      <div
+        data-testid="test-summary-passed-label"
+      >
+        2
+      </div>
+      <div
+        data-testid="test-summary-failed-label"
+      >
+        2
+      </div>
+      <div
+        data-testid="test-summary-compatibility-label"
+      >
+        34%
       </div>
     </div>
+  </div>
+</div>
+`;
+
+exports[`Unit tests for TestSummary component: should render the component when BB is undefined and match snapshot 1`] = `
+<div>
+  <div
+    class="test-summary-component"
+    data-testid="test-summary-component"
+  >
+    <p>
+      Error fetching data. Please try again later.
+    </p>
   </div>
 </div>
 `;

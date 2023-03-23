@@ -1,20 +1,38 @@
 import { useRouter } from 'next/router';
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 import Link from 'next/link';
 import TestSummary from '../../../components/TestSummary';
+import { getBuildingBlockTestResults } from '../../../service/serviceAPI';
+import { BuildingBlockTestResult } from '../../../service/types';
 
 const TestResultPage = () => {
-  const router = useRouter();
-  const { formatMessage } = useIntl();
+  const [bbTestSummary, setBBTestSummary] = useState<BuildingBlockTestResult>();
 
+  const router = useRouter();
+  const { productName, bbId } = router.query;
+
+  const { formatMessage } = useIntl();
   const format = useCallback(
     (id: string) => formatMessage({ id }),
     [formatMessage]
   );
+  
+ const fetchData = useCallback(async () => {
+    const [data] = await Promise.all([
+      getBuildingBlockTestResults(bbId as string),
+    ]);
+    if (data.status) {
+      setBBTestSummary(data.data);
+    }
+  }, [bbId]);
 
-  const { productName } = router.query;
+  useEffect(() => {
+    if (bbId) {
+      fetchData();
+    }
+  }, [bbId, fetchData]);
 
   return (
     <main>
@@ -32,7 +50,7 @@ const TestResultPage = () => {
           <p>{productName}</p>
           <FaQuoteRight className='quote' />
         </div>
-        <TestSummary />
+        <TestSummary bbSummary={bbTestSummary?.compatibilities} />
       </div>
     </main>
   );
