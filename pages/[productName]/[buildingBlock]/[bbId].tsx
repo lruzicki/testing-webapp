@@ -5,10 +5,10 @@ import { FaQuoteLeft, FaQuoteRight } from 'react-icons/fa';
 import Link from 'next/link';
 import TestSummary from '../../../components/TestSummary';
 import { getBuildingBlockTestResults } from '../../../service/serviceAPI';
-import { BuildingBlockTestResult } from '../../../service/types';
+import { BuildingBlockTestSummary } from '../../../service/types';
 
 const TestResultPage = () => {
-  const [bbTestSummary, setBBTestSummary] = useState<BuildingBlockTestResult>();
+  const [bbTestSummary, setBBTestSummary] = useState<BuildingBlockTestSummary>();
 
   const router = useRouter();
   const { productName, bbId } = router.query;
@@ -18,8 +18,8 @@ const TestResultPage = () => {
     (id: string) => formatMessage({ id }),
     [formatMessage]
   );
-  
- const fetchData = useCallback(async () => {
+
+  const fetchData = useCallback(async () => {
     const [data] = await Promise.all([
       getBuildingBlockTestResults(bbId as string),
     ]);

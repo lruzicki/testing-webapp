@@ -56,17 +56,23 @@ exports[`Unit tests for TestSummary component: should render the component when 
       <div
         data-testid="test-summary-passed-label"
       >
-        2
+        <p>
+          2
+        </p>
       </div>
       <div
         data-testid="test-summary-failed-label"
       >
-        2
+        <p>
+          2
+        </p>
       </div>
       <div
         data-testid="test-summary-compatibility-label"
       >
-        34%
+        <p>
+          34%
+        </p>
       </div>
     </div>
   </div>
@@ -79,9 +85,63 @@ exports[`Unit tests for TestSummary component: should render the component when 
     class="test-summary-component"
     data-testid="test-summary-component"
   >
-    <p>
-      Error fetching data. Please try again later.
-    </p>
+    <div
+      class="test-summary-row test-summary-header"
+    >
+      <div
+        data-testid="test-summary-bb-header"
+      >
+        Building Block:
+      </div>
+      <div
+        data-testid="test-summary-passed-header"
+      >
+        Tests Passed:
+      </div>
+      <div
+        data-testid="test-summary-failed-header"
+      >
+        Tests Failed:
+      </div>
+      <div
+        data-testid="test-summary-compatibility-header"
+      >
+        Compatibility:
+      </div>
+    </div>
+    <div
+      class="test-summary-row test-summary-label"
+    >
+      <div
+        class="test-summary-bb"
+        data-testid="test-summary-bb-label"
+      >
+        <div
+          class="loading-bar"
+        />
+      </div>
+      <div
+        data-testid="test-summary-passed-label"
+      >
+        <div
+          class="loading-bar"
+        />
+      </div>
+      <div
+        data-testid="test-summary-failed-label"
+      >
+        <div
+          class="loading-bar"
+        />
+      </div>
+      <div
+        data-testid="test-summary-compatibility-label"
+      >
+        <div
+          class="loading-bar"
+        />
+      </div>
+    </div>
   </div>
 </div>
 `;

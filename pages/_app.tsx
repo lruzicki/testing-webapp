@@ -1,3 +1,4 @@
+import 'react-tooltip/dist/react-tooltip.css';
 import '../styles/Globals.less';
 import '../components/mainLayout/MainLayout.less';
 import '../components/header/Header.less';
@@ -5,7 +6,7 @@ import '../components/table/ProductTable.less';
 import '../components/Definition.less';
 import '../components/table/SubTable.less';
 import '../components/Definition.less';
-import 'react-tooltip/dist/react-tooltip.css';
+import '../components/LoadingBar.less';
 import '../components/TestSummary.less';
 import { IntlProvider } from 'react-intl';
 import { useRouter } from 'next/router';
