@@ -17,7 +17,6 @@ const SubTableRow = ({ buildingBlock, productName }: Props) => {
     [formatMessage]
   );
 
-
   return (
     <Link
       href={{ pathname: `/${productName}/${(buildingBlock.buildingBlock)}/${buildingBlock.id}` }}
