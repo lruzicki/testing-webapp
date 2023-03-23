@@ -1,6 +1,8 @@
+const mongoose = require('mongoose');
 const ReportModel = require('../schemas/report');
 
-// eslint-disable-next-line class-methods-use-this, no-unused-vars
+const { ObjectId } = mongoose.Types;
+
 function getLatestReportPipeline() {
   return [
     {
@@ -152,13 +154,151 @@ function getLatestReportPipeline() {
   ];
 }
 
+function getReportDetailsPipeline(id) {
+  return [
+    {
+      $match: {
+        _id: ObjectId(id),
+      },
+    },
+    {
+      $addFields: {
+        compatibilities: {
+          buildingBlock: '$buildingBlock',
+          testApp: '$testApp',
+          timestamp: '$finish.timestamp.seconds',
+          saveTime: '$saveTime',
+          testsPassed: {
+            $size: {
+              $filter: {
+                input: '$testCases',
+                as: 'case',
+                cond: {
+                  $eq: ['$$case.passed', true],
+                },
+              },
+            },
+          },
+          testsFailed: {
+            $size: {
+              $filter: {
+                input: '$testCases',
+                as: 'case',
+                cond: {
+                  $eq: ['$$case.passed', false],
+                },
+              },
+            },
+          },
+          compatibility: {
+            $let: {
+              vars: {
+                sumPassed: {
+                  $size: {
+                    $filter: {
+                      input: '$testCases',
+                      as: 'case',
+                      cond: {
+                        $eq: ['$$case.passed', true],
+                      },
+                    },
+                  },
+                },
+                sumFailed: {
+                  $size: {
+                    $filter: {
+                      input: '$testCases',
+                      as: 'case',
+                      cond: {
+                        $eq: ['$$case.passed', false],
+                      },
+                    },
+                  },
+                },
+              },
+              in: {
+                $round: [
+                  {
+                    $divide: [
+                      '$$sumPassed',
+                      {
+                        $cond: {
+                          if: { $gt: [{ $add: ['$$sumPassed', '$$sumFailed'] }, 0] },
+                          then: { $add: ['$$sumPassed', '$$sumFailed'] },
+                          else: 1,
+                        },
+                      },
+                    ],
+                  },
+                  4,
+                ],
+              },
+            },
+          },
+        },
+      },
+    },
+    {
+      $unwind: {
+        path: '$testCases',
+      },
+    },
+    {
+      $group: {
+        _id: '$_id',
+        compatibilities: { $first: '$compatibilities' },
+        data: {
+          $push: {
+            uri: '$testCases.gherkinDocument.uri',
+            method: {
+              $substr: [
+                {
+                  $first: {
+                    $filter: {
+                      input: '$testCases.gherkinDocument.feature.tags.name',
+                      cond: {
+                        $regexMatch: { input: '$$tags', regex: /^@method=/ },
+                      },
+                      as: 'tags',
+                    },
+                  },
+                },
+                8,
+                -1,
+              ],
+            },
+            endpoint: {
+              $substr: [
+                {
+                  $first: {
+                    $filter: {
+                      input: '$testCases.gherkinDocument.feature.tags.name',
+                      cond: {
+                        $regexMatch: { input: '$$tags', regex: /^@endpoint=/ },
+                      },
+                      as: 'tags',
+                    },
+                  },
+                },
+                10,
+                -1,
+              ],
+            },
+            passed: '$testCases.passed',
+          },
+        },
+      },
+    },
+  ];
+}
+
 const repository = () => {
   const add = (report, callback) => {
     const newReport = new ReportModel(report);
     return newReport.save(callback);
   };
 
-  const aggregateByProduct = (filters, callback) => {
+  const aggregateCompatibilityByProduct = (filters, callback) => {
     const aggregation = ReportModel.aggregate(getLatestReportPipeline());
 
     if (filters.offset !== undefined) {
@@ -172,6 +312,10 @@ const repository = () => {
     aggregation.exec(callback);
   };
 
+  const aggregateBBDetailsByProductId = (productId, callback) => {
+    ReportModel.aggregate(getReportDetailsPipeline(productId.id)).exec(callback);
+  };
+
   const productsCount = (callback) => {
     ReportModel.aggregate(getLatestReportPipeline())
       .append([{ $count: 'count' }])
@@ -180,7 +324,8 @@ const repository = () => {
 
   return {
     add,
-    aggregateByProduct,
+    aggregateCompatibilityByProduct,
+    aggregateBBDetailsByProductId,
     productsCount,
   };
 };
