@@ -110,7 +110,6 @@ const ProductTableRow = ({ product }: Props) => {
             </div>
             <div>
               {numberOfHidenBBImages ? (
-                // @ts-ignore
                 <div
                   className='overflow-count'
                   data-testid='bb-rest-count'

@@ -19,3 +19,14 @@ export type ProductsType = {
 };
 
 export type ProductsListType = ProductsType[];
+
+export type BuildingBlockTestSummary = {
+  compatibilities: BuildingBlockType;
+  data: {
+    uri: string;
+    method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+    endpoint: string;
+    passed: boolean;
+  }[];
+  count: number;
+};

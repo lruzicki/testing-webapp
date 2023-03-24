@@ -43,60 +43,85 @@ exports[`Unit tests for SubTable component: should render the SubTable component
       </div>
       <div />
     </div>
-    <div
-      class="sub-table-row"
+    <a
+      class="sub-table-link"
+      href="/Test Product/bb-messaging/234bj3bj4b23jr"
     >
-      <div />
       <div
-        class="sub-table-row-bb"
-        data-testid="bb-name"
+        class="sub-table-row"
       >
-        <img
-          alt="Logo for: bb-messaging"
-          class="bb-image"
-          data-nimg="1"
-          decoding="async"
-          height="18"
-          loading="lazy"
-          src="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=48&q=75"
-          srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=48&q=75 2x"
-          style="color: transparent;"
-          width="18"
-        />
-        <p>
-          Messaging
-        </p>
-      </div>
-      <div
-        class="sub-table-content-tests"
-      >
+        <div />
         <div
-          data-testid="tests-passed"
+          class="sub-table-row-bb"
+          data-testid="bb-name"
         >
+          <img
+            alt="Logo for: bb-messaging"
+            class="bb-image"
+            data-nimg="1"
+            decoding="async"
+            height="18"
+            loading="lazy"
+            src="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=48&q=75"
+            srcset="/_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=32&q=75 1x, /_next/image?url=%2Fimages%2FbuildingBlocks%2Fbb-messaging.png&w=48&q=75 2x"
+            style="color: transparent;"
+            width="18"
+          />
           <p>
-            30
+            Messaging
           </p>
         </div>
         <div
-          data-testid="tests-failed"
+          class="sub-table-content-tests"
+        >
+          <div
+            data-testid="tests-passed"
+          >
+            <p>
+              30
+            </p>
+          </div>
+          <div
+            data-testid="tests-failed"
+          >
+            <p>
+              2
+            </p>
+          </div>
+        </div>
+        <div
+          class="sub-table-content-compatibility"
+          data-testid="compatibility"
         >
           <p>
-            2
+            34%
           </p>
         </div>
+        <div
+          class="test-details-arrow"
+        >
+          <svg
+            fill="currentColor"
+            height="1em"
+            stroke="currentColor"
+            stroke-width="0"
+            viewBox="0 0 24 24"
+            width="1em"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <g>
+              <path
+                d="M0 0h24v24H0z"
+                fill="none"
+              />
+              <path
+                d="M13.172 12l-4.95-4.95 1.414-1.414L16 12l-6.364 6.364-1.414-1.414z"
+              />
+            </g>
+          </svg>
+        </div>
       </div>
-      <div
-        class="sub-table-content-compatibility"
-        data-testid="compatibility"
-      >
-        <p>
-          34%
-        </p>
-      </div>
-      <div
-        class="test-details-arrow"
-      />
-    </div>
+    </a>
   </div>
 </div>
 `;

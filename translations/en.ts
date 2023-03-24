@@ -25,6 +25,9 @@ export const en = {
 
   'software_name.label': 'Software Name',
 
+  'result_page.back_to_product_list': '< Back to Products List',
+  'result_page.title': 'Tests for',
+
   'table.last_update.label': 'Last Update',
   'table.no_result_count.message': 'No results count found',
   'table.overall_compatibility.label': 'Overall Compatibility',

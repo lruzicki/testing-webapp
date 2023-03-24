@@ -1,0 +1,17 @@
+.loading-bar {
+  height: 12px;
+  width: 80%;
+  border-radius: 6px;
+  background: linear-gradient(90deg, #dfdfea, #ffffff, #dfdfea);
+  background-size: 200% 200%;
+  animation: Loading-Bar 1s ease infinite;
+}
+
+@keyframes Loading-Bar {
+  0% {
+    background-position: 100% 0%;
+  }
+  100% {
+    background-position: -100% 0%;
+  }
+}
