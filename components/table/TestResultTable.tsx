@@ -1,9 +1,17 @@
+import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
+import { BuildingBlockTestSummary } from '../../service/types';
+import TableErrorHandling from './TableErrorHandling';
 import TestResultTableHeader from './TestResultTableHeader';
 import TestResultTableRow from './TestResultTableRow';
 
-const TestResultTable = () => {
+type Props = {
+  bbSummary: BuildingBlockTestSummary | undefined
+}
+
+const TestResultTable = ({ bbSummary }: Props) => {
+  const router = useRouter();
   const { formatMessage } = useIntl();
 
   const format = useCallback(
@@ -11,28 +19,28 @@ const TestResultTable = () => {
     [formatMessage]
   );
 
-  let resultLength = 23;
+  const { locale } = router;
 
   return (
     <div className='test-table-container'>
-      <div className='test-table-last-update'>
+      <div className='test-table-last-update' data-testid='test-table-last-update'>
         <p>{format('test_table.last_update.label')}</p>
-        <p>10/3/2222</p>
+        <p>{bbSummary ? new Date(bbSummary?.compatibilities.saveTime).toLocaleDateString(locale) : '-'}</p>
       </div>
-      <div className='test-table-result'>
-        <p>{resultLength}</p>
+      <div className='test-table-result' data-testid='test-table-result'>
+        {!bbSummary?.count ? <p>{'-'}</p> : <p>{bbSummary.count}</p>}
         <p>
-          {resultLength === 1
+          {bbSummary?.count === 1
             ? format('table.result.label')
             : format('table.result.plural.label')}
         </p>
       </div>
       <div>
         <TestResultTableHeader />
-        <TestResultTableRow />
-        <TestResultTableRow />
-        <TestResultTableRow />
-        <TestResultTableRow />
+        {!bbSummary?.data ? <TableErrorHandling /> : (
+          bbSummary.data.map((bbTest, idx )=> <TestResultTableRow bbTest={bbTest} key={`bbTest-${idx}`} />)
+        )}
+
       </div>
     </div>
   );

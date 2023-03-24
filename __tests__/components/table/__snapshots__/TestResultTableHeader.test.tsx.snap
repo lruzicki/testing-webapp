@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for TestResultTableHeader component: should render the TestResultTableHeader component and match snapshot 1`] = `
+<div>
+  <div
+    class="test-table-header"
+  >
+    <div
+      data-testid="header-status-label"
+    >
+      <p>
+        Status
+      </p>
+    </div>
+    <div
+      data-testid="header-category-label"
+    >
+      <p>
+        Category
+      </p>
+    </div>
+    <div
+      data-testid="header-name-label"
+    >
+      <p>
+        Name
+      </p>
+    </div>
+  </div>
+</div>
+`;

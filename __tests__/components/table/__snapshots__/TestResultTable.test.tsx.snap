@@ -1,0 +1,84 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for TestResultTable component: should match snapshot 1`] = `
+<div>
+  <div
+    class="test-table-container"
+  >
+    <div
+      class="test-table-last-update"
+      data-testid="test-table-last-update"
+    >
+      <p>
+        Last update:
+      </p>
+      <p>
+        8/1/2022
+      </p>
+    </div>
+    <div
+      class="test-table-result"
+      data-testid="test-table-result"
+    >
+      <p>
+        1
+      </p>
+      <p>
+         result
+      </p>
+    </div>
+    <div>
+      <div
+        class="test-table-header"
+      >
+        <div
+          data-testid="header-status-label"
+        >
+          <p>
+            Status
+          </p>
+        </div>
+        <div
+          data-testid="header-category-label"
+        >
+          <p>
+            Category
+          </p>
+        </div>
+        <div
+          data-testid="header-name-label"
+        >
+          <p>
+            Name
+          </p>
+        </div>
+      </div>
+      <div
+        class="test-table-row"
+      >
+        <div
+          class="test-table-row-status status-passed"
+          data-testid="bb-test-passed"
+        >
+          <p>
+            Passed
+          </p>
+        </div>
+        <div
+          class="test-table-row-category"
+          data-testid="bb-test-category"
+        >
+          GET
+        </div>
+        <div
+          data-testid="bb-test-endpoint"
+        >
+          <p>
+            /data/{someparameter}/method
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+`;

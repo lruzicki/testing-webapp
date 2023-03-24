@@ -52,7 +52,7 @@ const TestResultPage = () => {
           <FaQuoteRight className='quote' />
         </div>
         <TestSummary bbSummary={bbTestSummary?.compatibilities} />
-        <TestResultTable />
+        <TestResultTable bbSummary={bbTestSummary} />
       </div>
     </main>
   );

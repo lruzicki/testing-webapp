@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Unit tests for TestResultTableRow component: should render the TestResultTableRow component with empty fields and match snapshot 1`] = `
+<div>
+  <div
+    class="test-table-row"
+  >
+    <div
+      class="test-table-row-status status-passed"
+      data-testid="bb-test-passed"
+    >
+      <p>
+        Passed
+      </p>
+    </div>
+    <div
+      class=""
+      data-testid="bb-test-category"
+    >
+      -
+    </div>
+    <div
+      data-testid="bb-test-endpoint"
+    >
+      <p>
+        -
+      </p>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Unit tests for TestResultTableRow component: should render the TestResultTableRow component with no empty fileds and match snapshot 1`] = `
+<div>
+  <div
+    class="test-table-row"
+  >
+    <div
+      class="test-table-row-status status-passed"
+      data-testid="bb-test-passed"
+    >
+      <p>
+        Passed
+      </p>
+    </div>
+    <div
+      class="test-table-row-category"
+      data-testid="bb-test-category"
+    >
+      GET
+    </div>
+    <div
+      data-testid="bb-test-endpoint"
+    >
+      <p>
+        /data/{someparameter}/method
+      </p>
+    </div>
+  </div>
+</div>
+`;

@@ -1,4 +1,9 @@
-import { BuildingBlockType, ProductsType } from '../../../../service/types';
+import {
+  BuildingBlockEndpointTest,
+  BuildingBlockTestSummary,
+  BuildingBlockType,
+  ProductsType,
+} from '../../../../service/types';
 
 export const mockedProduct: ProductsType = {
   _id: {
@@ -28,4 +33,17 @@ export const buildingBlock: BuildingBlockType = {
   testsPassed: 2,
   testsFailed: 2,
   compatibility: 0.3455,
+};
+
+export const endpointTestResult: BuildingBlockEndpointTest = {
+  endpoint: '/data/{someparameter}/method',
+  method: 'GET',
+  passed: true,
+  uri: 'features/some_endpoint.feature',
+};
+
+export const buildingBlockTestSummary: BuildingBlockTestSummary = {
+  compatibilities: buildingBlock,
+  data: [endpointTestResult],
+  count: 1,
 };
