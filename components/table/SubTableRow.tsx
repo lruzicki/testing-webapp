@@ -1,6 +1,9 @@
-import React from 'react';
+import Link from 'next/link';
+import React, { useCallback } from 'react';
+import { useIntl } from 'react-intl';
 import { BuildingBlockType } from '../../service/types';
 import BBImage from './BuildingBlocksImage';
+import {RiArrowRightSLine} from 'react-icons/ri'
 
 type Props = {
   buildingBlock: BuildingBlockType;
