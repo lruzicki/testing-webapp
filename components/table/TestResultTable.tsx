@@ -1,16 +1,17 @@
 import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
-import { BuildingBlockTestSummary } from '../../service/types';
+import { BuildingBlockEndpointTest, BuildingBlockTestSummary } from '../../service/types';
 import TableErrorHandling from './TableErrorHandling';
 import TestResultTableHeader from './TestResultTableHeader';
 import TestResultTableRow from './TestResultTableRow';
 
 type Props = {
   bbSummary: BuildingBlockTestSummary | undefined
+  passCurrentBBTest: (value: BuildingBlockEndpointTest) => void
 }
 
-const TestResultTable = ({ bbSummary }: Props) => {
+const TestResultTable = ({ bbSummary, passCurrentBBTest }: Props) => {
   const router = useRouter();
   const { formatMessage } = useIntl();
 
@@ -38,7 +39,7 @@ const TestResultTable = ({ bbSummary }: Props) => {
       <div>
         <TestResultTableHeader />
         {!bbSummary?.data ? <TableErrorHandling /> : (
-          bbSummary.data.map((bbTest, idx )=> <TestResultTableRow bbTest={bbTest} key={`bbTest-${idx}`} />)
+          bbSummary.data.map((bbTest, idx) => <TestResultTableRow bbTest={bbTest} key={`bbTest-${idx}`} passCurrentBBTest={()=> passCurrentBBTest(bbTest)} />)
         )}
       </div>
     </div>

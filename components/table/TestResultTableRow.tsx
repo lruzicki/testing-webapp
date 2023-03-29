@@ -7,9 +7,10 @@ import TextTooltip from '../TextTooltip';
 
 type Props = {
   bbTest: BuildingBlockEndpointTest;
+  passCurrentBBTest: () => void
 };
 
-const TestResultTableRow = ({ bbTest }: Props) => {
+const TestResultTableRow = ({ bbTest, passCurrentBBTest }: Props) => {
   const endpointTextContainer = React.useRef<HTMLDivElement>(null);
   const [isTextOverflowing, setIsTextOverflowing] = useState<boolean>(false);
 
@@ -36,7 +37,7 @@ const TestResultTableRow = ({ bbTest }: Props) => {
   );
 
   return (
-    <div className='test-table-row'>
+    <div className='test-table-row' onClick={passCurrentBBTest}>
       {bbTest?.passed ? (
         <div className='test-table-row-status status-passed' data-testid='bb-test-passed'>
           <p>{format('test_table.passed')}</p>
