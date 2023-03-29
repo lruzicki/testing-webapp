@@ -40,7 +40,6 @@ const TestResultTable = ({ bbSummary }: Props) => {
         {!bbSummary?.data ? <TableErrorHandling /> : (
           bbSummary.data.map((bbTest, idx )=> <TestResultTableRow bbTest={bbTest} key={`bbTest-${idx}`} />)
         )}
-
       </div>
     </div>
   );

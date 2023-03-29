@@ -20,6 +20,7 @@ exports[`Unit tests for TestResultTableRow component: should render the TestResu
       -
     </div>
     <div
+      class="test-table-row-endpoint"
       data-testid="bb-test-endpoint"
     >
       <p>
@@ -50,6 +51,7 @@ exports[`Unit tests for TestResultTableRow component: should render the TestResu
       GET
     </div>
     <div
+      class="test-table-row-endpoint"
       data-testid="bb-test-endpoint"
     >
       <p>

@@ -71,6 +71,7 @@ exports[`Unit tests for TestResultTable component: should match snapshot 1`] = `
           GET
         </div>
         <div
+          class="test-table-row-endpoint"
           data-testid="bb-test-endpoint"
         >
           <p>
