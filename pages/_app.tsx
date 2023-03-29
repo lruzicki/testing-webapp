@@ -3,7 +3,7 @@ import '../styles/Globals.less';
 import '../components/mainLayout/MainLayout.less';
 import '../components/header/Header.less';
 import '../components/table/ProductTable.less';
-import '../components/Definition.less';
+import '../components/table/TestResultTable.less';
 import '../components/table/SubTable.less';
 import '../components/Definition.less';
 import '../components/LoadingBar.less';

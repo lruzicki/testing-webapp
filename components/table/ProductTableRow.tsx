@@ -104,7 +104,7 @@ const ProductTableRow = ({ product }: Props) => {
                   <BBImage
                     imagePath={bb.buildingBlock}
                   />
-                  <TextTooltip />
+                  <TextTooltip customStyle='bb-icon-tooltip'/>
                 </div>
               ))}
             </div>
@@ -117,7 +117,7 @@ const ProductTableRow = ({ product }: Props) => {
                   data-tooltip-content={listOfHiddenBBImages?.map((bb) => format(bb)).join(', ')}
                 >
                   <p>{`+${numberOfHidenBBImages}`}</p>
-                  <TextTooltip />
+                  <TextTooltip customStyle='bb-icon-tooltip'/>
                 </div>
               ) : null}
             </div>

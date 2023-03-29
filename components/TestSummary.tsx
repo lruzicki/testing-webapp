@@ -5,7 +5,7 @@ import LoadingBar from './LoadingBar';
 import BBImage from './table/BuildingBlocksImage';
 
 type Props = {
-  bbSummary: BuildingBlockType | undefined;
+  bbSummary: BuildingBlockType | undefined
 };
 
 const TestSummary = ({ bbSummary }: Props) => {
