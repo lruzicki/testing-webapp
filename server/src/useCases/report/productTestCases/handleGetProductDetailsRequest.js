@@ -22,32 +22,16 @@ module.exports = class ReportGetProductDetailsRequestHandler {
 
       const aggregatedResult = result[0];
 
-      /*  reduce to one item per endpoint, where we always prefer
-      the ones that didn't pass over the ones that did  */
-      const aggregatedData = aggregatedResult.data.reduce((items, item) => {
-        const lastItemIndex = items.length - 1;
-        const lastItem = lastItemIndex < 0 ? null : items[lastItemIndex];
-
-        if (lastItem === null || item.uri !== lastItem.uri) {
-          // add new item
-          items.push(item);
-        } else if (!item.passed) {
-          // replace with the failed item
-          items[lastItemIndex] = item;
-        }
-
-        return items;
-      }, []);
-
       const paginatedAggregatedData = offset !== undefined
-        ? aggregatedData.slice(offset, limit + offset) : aggregatedData.slice(0, limit);
+        ? aggregatedResult.data.slice(offset, limit + offset)
+        : aggregatedResult.data.slice(0, limit);
 
       // build response object
       const finalResult = {};
       Object.assign(finalResult, {
         compatibilities: aggregatedResult.compatibilities,
         data: paginatedAggregatedData,
-        count: aggregatedData.length,
+        count: aggregatedResult.data.length,
       });
 
       this.res.json(finalResult);
