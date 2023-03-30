@@ -35,26 +35,35 @@ main {
 
 .test-result-page {
   width: 100vw;
-  height: calc(100vh - @header-height);
+  height: calc(100vh - @header-height - 5px);
   display: flex;
   flex-direction: row;
   gap: 10px;
+  overflow: hidden;
 }
 
 .test-result-primary-section {
-  max-width: 50%;
-  margin: 25px auto;
+  width: 100%;
+  margin: 25px 0;
+}
+
+.test-result-primary-section > div {
+  margin: auto;
+  min-width: 55vw;
+  max-width: 1000px;
+  padding: 0 20px;
+  height: calc(100vh - 90px);
 }
 
 .test-result-second-section {
-  width: 40vw;
+  min-width: 40vw;
   height: 100%;
   border: 1px solid #dfdfea;
   background-color: @white;
-  overflow-y: auto;
 }
 
 .test-result-second-section-title {
+  height: 5%;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -72,6 +81,11 @@ main {
 
 .close-icon {
   font-size: 24px;
+}
+
+.test-result-second-section-body {
+  overflow: scroll;
+  height: 91%;
 }
 
 .back-to-home-page-btn {

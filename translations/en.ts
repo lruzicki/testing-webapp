@@ -17,6 +17,7 @@ export const en = {
   'app.tests_failed.label': 'Tests Failed',
   'app.compatibility.label': 'Compatibility',
   'app.scroll-loader.message': 'Loading more data...',
+  'app.scenario.label': 'Scenario:',
 
   'building_block.label': 'Building Block',
   'building_block.plural.label': 'Building Blocks',

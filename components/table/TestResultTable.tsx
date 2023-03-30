@@ -39,7 +39,17 @@ const TestResultTable = ({ bbSummary, passCurrentBBTest }: Props) => {
       <div>
         <TestResultTableHeader />
         {!bbSummary?.data ? <TableErrorHandling /> : (
-          bbSummary.data.map((bbTest, idx) => <TestResultTableRow bbTest={bbTest} key={`bbTest-${idx}`} passCurrentBBTest={()=> passCurrentBBTest(bbTest)} />)
+          <div style={{
+            overflowY: 'scroll',
+            height: '70%'
+          }}>
+            {bbSummary.data.map((bbTest, idx) =>
+              <TestResultTableRow
+                bbTest={bbTest}
+                key={`bbTest-${idx}`}
+                passCurrentBBTest={() => passCurrentBBTest(bbTest)}
+              />)}
+          </div>
         )}
       </div>
     </div>

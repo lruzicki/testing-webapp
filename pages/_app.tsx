@@ -7,6 +7,7 @@ import '../components/table/TestResultTable.less';
 import '../components/table/SubTable.less';
 import '../components/Definition.less';
 import '../components/LoadingBar.less';
+import '../components/TestStepsView.less';
 import '../components/TestSummary.less';
 import { IntlProvider } from 'react-intl';
 import { useRouter } from 'next/router';

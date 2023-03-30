@@ -7,6 +7,7 @@
   padding-top: 16px;
   padding-bottom: 16px;
   gap: 16px;
+  height: 100%;
 }
 
 .test-table-last-update,
@@ -19,7 +20,6 @@
 }
 
 .test-table-header:extend(.table-header-text) {
-  width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
   grid-template-rows: @table-row;
@@ -31,7 +31,6 @@
 }
 
 .test-table-row {
-  width: 100%;
   height: @table-row;
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;

@@ -7,7 +7,11 @@ import { RiCloseLine } from 'react-icons/ri';
 import TestSummary from '../../../components/TestSummary';
 import TestResultTable from '../../../components/table/TestResultTable';
 import { getBuildingBlockTestResults } from '../../../service/serviceAPI';
-import { BuildingBlockEndpointTest, BuildingBlockTestSummary } from '../../../service/types';
+import {
+  BuildingBlockEndpointTest,
+  BuildingBlockTestSummary,
+} from '../../../service/types';
+import TestStepsView from '../../../components/TestStepsView';
 
 const TestResultPage = () => {
   const [bbTestSummary, setBBTestSummary] = useState<BuildingBlockTestSummary>();
@@ -41,21 +45,29 @@ const TestResultPage = () => {
     <main>
       <div className='test-result-page'>
         <div className='test-result-primary-section'>
-          <Link
-            className='back-to-home-page-btn'
-            href={'/'}
-            data-testid='test-result-page-link'
-          >
-            {format('result_page.back_to_product_list')}
-          </Link>
-          <div className='test-result-title' data-testid='test-result-page-title'>
-            <p>{format('result_page.title')}</p>
-            <FaQuoteLeft className='quote' />
-            <p>{productName}</p>
-            <FaQuoteRight className='quote' />
+          <div>
+            <Link
+              className='back-to-home-page-btn'
+              href={'/'}
+              data-testid='test-result-page-link'
+            >
+              {format('result_page.back_to_product_list')}
+            </Link>
+            <div
+              className='test-result-title'
+              data-testid='test-result-page-title'
+            >
+              <p>{format('result_page.title')}</p>
+              <FaQuoteLeft className='quote' />
+              <p>{productName}</p>
+              <FaQuoteRight className='quote' />
+            </div>
+            <TestSummary bbSummary={bbTestSummary?.compatibilities} />
+            <TestResultTable
+              bbSummary={bbTestSummary}
+              passCurrentBBTest={setCurrentBBTest}
+            />
           </div>
-          <TestSummary bbSummary={bbTestSummary?.compatibilities} />
-          <TestResultTable bbSummary={bbTestSummary} passCurrentBBTest={setCurrentBBTest}/>
         </div>
         {currentBBTest ? (
           <div className='test-result-second-section'>
@@ -65,8 +77,16 @@ const TestResultPage = () => {
                 <p>{currentBBTest?.endpoint}</p>
               </div>
               <div className='close-icon'>
-                <RiCloseLine onClick={() => setCurrentBBTest(undefined)}/>
+                <RiCloseLine onClick={() => setCurrentBBTest(undefined)} />
               </div>
+            </div>
+            <div className='test-result-second-section-body'>
+              {currentBBTest.details?.map((testDetail, idx) => (
+                <TestStepsView
+                  testDetails={testDetail}
+                  key={`testDetail-${idx}`}
+                />
+              ))}
             </div>
           </div>
         ) : null}
