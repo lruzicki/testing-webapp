@@ -1,7 +1,7 @@
 import React from 'react';
 import SubTableRow from '../../../components/table/SubTableRow';
 import { render } from '../../test-utils/test-utils';
-import { buildingBlock } from './mockedData/ProductTable';
+import { buildingBlock, mockedProduct } from './mockedData/ProductTable';
 
 describe('Unit tests for SubTableRow component:', () => {
   const BB_NAME_TEST_ID = 'bb-name';
@@ -11,7 +11,10 @@ describe('Unit tests for SubTableRow component:', () => {
 
   it('should render the SubTableRow component and match snapshot', () => {
     const { container } = render(
-      <SubTableRow buildingBlock={buildingBlock} />
+      <SubTableRow
+        productName={mockedProduct._id.testApp}
+        buildingBlock={buildingBlock}
+      />
     );
 
     expect(container).toMatchSnapshot();
@@ -20,6 +23,7 @@ describe('Unit tests for SubTableRow component:', () => {
   it('when have corresponding values', () => {
     const { getByTestId } = render(
       <SubTableRow
+        productName={mockedProduct._id.testApp}
         buildingBlock={buildingBlock}
       />
     );

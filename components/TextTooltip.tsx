@@ -1,9 +1,17 @@
+import classNames from 'classnames';
 import React from 'react';
 import { Tooltip } from 'react-tooltip';
 
-const TextTooltip = () => (
+type Props = {
+  customStyle?: string;
+};
+
+const TextTooltip = ({ customStyle }: Props) => (
   <div className='text-tooltip'>
-    <Tooltip id='text-tooltip' className='text-tooltip-body' />
+    <Tooltip
+      id='text-tooltip'
+      className={classNames('text-tooltip-body', customStyle)}
+    />
   </div>
 );
 

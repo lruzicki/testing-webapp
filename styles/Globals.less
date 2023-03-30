@@ -2,7 +2,7 @@
 @import '../styles/Extends.less';
 
 body {
-  background-color: @background;
+  background-color: @background-page;
   font-family: Arial, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 400;
@@ -33,11 +33,47 @@ main {
   align-items: center;
 }
 
+.test-result-page {
+  width: 70vw;
+  display: flex;
+  flex-direction: column;
+  padding-top: 25px;
+  gap: 10px;
+}
+
+.back-to-home-page-btn {
+  width: max-content;
+  color: @accents-and-btn;
+  font-size: 12px;
+  text-decoration: none;
+}
+
+.test-result-title {
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+  font-weight: 700;
+  padding-top: 20px;
+  padding-bottom: 16px;
+}
+
+.test-result-title > p {
+  margin: 0;
+}
+
+.test-result-title > p:first-of-type {
+  padding-right: 4px;
+}
+
+.quote {
+  font-size: 5px;
+}
+
+p {
+  margin: 0;
+}
+
 .text-tooltip .text-tooltip-body {
-  background-color: @charts-chips-and-perc;
   border-radius: 1px solid 5%;
-  text-transform: capitalize;
-  font-size: 14px;
-  padding: 5px 16px;
-  max-width: 300px;
+  max-width: 40vw;
 }

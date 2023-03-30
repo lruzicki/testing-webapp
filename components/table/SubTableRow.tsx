@@ -1,13 +1,16 @@
+import Link from 'next/link';
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
+import { RiArrowRightSLine } from 'react-icons/ri';
 import { BuildingBlockType } from '../../service/types';
 import BBImage from './BuildingBlocksImage';
 
 type Props = {
   buildingBlock: BuildingBlockType;
+  productName: string
 };
 
-const SubTableRow = ({ buildingBlock }: Props) => {
+const SubTableRow = ({ buildingBlock, productName }: Props) => {
   const { formatMessage } = useIntl();
   const format = useCallback(
     (id: string) => formatMessage({ id }),
@@ -15,28 +18,34 @@ const SubTableRow = ({ buildingBlock }: Props) => {
   );
 
   return (
-    <div className='sub-table-row'>
-      <div></div>
-      <div className='sub-table-row-bb' data-testid='bb-name'>
-        <BBImage imagePath={buildingBlock.buildingBlock} />
-        <p>{format(buildingBlock.buildingBlock)}</p>
-      </div>
-      <div className='sub-table-content-tests'>
-        <div data-testid='tests-passed'>
-          <p>{buildingBlock.testsPassed}</p>
+    <Link
+      href={{ pathname: `/${productName}/${(buildingBlock.buildingBlock)}/${buildingBlock.id}` }}
+      className='sub-table-link'>
+      <div className='sub-table-row'>
+        <div></div>
+        <div className='sub-table-row-bb' data-testid='bb-name'>
+          <BBImage imagePath={buildingBlock.buildingBlock} />
+          <p>{format(buildingBlock.buildingBlock)}</p>
         </div>
-        <div data-testid='tests-failed'>
-          <p>{buildingBlock.testsFailed}</p>
+        <div className='sub-table-content-tests'>
+          <div data-testid='tests-passed'>
+            <p>{buildingBlock.testsPassed}</p>
+          </div>
+          <div data-testid='tests-failed'>
+            <p>{buildingBlock.testsFailed}</p>
+          </div>
+        </div>
+        <div
+          className='sub-table-content-compatibility'
+          data-testid='compatibility'
+        >
+          <p>{`${Math.floor(buildingBlock.compatibility * 100)}%`}</p>
+        </div>
+        <div className='test-details-arrow'>
+          <RiArrowRightSLine />
         </div>
       </div>
-      <div
-        className='sub-table-content-compatibility'
-        data-testid='compatibility'
-      >
-        <p>{`${Math.floor(buildingBlock.compatibility * 100)}%`}</p>
-      </div>
-      <div className='test-details-arrow'></div>
-    </div>
+    </Link>
   );
 };
 

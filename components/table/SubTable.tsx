@@ -13,6 +13,7 @@ const SubTable = ({ product }: Props) => {
       <SubTableHeader />
       {product.compatibilities.map((buildingBlock, bbIdx) => (
         <SubTableRow
+          productName={product._id.testApp}
           buildingBlock={buildingBlock}
           key={`buildingBlock-${bbIdx}`}
         />

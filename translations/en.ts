@@ -25,11 +25,21 @@ export const en = {
 
   'software_name.label': 'Software Name',
 
+  'result_page.back_to_product_list': '< Back to Products List',
+  'result_page.title': 'Tests for',
+
   'table.last_update.label': 'Last Update',
   'table.no_result_count.message': 'No results count found',
   'table.overall_compatibility.label': 'Overall Compatibility',
   'table.result.label': ' result',
   'table.result.plural.label': ' results',
+
+  'test_table.category.label': 'Category',
+  'test_table.failed': 'Failed',
+  'test_table.last_update.label': 'Last update:',
+  'test_table.name.label': 'Name',
+  'test_table.passed': 'Passed',
+  'test_table.status.label': 'Status',
 
   // ---------------------------------------------------------------------
   // This is translation for each building block

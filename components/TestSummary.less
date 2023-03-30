@@ -1,0 +1,45 @@
+@import '../styles/Variables.less';
+
+.test-summary-component {
+  width: 100%;
+  background-color: #fafbff;
+  border: 1px solid @stroke;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+.test-summary-row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 2fr;
+  grid-template-rows: 24px;
+  align-items: center;
+  gap: 5px;
+}
+
+.test-summary-header {
+  color: @text-secondary;
+  padding-bottom: 10px;
+}
+
+.test-summary-label {
+  font-size: 16px;
+}
+
+.test-summary-bb {
+  display: flex;
+  flex-direction: row;
+  gap: 8px;
+  max-width: 90%;
+}
+
+.test-summary-bb p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.test-summary-icon {
+  filter: invert(58%) sepia(97%) saturate(8%) hue-rotate(44deg) brightness(101%)
+    contrast(87%);
+  padding: 0;
+}

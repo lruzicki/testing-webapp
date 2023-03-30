@@ -18,4 +18,17 @@ export type ProductsType = {
   overallCompatibility: number;
 };
 
+export type BuildingBlockEndpointTest = {
+  uri: string;
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | '';
+  endpoint: string;
+  passed: boolean;
+};
+
 export type ProductsListType = ProductsType[];
+
+export type BuildingBlockTestSummary = {
+  compatibilities: BuildingBlockType;
+  data: BuildingBlockEndpointTest[];
+  count: number;
+};
