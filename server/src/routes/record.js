@@ -15,6 +15,7 @@ const buildReportRoutes = (reportController) => {
   reportRoutes
     .route('/report/:id')
     .get(PaginationMiddleware.handlePaginationFilters, reportController.getProductDetails);
+
   return reportRoutes;
 };
 
