@@ -7,7 +7,7 @@
   padding-top: 16px;
   padding-bottom: 16px;
   gap: 16px;
-  height: 100%;
+  height: calc(100vh - 320px);
 }
 
 .test-table-last-update,
@@ -19,15 +19,27 @@
   color: @text-secondary;
 }
 
+.test-table-table {
+  max-height: calc(100% - 55px);
+  height: fit-content;
+  border: 1px solid @stroke;
+  border-radius: 8px 8px 0px 0px;
+}
+
 .test-table-header:extend(.table-header-text) {
   display: grid;
   grid-template-columns: 1fr 1fr 2fr;
   grid-template-rows: @table-row;
   padding: 0 24px;
-  border: 1px solid @stroke;
+  border-bottom: 1px solid @stroke;
   border-radius: 8px 8px 0px 0px;
   align-items: center;
   background-color: #fafbff;
+}
+
+.test-table-row-container {
+  overflow-y: scroll;
+  height: calc(100% - 50px);
 }
 
 .test-table-row {
@@ -36,8 +48,6 @@
   grid-template-columns: 1fr 1fr 2fr;
   padding: 0 24px;
   border-bottom: 1px solid @stroke;
-  border-right: 1px solid @stroke;
-  border-left: 1px solid @stroke;
   align-items: center;
   color: @text-secondary;
 }

@@ -8,6 +8,7 @@ import TestResultTableRow from './TestResultTableRow';
 
 type Props = {
   bbSummary: BuildingBlockTestSummary | undefined
+  // eslint-disable-next-line no-unused-vars
   passCurrentBBTest: (value: BuildingBlockEndpointTest) => void
 }
 
@@ -36,13 +37,10 @@ const TestResultTable = ({ bbSummary, passCurrentBBTest }: Props) => {
             : format('table.result.plural.label')}
         </p>
       </div>
-      <div>
+      <div className='test-table-table'>
         <TestResultTableHeader />
         {!bbSummary?.data ? <TableErrorHandling /> : (
-          <div style={{
-            overflowY: 'scroll',
-            height: '70%'
-          }}>
+          <div className='test-table-row-container'>
             {bbSummary.data.map((bbTest, idx) =>
               <TestResultTableRow
                 bbTest={bbTest}

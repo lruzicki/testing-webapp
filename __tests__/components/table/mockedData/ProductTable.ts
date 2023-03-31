@@ -3,6 +3,7 @@ import {
   BuildingBlockTestSummary,
   BuildingBlockType,
   ProductsType,
+  TestsDetailsType,
 } from '../../../../service/types';
 
 export const mockedProduct: ProductsType = {
@@ -35,7 +36,7 @@ export const buildingBlock: BuildingBlockType = {
   compatibility: 0.3455,
 };
 
-export const testPassedDetails = {
+export const testPassedDetails: TestsDetailsType = {
   scenario:
     'The user successfully creates record "John Smith" in the Digital Registries database.',
   steps: [
@@ -57,7 +58,7 @@ export const testPassedDetails = {
   ],
 };
 
-export const testFailedDetails = {
+export const testFailedDetails: TestsDetailsType = {
   scenario:
     'The user is not able to create a record in the database which not exist',
   steps: [

@@ -73,8 +73,7 @@ const TestResultPage = () => {
           <div className='test-result-second-section'>
             <div className='test-result-second-section-title'>
               <div className='test-result-second-section-text'>
-                <p>{currentBBTest?.method}</p>
-                <p>{currentBBTest?.endpoint}</p>
+                <p>{`${currentBBTest?.method} ${currentBBTest?.endpoint}`}</p>
               </div>
               <div className='close-icon'>
                 <RiCloseLine onClick={() => setCurrentBBTest(undefined)} />
