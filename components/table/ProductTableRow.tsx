@@ -15,7 +15,7 @@ type Props = {
 
 const ProductTableRow = ({ product }: Props) => {
   const bbContentContainer = React.useRef<HTMLDivElement | null>(null);
-  const [numberOfHidenBBImages, setNumberOfHidenBBImages] = useState<Number | any>(null);
+  const [numberOfHidenBBImages, setNumberOfHidenBBImages] = useState<number>(0);
   const [imageSectionWidth, setImageSectionWidth] = useState<string | undefined>();
   const [productLastUpdate, setProductLastUpdate] = useState<string>('');
   const [isSubTableOpen, setSubTableOpen] = useState<boolean>(false);

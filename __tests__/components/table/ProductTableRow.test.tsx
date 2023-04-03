@@ -10,7 +10,7 @@ jest.mock('react-tooltip', () => ({
 const mockedContainerWidth = (clientWidth: number) =>
   // @ts-ignore
   jest.spyOn(React, 'useRef').mockImplementation((v) => {
-    const ref = function (_: any) {
+    const ref = function (_: void) {
       // @ts-expect-error
       ref.current = { ..._, clientWidth };
     };

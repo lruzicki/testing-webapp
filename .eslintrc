@@ -1,12 +1,15 @@
 {
-  "plugins": ["jest"],
+  "plugins": ["jest", "@typescript-eslint"],
   "extends": [
     "next",
     "prettier",
     "eslint:recommended",
-    "plugin:jest/recommended"
+    "plugin:jest/recommended",
+    "plugin:@typescript-eslint/recommended"
   ],
   "ignorePatterns": ["build/", "translations/"],
+  "parser": "@typescript-eslint/parser",
+  "root": true,
   "globals": {
     "fetch": false,
     "Response": false,
@@ -30,10 +33,8 @@
       2,
       {
         "ignoredNodes": ["TemplateLiteral"],
-        // "SwitchCase": 1,
         "ArrayExpression": 1,
         "ObjectExpression": 1,
-        // "offsetTernaryExpressions": true,
         "ImportDeclaration": 1
       }
     ],
@@ -84,6 +85,8 @@
         "code": 125,
         "comments": 125
       }
-    ]
+    ],
+    "@typescript-eslint/ban-ts-comment": "off",
+    "@typescript-eslint/no-var-requires": "off"
   }
 }
