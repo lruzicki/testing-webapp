@@ -27,7 +27,9 @@ exports[`Unit tests for TestResultTable component: should match snapshot 1`] = `
          result
       </p>
     </div>
-    <div>
+    <div
+      class="test-table-table"
+    >
       <div
         class="test-table-header"
       >
@@ -54,29 +56,33 @@ exports[`Unit tests for TestResultTable component: should match snapshot 1`] = `
         </div>
       </div>
       <div
-        class="test-table-row"
+        class="test-table-row-container"
       >
         <div
-          class="test-table-row-status status-passed"
-          data-testid="bb-test-passed"
+          class="test-table-row"
         >
-          <p>
-            Passed
-          </p>
-        </div>
-        <div
-          class="test-table-row-category"
-          data-testid="bb-test-category"
-        >
-          GET
-        </div>
-        <div
-          class="test-table-row-endpoint"
-          data-testid="bb-test-endpoint"
-        >
-          <p>
-            /data/{someparameter}/method
-          </p>
+          <div
+            class="test-table-row-status status-passed"
+            data-testid="bb-test-passed"
+          >
+            <p>
+              Passed
+            </p>
+          </div>
+          <div
+            class="test-table-row-category"
+            data-testid="bb-test-category"
+          >
+            GET
+          </div>
+          <div
+            class="test-table-row-endpoint"
+            data-testid="bb-test-endpoint"
+          >
+            <p>
+              /data/{someparameter}/method
+            </p>
+          </div>
         </div>
       </div>
     </div>

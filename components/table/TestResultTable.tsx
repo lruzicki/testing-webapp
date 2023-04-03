@@ -1,16 +1,18 @@
 import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import { useIntl } from 'react-intl';
-import { BuildingBlockTestSummary } from '../../service/types';
+import { BuildingBlockEndpointTest, BuildingBlockTestSummary } from '../../service/types';
 import TableErrorHandling from './TableErrorHandling';
 import TestResultTableHeader from './TestResultTableHeader';
 import TestResultTableRow from './TestResultTableRow';
 
 type Props = {
   bbSummary: BuildingBlockTestSummary | undefined
+  // eslint-disable-next-line no-unused-vars
+  passCurrentBBTest: (value: BuildingBlockEndpointTest) => void
 }
 
-const TestResultTable = ({ bbSummary }: Props) => {
+const TestResultTable = ({ bbSummary, passCurrentBBTest }: Props) => {
   const router = useRouter();
   const { formatMessage } = useIntl();
 
@@ -35,10 +37,17 @@ const TestResultTable = ({ bbSummary }: Props) => {
             : format('table.result.plural.label')}
         </p>
       </div>
-      <div>
+      <div className='test-table-table'>
         <TestResultTableHeader />
         {!bbSummary?.data ? <TableErrorHandling /> : (
-          bbSummary.data.map((bbTest, idx )=> <TestResultTableRow bbTest={bbTest} key={`bbTest-${idx}`} />)
+          <div className='test-table-row-container'>
+            {bbSummary.data.map((bbTest, idx) =>
+              <TestResultTableRow
+                bbTest={bbTest}
+                key={`bbTest-${idx}`}
+                passCurrentBBTest={() => passCurrentBBTest(bbTest)}
+              />)}
+          </div>
         )}
       </div>
     </div>

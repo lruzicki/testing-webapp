@@ -23,6 +23,16 @@ export type BuildingBlockEndpointTest = {
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE' | '';
   endpoint: string;
   passed: boolean;
+  details: TestsDetailsType[];
+};
+
+export type TestsDetailsType = {
+  scenario: string;
+  steps: {
+    text: string;
+    result: boolean;
+    type: string;
+  }[];
 };
 
 export type ProductsListType = ProductsType[];

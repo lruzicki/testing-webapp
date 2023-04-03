@@ -11,7 +11,7 @@ describe('Unit tests for TestResultTableRow component:', () => {
 
   it('should render the TestResultTableRow component with no empty fileds and match snapshot', () => {
     const { container } = render(
-      <TestResultTableRow bbTest={endpointTestResult} />
+      <TestResultTableRow bbTest={endpointTestResult} passCurrentBBTest={jest.fn()}/>
     );
 
     expect(container).toMatchSnapshot();
@@ -19,12 +19,16 @@ describe('Unit tests for TestResultTableRow component:', () => {
 
   it('should render the TestResultTableRow component with empty fields and match snapshot', () => {
     const { container } = render(
-      <TestResultTableRow bbTest={{
-        endpoint: '',
-        method: '',
-        passed: true,
-        uri: '',
-      }} />
+      <TestResultTableRow
+        bbTest={{
+          endpoint: '',
+          method: '',
+          passed: true,
+          uri: '',
+          details: []
+        }}
+        passCurrentBBTest={()=>{}}
+      />
     );
 
     expect(container).toMatchSnapshot();
@@ -32,7 +36,7 @@ describe('Unit tests for TestResultTableRow component:', () => {
 
   it('should have corresponding values', () => {
     const { getByTestId, queryByTestId } = render(
-      <TestResultTableRow bbTest={endpointTestResult} />
+      <TestResultTableRow bbTest={endpointTestResult} passCurrentBBTest={jest.fn()}/>
     );
 
     expect(queryByTestId(TEST_FAILED_TEST_ID)).toBe(null);
