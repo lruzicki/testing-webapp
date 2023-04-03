@@ -8,7 +8,6 @@ import TestResultTableRow from './TestResultTableRow';
 
 type Props = {
   bbSummary: BuildingBlockTestSummary | undefined
-  // eslint-disable-next-line no-unused-vars
   passCurrentBBTest: (value: BuildingBlockEndpointTest) => void
 }
 

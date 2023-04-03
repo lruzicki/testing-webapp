@@ -27,7 +27,7 @@ describe('Unit tests for TestResultTableRow component:', () => {
           uri: '',
           details: []
         }}
-        passCurrentBBTest={()=>{}}
+        passCurrentBBTest={jest.fn()}
       />
     );
 
