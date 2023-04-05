@@ -9,6 +9,7 @@ import '../components/Definition.less';
 import '../components/LoadingBar.less';
 import '../components/TestStepsView.less';
 import '../components/TestSummary.less';
+import '../components/shared/SearchInput.less';
 import { IntlProvider } from 'react-intl';
 import { useRouter } from 'next/router';
 import React from 'react';
