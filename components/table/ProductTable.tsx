@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getData, getProductListCount } from '../../service/serviceAPI';
-import { ProductsType } from '../../service/types';
+import { ProductsType, SortFieldType, SortOrderType } from '../../service/types';
 import InfiniteScrollCustomLoader from '../InfiniteScrollLoader';
 import ProductTableHeader from './ProductTableHeader';
 import ProductTableRow from './ProductTableRow';
@@ -13,6 +13,7 @@ const ProductTable = () => {
   const [productListLength, setProductListLength] = useState<number>(0);
   const [isErrorFetchingData, setIsErrorFetchingData] = useState<boolean>(false);
   const [isErrorFetchingCount, setIsErrorFetchingCount] = useState<boolean>(false);
+  const [sortBy, setSortBy] = useState<{ field: SortFieldType, order: SortOrderType }>()
 
   const { formatMessage } = useIntl();
   const format = useCallback(
@@ -53,6 +54,10 @@ const ProductTable = () => {
     }
   }, [productsList]);
 
+  const handleSorting = (sortField: SortFieldType, sortOrder: SortOrderType) => {
+    setSortBy({ field: sortField, order: sortOrder })
+  };
+
   return (
     <div className='table'>
       <div className='table-results-count'>
@@ -66,7 +71,7 @@ const ProductTable = () => {
         </p>
       </div>
       <div className='table-body'>
-        <ProductTableHeader />
+        <ProductTableHeader handleSorting={handleSorting}/>
         {isErrorFetchingData ? (
           <TableErrorHandling />
         ) : (
