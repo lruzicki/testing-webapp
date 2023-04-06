@@ -3,10 +3,12 @@ services:
   web:
     volumes:
       - .:/testing-webapp
+      - ./testing-webapp/node_modules
     ports:
       - 3003:3003
 
   backend:
-    volumes:
-      - ./server:/app
+      volumes:
+        - ./server:/app
+        - ./app/node_modules
 
