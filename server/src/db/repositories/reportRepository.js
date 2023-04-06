@@ -439,6 +439,7 @@ function getReportDetailsPipeline(id) {
       $project: {
         compatibilities: 1,
         data: {
+          uri: 1,
           method: 1,
           endpoint: 1,
           passed: {
