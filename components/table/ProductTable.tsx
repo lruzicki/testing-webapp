@@ -13,7 +13,7 @@ const ProductTable = () => {
   const [productListLength, setProductListLength] = useState<number>(0);
   const [isErrorFetchingData, setIsErrorFetchingData] = useState<boolean>(false);
   const [isErrorFetchingCount, setIsErrorFetchingCount] = useState<boolean>(false);
-  const [sortBy, setSortBy] = useState<{ field: SortFieldType, order: SortOrderType }>()
+  const [sortBy, setSortBy] = useState<{ field: SortFieldType, order: SortOrderType }>();
 
   const { formatMessage } = useIntl();
   const format = useCallback(
@@ -55,7 +55,7 @@ const ProductTable = () => {
   }, [productsList]);
 
   const handleSorting = (sortField: SortFieldType, sortOrder: SortOrderType) => {
-    setSortBy({ field: sortField, order: sortOrder })
+    setSortBy({ field: sortField, order: sortOrder });
   };
 
   return (
