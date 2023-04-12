@@ -6,7 +6,7 @@ Express.js server provides access to report results.
 ## Requirements
 - Node.js (Version 16 or greater)
 - Yarn (Version 1.22.5 or greater)
-
+- Mongo (Version 5.2 or greater)
 
 ## Install
 ```bash 
