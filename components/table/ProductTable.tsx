@@ -2,18 +2,19 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import { getData, getProductListCount } from '../../service/serviceAPI';
-import { ProductsType, SortFieldType, SortOrderType } from '../../service/types';
+import { ProductsType } from '../../service/types';
 import InfiniteScrollCustomLoader from '../InfiniteScrollLoader';
 import ProductTableHeader from './ProductTableHeader';
 import ProductTableRow from './ProductTableRow';
 import TableErrorHandling from './TableErrorHandling';
+import { TableSortByType } from './types';
 
 const ProductTable = () => {
   const [productsList, setProductsList] = useState<ProductsType[]>([]);
   const [productListLength, setProductListLength] = useState<number>(0);
   const [isErrorFetchingData, setIsErrorFetchingData] = useState<boolean>(false);
   const [isErrorFetchingCount, setIsErrorFetchingCount] = useState<boolean>(false);
-  const [sortBy, setSortBy] = useState<{ field: SortFieldType, order: SortOrderType }>();
+  const [sortBy, setSortBy] = useState<TableSortByType>();
 
   const { formatMessage } = useIntl();
   const format = useCallback(
@@ -54,8 +55,8 @@ const ProductTable = () => {
     }
   }, [productsList]);
 
-  const handleSorting = (sortField: SortFieldType, sortOrder: SortOrderType) => {
-    setSortBy({ field: sortField, order: sortOrder });
+  const handleSorting = (tableSortProperties: TableSortByType) => {
+    setSortBy(tableSortProperties);
   };
 
   return (

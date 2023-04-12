@@ -42,6 +42,3 @@ export type BuildingBlockTestSummary = {
   data: BuildingBlockEndpointTest[];
   count: number;
 };
-
-export type SortOrderType = 'desc' | 'asc';
-export type SortFieldType = 'software' | 'date' | 'compatibility';
