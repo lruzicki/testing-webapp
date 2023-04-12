@@ -2,13 +2,23 @@
 const streamline = require('streamifier');
 
 const readline = require('readline');
+const yaml = require('js-yaml');
 const { validate } = require('jsonschema');
 const TestCaseBuilder = require('./utils/testCaseBuilder');
 
 const RequestSchema = {
   type: 'object',
   properties: {
-    file: { type: 'Object' },
+    files: {
+      type: 'Object',
+      properties: {
+        report: { type: 'Object' },
+        meta: { type: 'Object' },
+      },
+      required: [
+        'report',
+      ],
+    },
     body: {
       type: 'Object',
       properties: {
@@ -24,9 +34,10 @@ const RequestSchema = {
         'sourceBranch',
       ],
     },
+    meta: { type: 'Object' },
   },
   required: [
-    'file',
+    'files',
     'body',
   ],
 };
@@ -43,7 +54,8 @@ module.exports = class ReportUploadRequestHandler {
       return false;
     }
     const dataToSave = new TestCaseBuilder(await this.loadData()).buildExecutionResult();
-    await this.jsonSave(repository, dataToSave);
+    const productMetaData = await this.loadProductInfo();
+    await this.jsonSave(repository, dataToSave, productMetaData);
     return true;
   }
 
@@ -58,7 +70,7 @@ module.exports = class ReportUploadRequestHandler {
 
   async loadData() {
     const rl = readline.createInterface({
-      input: streamline.createReadStream(this.req.file.buffer),
+      input: streamline.createReadStream(this.req.files.report[0].buffer),
       crlfDelay: Infinity,
     });
 
@@ -79,12 +91,27 @@ module.exports = class ReportUploadRequestHandler {
     return items;
   }
 
-  async jsonSave(repository, data) {
+  async loadProductInfo() {
+    // Product info is passed through META file field inside of payload.
+    // It's not used in aggregation, and is not mandatory.
+    // At the moment it provides information about product name.
+    // If name is missing it's replaced with <testSuite> (missing META.yml).
+    if (!this.req.files.META) {
+      return {
+        name: `${this.req.body.testApp} (candidate META.yml missing)`,
+      };
+    }
+    const productMetaProperties = yaml.load(this.req.files.META[0].buffer);
+    return productMetaProperties;
+  }
+
+  async jsonSave(repository, data, productMetaData) {
     const report = data;
     report.buildingBlock = this.req.body.buildingBlock;
     report.testSuite = this.req.body.testSuite;
     report.testApp = this.req.body.testApp;
     report.sourceBranch = this.req.body.sourceBranch;
+    report.productMetaData = productMetaData;
 
     this.saveToDatabase(repository, report);
   }
