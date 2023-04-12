@@ -14,6 +14,7 @@ const getReportDetailsPipeline = (id) => [{
     compatibilities: {
       buildingBlock: '$buildingBlock',
       testApp: '$testApp',
+      productMetaData: '$productMetaData',
       timestamp: '$finish.timestamp.seconds',
       saveTime: '$saveTime',
       testsPassed: {
