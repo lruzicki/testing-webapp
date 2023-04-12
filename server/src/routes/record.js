@@ -7,7 +7,8 @@ const buildReportRoutes = (reportController) => {
 
   const storage = multer.memoryStorage();
   const upload = multer({ storage });
-  reportRoutes.route('/report/upload').post(upload.single('report'), reportController.saveReport);
+  const filesUpload = upload.fields([{ name: 'report', maxCount: 1 }, { name: 'META', maxCount: 1 }]);
+  reportRoutes.route('/report/upload').post(filesUpload, reportController.saveReport);
   reportRoutes
     .route('/report')
     .get(PaginationMiddleware.handlePaginationFilters, reportController.getProductCompatibility);

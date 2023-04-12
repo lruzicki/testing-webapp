@@ -83,8 +83,13 @@ const TestCase = {
   passed: Boolean,
 };
 
+const ProductMetaData = {
+  name: String,
+};
+
 const TestReportSchema = new mongoose.Schema({
   meta: MetaSchema,
+  productMetaData: ProductMetaData,
   start: {
     timestamp: TimeStamp,
   },

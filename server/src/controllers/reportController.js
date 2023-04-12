@@ -7,7 +7,7 @@ const reportController = (reportDbRepository, reportDbRepositoryImpl) => {
   const repository = reportDbRepository(reportDbRepositoryImpl);
 
   const saveReport = (req, res) => {
-    if (!req.file) {
+    if (!req.files) {
       res.status(400).send('Invalid form, file not provided.');
       return;
     }
