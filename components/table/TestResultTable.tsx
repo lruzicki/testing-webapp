@@ -5,13 +5,15 @@ import { BuildingBlockEndpointTest, BuildingBlockTestSummary } from '../../servi
 import TableErrorHandling from './TableErrorHandling';
 import TestResultTableHeader from './TestResultTableHeader';
 import TestResultTableRow from './TestResultTableRow';
+import { ResultTableSortByType } from './types';
 
 type Props = {
   bbSummary: BuildingBlockTestSummary | undefined
   passCurrentBBTest: (value: BuildingBlockEndpointTest) => void
+  handleSorting: (tableSortProperties: ResultTableSortByType) => void
 }
 
-const TestResultTable = ({ bbSummary, passCurrentBBTest }: Props) => {
+const TestResultTable = ({ bbSummary, passCurrentBBTest, handleSorting }: Props) => {
   const router = useRouter();
   const { formatMessage } = useIntl();
 
@@ -37,7 +39,7 @@ const TestResultTable = ({ bbSummary, passCurrentBBTest }: Props) => {
         </p>
       </div>
       <div className='test-table-table'>
-        <TestResultTableHeader />
+        <TestResultTableHeader handleSorting={handleSorting} />
         {!bbSummary?.data ? <TableErrorHandling /> : (
           <div className='test-table-row-container'>
             {bbSummary.data.map((bbTest, idx) =>

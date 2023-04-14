@@ -12,10 +12,18 @@ import {
   BuildingBlockTestSummary,
 } from '../../../service/types';
 import TestStepsView from '../../../components/TestStepsView';
+import { ResultTableSortByType } from '../../../components/table/types';
 
 const TestResultPage = () => {
   const [bbTestSummary, setBBTestSummary] = useState<BuildingBlockTestSummary>();
   const [currentBBTest, setCurrentBBTest] = useState<BuildingBlockEndpointTest>();
+  const [sortBy, setSortBy] = useState<ResultTableSortByType>(
+    {
+      uri: { field: 'uri', order: null },
+      name: { field: 'name', order: null },
+      status: { field: 'status', order: null }
+    }
+  );
 
   const router = useRouter();
   const { productName, bbId } = router.query;
@@ -28,18 +36,22 @@ const TestResultPage = () => {
 
   const fetchData = useCallback(async () => {
     const [data] = await Promise.all([
-      getBuildingBlockTestResults(bbId as string),
+      getBuildingBlockTestResults(bbId as string, sortBy)
     ]);
     if (data.status) {
       setBBTestSummary(data.data);
     }
-  }, [bbId]);
+  }, [bbId, sortBy]);
 
   useEffect(() => {
     if (bbId) {
       fetchData();
     }
   }, [bbId, fetchData]);
+
+  const handleSorting = (tableSortProperties: ResultTableSortByType) => {
+    setSortBy(tableSortProperties);
+  };
 
   return (
     <main>
@@ -66,6 +78,7 @@ const TestResultPage = () => {
             <TestResultTable
               bbSummary={bbTestSummary}
               passCurrentBBTest={setCurrentBBTest}
+              handleSorting={handleSorting}
             />
           </div>
         </div>

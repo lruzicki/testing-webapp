@@ -8,7 +8,7 @@ describe('Unit tests for TestResultTable component:', () => {
 
   it('should match snapshot', () => {
     const { container } = render(
-      <TestResultTable bbSummary={buildingBlockTestSummary} passCurrentBBTest={jest.fn()}/>
+      <TestResultTable bbSummary={buildingBlockTestSummary} passCurrentBBTest={jest.fn()} handleSorting={jest.fn()}/>
     );
 
     expect(container).toMatchSnapshot();
@@ -16,7 +16,7 @@ describe('Unit tests for TestResultTable component:', () => {
 
   it('should have corresponding values when building block summary is defined', () => {
     const { getByTestId } = render(
-      <TestResultTable bbSummary={buildingBlockTestSummary} passCurrentBBTest={jest.fn()}/>
+      <TestResultTable bbSummary={buildingBlockTestSummary} passCurrentBBTest={jest.fn()} handleSorting={jest.fn()}/>
     );
 
     expect(getByTestId(LAST_UPDATE_TEST_ID)).toHaveTextContent('8/1/2022');
@@ -24,7 +24,12 @@ describe('Unit tests for TestResultTable component:', () => {
   });
 
   it('should have corresponding values when building block summary is undefined', () => {
-    const { getByTestId } = render(<TestResultTable bbSummary={undefined} passCurrentBBTest={jest.fn()}/>);
+    const { getByTestId } = render(
+      <TestResultTable
+        bbSummary={undefined}
+        passCurrentBBTest={jest.fn()}
+        handleSorting={jest.fn()}
+      />);
 
     expect(getByTestId(LAST_UPDATE_TEST_ID)).toHaveTextContent('-');
     expect(getByTestId(RESULT_TEST_ID)).toHaveTextContent('- result');
