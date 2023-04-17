@@ -1,3 +1,4 @@
+import { ResultTableSortByType } from '../components/table/types';
 import { BuildingBlockTestSummary, ProductsListType } from './types';
 
 const baseUrl = 'http://34.238.75.167:5000';
@@ -53,8 +54,16 @@ export const getProductListCount = async () => {
     });
 };
 
-export const getBuildingBlockTestResults = async (buildingBlockId: string) => {
-  return await fetch(`${baseUrl}/report/${buildingBlockId}`, {
+export const getBuildingBlockTestResults = async (
+  buildingBlockId: string,
+  sortBy: ResultTableSortByType
+) => {
+  const sortParameters = Object.values(sortBy)
+    .filter((order) => order.order !== null)
+    .map((sortProperty) => `sort.${sortProperty.field}=${sortProperty.order}`)
+    .join('&');
+
+  return await fetch(`${baseUrl}/report/${buildingBlockId}?${sortParameters}`, {
     method: 'get',
     headers: {
       'Content-Type': 'application/json',
