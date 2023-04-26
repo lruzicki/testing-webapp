@@ -4,7 +4,7 @@ const streamline = require('streamifier');
 const readline = require('readline');
 const yaml = require('js-yaml');
 const { validate } = require('jsonschema');
-const TestCaseBuilder = require('./utils/testCaseBuilder');
+const TestCaseBuilder = require('./reportBuilder/testCaseBuilder');
 
 const RequestSchema = {
   type: 'object',

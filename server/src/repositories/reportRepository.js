@@ -1,7 +1,7 @@
 const reportRepository = (repository) => {
   const add = (report, callback) => repository.add(report, callback);
-  function aggregateCompatibilityByProduct(filters, callback) {
-    return repository.aggregateCompatibilityByProduct(filters, callback);
+  function aggregateCompatibilityByProduct(filters, sorting, callback) {
+    return repository.aggregateCompatibilityByProduct(filters, sorting, callback);
   }
 
   function productsCount(callback) {

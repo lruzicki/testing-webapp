@@ -172,6 +172,13 @@ const getLatestReportPipeline = () => [{
 },
 ];
 
+const sortLatestReports = (sorting) => [
+  {
+    $sort: { ...sorting },
+  },
+];
+
 module.exports = {
   getLatestReportPipeline,
+  sortLatestReports,
 };

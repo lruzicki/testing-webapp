@@ -303,7 +303,7 @@ const getReportDetailsPipeline = (id) => [{
 },
 ];
 
-const sortReportPipeline = (sorting) => [
+const sortReportDetails = (sorting) => [
   {
     $project: {
       _id: 1,
@@ -317,5 +317,5 @@ const sortReportPipeline = (sorting) => [
 
 module.exports = {
   getReportDetailsPipeline,
-  sortReportPipeline,
+  sortReportDetails,
 };

@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+const { mapQueryToSorting } = require('../requestUtils');
 
 module.exports = class ReportGetProductRequestHandler {
   constructor(request, response) {
@@ -9,8 +10,15 @@ module.exports = class ReportGetProductRequestHandler {
 
   async getReports(repository) {
     const { limit, offset } = this.req.query;
+    const mapQueryToMongo = {
+      'sort.testApp': '_id.testApp',
+      'sort.testSuite': '_id.testSuite',
+      'sort.sourceBranch': '_id.sourceBranch',
+      'sort.overallCompatibility': 'overallCompatibility',
+    };
+    const sorting = mapQueryToSorting(this.req.query, mapQueryToMongo);
 
-    repository.aggregateCompatibilityByProduct({ limit, offset }, async (err, result) => {
+    repository.aggregateCompatibilityByProduct({ limit, offset }, sorting, async (err, result) => {
       if (err) {
         console.error(err);
         this.res.status(500).send(`Failed to fetch report summary. Details: \n\t${err}`);
