@@ -15,6 +15,7 @@ module.exports = class ReportGetProductRequestHandler {
       'sort.testSuite': '_id.testSuite',
       'sort.sourceBranch': '_id.sourceBranch',
       'sort.overallCompatibility': 'overallCompatibility',
+      'sort.lastUpdate': 'lastUpdate',
     };
     const sorting = mapQueryToSorting(this.req.query, mapQueryToMongo);
 
