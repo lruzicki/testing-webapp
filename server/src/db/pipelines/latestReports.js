@@ -127,6 +127,24 @@ const getLatestReportPipeline = () => [{
     },
   },
 },
+// Order compatibilities by buildingBlock labels
+{
+  $unwind: '$compatibilities',
+},
+{
+  $sort: {
+    'compatibilities.buildingBlock': 1,
+  },
+},
+{
+  $group: {
+    _id: '$_id',
+    compatibilities: {
+      $push: '$compatibilities',
+    },
+  },
+},
+// Calculate overall compatibility
 {
   $set: {
     overallCompatibility: {
@@ -172,6 +190,13 @@ const getLatestReportPipeline = () => [{
 },
 ];
 
+const sortLatestReports = (sorting) => [
+  {
+    $sort: { ...sorting },
+  },
+];
+
 module.exports = {
   getLatestReportPipeline,
+  sortLatestReports,
 };

@@ -1,7 +1,13 @@
 const ReportModel = require('../schemas/report');
 
-const { getReportDetailsPipeline, sortReportPipeline } = require('../pipelines/reportDetails');
-const { getLatestReportPipeline } = require('../pipelines/latestReports');
+const { getReportDetailsPipeline, sortReportDetails } = require('../pipelines/reportDetails');
+const { getLatestReportPipeline, sortLatestReports } = require('../pipelines/latestReports');
+
+function addSortingToPipeline(sorting, aggregation, sortFunction) {
+  const sort = !!sorting && Object.keys(sorting).length !== 0;
+  const sortedAggregation = sort ? aggregation.concat(sortFunction(sorting)) : aggregation;
+  return sortedAggregation;
+}
 
 const repository = () => {
   const add = (report, callback) => {
@@ -9,8 +15,10 @@ const repository = () => {
     return newReport.save(callback);
   };
 
-  const aggregateCompatibilityByProduct = (filters, callback) => {
-    const aggregation = ReportModel.aggregate(getLatestReportPipeline());
+  const aggregateCompatibilityByProduct = (filters, sorting, callback) => {
+    let aggregation = getLatestReportPipeline();
+    aggregation = addSortingToPipeline(sorting, aggregation, sortLatestReports);
+    aggregation = ReportModel.aggregate(aggregation);
 
     if (filters.offset !== undefined) {
       aggregation.append({ $skip: filters.offset });
@@ -25,8 +33,7 @@ const repository = () => {
 
   const aggregateBBDetailsByProductId = (productId, sorting, callback) => {
     const aggregation = getReportDetailsPipeline(productId.id);
-    const sort = !!sorting && Object.keys(sorting).length !== 0;
-    const sortedAggregation = sort ? aggregation.concat(sortReportPipeline(sorting)) : aggregation;
+    const sortedAggregation = addSortingToPipeline(sorting, aggregation, sortReportDetails);
     ReportModel.aggregate(sortedAggregation).exec(callback);
   };
 
