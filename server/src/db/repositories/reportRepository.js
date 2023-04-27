@@ -16,9 +16,9 @@ const repository = () => {
   };
 
   const aggregateCompatibilityByProduct = (filters, sorting, callback) => {
-    let aggregation = getLatestReportPipeline()
+    let aggregation = getLatestReportPipeline();
     aggregation = addSortingToPipeline(sorting, aggregation, sortLatestReports);
-    aggregation = ReportModel.aggregate(aggregation)
+    aggregation = ReportModel.aggregate(aggregation);
 
     if (filters.offset !== undefined) {
       aggregation.append({ $skip: filters.offset });
