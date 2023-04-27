@@ -181,6 +181,7 @@ const getLatestReportPipeline = () => [{
         },
       },
     },
+    lastUpdate: { $max: '$compatibilities.saveTime' },
   },
 },
 {
