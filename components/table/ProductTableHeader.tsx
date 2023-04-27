@@ -5,16 +5,18 @@ import {
   RiArrowUpSFill,
 } from 'react-icons/ri';
 import classNames from 'classnames';
-import { ColumnSortType, SortFieldType, TableSortByType } from './types';
+import { SoftwaresTablColumnSortType, SortSoftwareTableFieldType, SoftwaresTableSortByType } from './types';
 
 type Props = {
-  handleSorting: (tableSortProperties: TableSortByType) => void;
+  handleSorting: (tableSortProperties: SoftwaresTableSortByType) => void;
 };
 
 const ProductTableHeader = ({ handleSorting }: Props) => {
-  const [softwareSort, setSoftwareSort] = useState<ColumnSortType>({ field: 'software',order: null });
-  const [dateSort, setDateSort] = useState<ColumnSortType>({ field: 'date', order: null });
-  const [compatibilitySort, setCompatibilitySort] = useState<ColumnSortType>({ field: 'compatibility', order: null });
+  const [softwareSort, setSoftwareSort] = useState<SoftwaresTablColumnSortType>({ field: 'testApp',order: null });
+  const [dateSort, setDateSort] = useState<SoftwaresTablColumnSortType>({ field: 'lastUpdate', order: null });
+  const [compatibilitySort, setCompatibilitySort] = useState<SoftwaresTablColumnSortType>(
+    { field: 'overallCompatibility', order: null }
+  );
 
   const { formatMessage } = useIntl();
   const format = useCallback(
@@ -23,23 +25,23 @@ const ProductTableHeader = ({ handleSorting }: Props) => {
   );
 
   useEffect(() => {
-    handleSorting({ software: softwareSort, date: dateSort, compatibility: compatibilitySort });
+    handleSorting({ testApp: softwareSort, lastUpdate: dateSort, overallCompatibility: compatibilitySort });
   }, [softwareSort, dateSort, compatibilitySort]);
 
-  const handleSortingChange = (field: SortFieldType) => {
-    if (field === 'software') {
+  const handleSortingChange = (field: SortSoftwareTableFieldType) => {
+    if (field === 'testApp') {
       setSoftwareSort({
-        field: 'software',
+        field: 'testApp',
         order: softwareSort.order === 'asc' ? 'desc' : (softwareSort.order === 'desc' ? null : 'asc'),
       });
-    } else if (field === 'date') {
+    } else if (field === 'lastUpdate') {
       setDateSort({
-        field: 'date',
+        field: 'lastUpdate',
         order: dateSort.order === 'asc' ? 'desc' : (dateSort.order === 'desc' ? null : 'asc'),
       });
-    } else if (field === 'compatibility') {
+    } else if (field === 'overallCompatibility') {
       setCompatibilitySort({
-        field: 'compatibility',
+        field: 'overallCompatibility',
         order: compatibilitySort.order === 'asc' ? 'desc' : (compatibilitySort.order === 'desc' ? null : 'asc'),
       });
     }
@@ -49,7 +51,7 @@ const ProductTableHeader = ({ handleSorting }: Props) => {
     <div className='product-table-header'>
       <div></div>
       <div
-        onClick={() => handleSortingChange('software')}
+        onClick={() => handleSortingChange('testApp')}
         data-testid='header-sort-software'
         className='cursor-pointer'
       >
@@ -67,7 +69,7 @@ const ProductTableHeader = ({ handleSorting }: Props) => {
         <p>{format('building_block.plural.label')}</p>
       </div>
       <div
-        onClick={() => handleSortingChange('date')}
+        onClick={() => handleSortingChange('lastUpdate')}
         data-testid='header-sort-update'
         className='cursor-pointer'
       >
@@ -82,7 +84,7 @@ const ProductTableHeader = ({ handleSorting }: Props) => {
         </div>
       </div>
       <div
-        onClick={() => handleSortingChange('compatibility')}
+        onClick={() => handleSortingChange('overallCompatibility')}
         data-testid='header-sort-compatibility'
         className='cursor-pointer'
       >

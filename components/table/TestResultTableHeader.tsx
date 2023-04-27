@@ -2,16 +2,16 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import { RiArrowDownSFill, RiArrowUpSFill } from 'react-icons/ri';
 import classNames from 'classnames';
-import { ColumnSortType, ResultTableSortByType, SortResultTableFieldType } from './types';
+import { ResultTableColumnSortType, ResultTableSortByType, SortResultTableFieldType } from './types';
 
 type Props = {
   handleSorting: (tableSortProperties: ResultTableSortByType) => void;
 };
 
 const TestResultTableHeader = ({ handleSorting }: Props) => {
-  const [statusSort, setStatusSort] = useState<ColumnSortType>({ field: 'status',order: null });
-  const [uriSort, setUriSort] = useState<ColumnSortType>({ field: 'uri', order: null });
-  const [nameSort, setNameSort] = useState<ColumnSortType>({ field: 'name', order: null });
+  const [statusSort, setStatusSort] = useState<ResultTableColumnSortType>({ field: 'status',order: null });
+  const [uriSort, setUriSort] = useState<ResultTableColumnSortType>({ field: 'uri', order: null });
+  const [nameSort, setNameSort] = useState<ResultTableColumnSortType>({ field: 'name', order: null });
 
   const { formatMessage } = useIntl();
   const format = useCallback(

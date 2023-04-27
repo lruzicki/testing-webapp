@@ -5,13 +5,13 @@ import * as Api from '../../../service/serviceAPI';
 import { mockedProduct } from './mockedData/ProductTable';
 
 jest.mock('../../../service/serviceAPI', () => ({
-  getData: jest.fn(() => Promise.resolve({ status: true, data: [] })),
-  getProductListCount: jest.fn(() =>
+  getSoftwaresData: jest.fn(() => Promise.resolve({ status: true, data: [] })),
+  getSoftwareListCount: jest.fn(() =>
     Promise.resolve({ status: true, data: 0 })
   ),
 }));
 
-const spyOnGetProductsList = jest.spyOn(Api, 'getData');
+const spyOnGetProductsList = jest.spyOn(Api, 'getSoftwaresData');
 
 describe('Unit tests for ProductTable component:', () => {
   beforeEach(() => {
