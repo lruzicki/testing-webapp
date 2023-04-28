@@ -20,8 +20,6 @@ const ProductTable = () => {
     overallCompatibility: { field: 'overallCompatibility', order: null }
   });
 
-  console.log(sortBy);
-
   const { formatMessage } = useIntl();
   const format = useCallback(
     (id: string) => formatMessage({ id }),
@@ -59,7 +57,7 @@ const ProductTable = () => {
     } else {
       setProductsList([...productsList]);
     }
-  }, [productsList]);
+  }, [productsList, sortBy]);
 
   const handleSorting = (tableSortProperties: SoftwaresTableSortByType) => {
     setSortBy(tableSortProperties);

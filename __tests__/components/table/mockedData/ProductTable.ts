@@ -24,6 +24,7 @@ export const mockedProduct: ProductsType = {
     },
   ],
   overallCompatibility: 0.2355,
+  lastUpdate: 1676213907348,
 };
 
 export const buildingBlock: BuildingBlockType = {

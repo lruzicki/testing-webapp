@@ -24,7 +24,7 @@ export const getSoftwaresData = async (
   const sortedParameters = handleFieldsToSort(sortBy);
 
   return await fetch(
-    `${baseUrl}/report/?${sortedParameters}?limit=20&offset=${offset}`,
+    `${baseUrl}/report/?limit=20&offset=${offset}&${sortedParameters}`,
     {
       method: 'get',
       headers: {

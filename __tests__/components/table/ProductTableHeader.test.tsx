@@ -22,25 +22,25 @@ describe('Unit tests for ProductTableHeader component:', () => {
     fireEvent.click(getByTestId(SORT_SOFTWARE_TEST_ID));
     expect(mockedHandleSorting).toHaveBeenCalledTimes(2);
     expect(mockedHandleSorting).toHaveBeenCalledWith({
-      'compatibility': { 'field': 'compatibility', 'order': null },
-      'date': { 'field': 'date', 'order': null },
-      'software': { 'field': 'software', 'order': 'asc' }
+      'overallCompatibility': { 'field': 'overallCompatibility', 'order': null },
+      'lastUpdate': { 'field': 'lastUpdate', 'order': null },
+      'testApp': { 'field': 'testApp', 'order': 'asc' }
     });
 
     fireEvent.click(getByTestId(SORT_SOFTWARE_TEST_ID));
     expect(mockedHandleSorting).toHaveBeenCalledTimes(3);
     expect(mockedHandleSorting).toHaveBeenCalledWith({
-      'compatibility': { 'field': 'compatibility', 'order': null },
-      'date': { 'field': 'date', 'order': null },
-      'software': { 'field': 'software', 'order': 'desc' }
+      'overallCompatibility': { 'field': 'overallCompatibility', 'order': null },
+      'lastUpdate': { 'field': 'lastUpdate', 'order': null },
+      'testApp': { 'field': 'testApp', 'order': 'desc' }
     });
 
     fireEvent.click(getByTestId(SORT_SOFTWARE_TEST_ID));
     expect(mockedHandleSorting).toHaveBeenCalledTimes(4);
     expect(mockedHandleSorting).toHaveBeenCalledWith({
-      'compatibility': { 'field': 'compatibility', 'order': null },
-      'date': { 'field': 'date', 'order': null },
-      'software': { 'field': 'software', 'order': null }
+      'overallCompatibility': { 'field': 'overallCompatibility', 'order': null },
+      'lastUpdate': { 'field': 'lastUpdate', 'order': null },
+      'testApp': { 'field': 'testApp', 'order': null }
     });
   });
 
@@ -54,29 +54,29 @@ describe('Unit tests for ProductTableHeader component:', () => {
     expect(mockedHandleSorting).toHaveBeenCalledTimes(2);
     expect(mockedHandleSorting).toHaveBeenCalledWith(
       {
-        'compatibility': { 'field': 'compatibility', 'order': null },
-        'date': { 'field': 'date', 'order': 'asc' },
-        'software': { 'field': 'software', 'order': null }
+        'overallCompatibility': { 'field': 'overallCompatibility', 'order': null },
+        'lastUpdate': { 'field': 'lastUpdate', 'order': 'asc' },
+        'testApp': { 'field': 'testApp', 'order': null }
       });
 
     fireEvent.click(getByTestId(SORT_LAST_UPDATE_TEST_ID));
     expect(mockedHandleSorting).toHaveBeenCalledTimes(3);
     expect(mockedHandleSorting).toHaveBeenCalledWith({
-      'compatibility': { 'field': 'compatibility', 'order': null },
-      'date': { 'field': 'date', 'order': 'desc' },
-      'software': { 'field': 'software', 'order': null }
+      'overallCompatibility': { 'field': 'overallCompatibility', 'order': null },
+      'lastUpdate': { 'field': 'lastUpdate', 'order': 'desc' },
+      'testApp': { 'field': 'testApp', 'order': null }
     });
 
     fireEvent.click(getByTestId(SORT_SOFTWARE_TEST_ID));
     expect(mockedHandleSorting).toHaveBeenCalledTimes(4);
     expect(mockedHandleSorting).toHaveBeenCalledWith({
-      'compatibility': { 'field': 'compatibility', 'order': null },
-      'date': { 'field': 'date', 'order': null },
-      'software': { 'field': 'software', 'order': null }
+      'overallCompatibility': { 'field': 'overallCompatibility', 'order': null },
+      'lastUpdate': { 'field': 'lastUpdate', 'order': null },
+      'testApp': { 'field': 'testApp', 'order': null }
     });
   });
 
-  it('should call the sorting function after clicks on the Compatibility header or sort icon', () => {
+  it('should call the sorting function after clicks on the overallCompatibility header or sort icon', () => {
     const mockedHandleSorting = jest.fn();
     const { getByTestId } = render(<ProductTableHeader handleSorting={mockedHandleSorting} />);
 
@@ -85,25 +85,25 @@ describe('Unit tests for ProductTableHeader component:', () => {
     fireEvent.click(getByTestId(SORT_COMPATIBILITY_TEST_ID));
     expect(mockedHandleSorting).toHaveBeenCalledTimes(2);
     expect(mockedHandleSorting).toHaveBeenCalledWith({
-      'compatibility': { 'field': 'compatibility', 'order': 'asc' },
-      'date': { 'field': 'date', 'order': null },
-      'software': { 'field': 'software', 'order': null }
+      'overallCompatibility': { 'field': 'overallCompatibility', 'order': 'asc' },
+      'lastUpdate': { 'field': 'lastUpdate', 'order': null },
+      'testApp': { 'field': 'testApp', 'order': null }
     });
 
     fireEvent.click(getByTestId(SORT_COMPATIBILITY_TEST_ID));
     expect(mockedHandleSorting).toHaveBeenCalledTimes(3);
     expect(mockedHandleSorting).toHaveBeenCalledWith({
-      'compatibility': { 'field': 'compatibility', 'order': 'desc' },
-      'date': { 'field': 'date', 'order': null },
-      'software': { 'field': 'software', 'order': null }
+      'overallCompatibility': { 'field': 'overallCompatibility', 'order': 'desc' },
+      'lastUpdate': { 'field': 'lastUpdate', 'order': null },
+      'testApp': { 'field': 'testApp', 'order': null }
     });
 
     fireEvent.click(getByTestId(SORT_SOFTWARE_TEST_ID));
     expect(mockedHandleSorting).toHaveBeenCalledTimes(4);
     expect(mockedHandleSorting).toHaveBeenCalledWith({
-      'compatibility': { 'field': 'compatibility', 'order': null },
-      'date': { 'field': 'date', 'order': null },
-      'software': { 'field': 'software', 'order': null }
+      'overallCompatibility': { 'field': 'overallCompatibility', 'order': null },
+      'lastUpdate': { 'field': 'lastUpdate', 'order': null },
+      'testApp': { 'field': 'testApp', 'order': null }
     });
   });
 });

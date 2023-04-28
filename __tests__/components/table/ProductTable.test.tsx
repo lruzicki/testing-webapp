@@ -27,12 +27,12 @@ describe('Unit tests for ProductTable component:', () => {
 
     await act(() => Promise.resolve());
 
-    expect(spyOnGetProductsList).toHaveBeenCalledTimes(1);
+    expect(spyOnGetProductsList).toHaveBeenCalledTimes(2);
     expect(container).toMatchSnapshot();
   });
 
   it('should render the ProductTable component with data', async () => {
-    spyOnGetProductsList.mockImplementationOnce(() =>
+    spyOnGetProductsList.mockImplementation(() =>
       Promise.resolve({ status: true, data: [mockedProduct] })
     );
 
@@ -40,7 +40,7 @@ describe('Unit tests for ProductTable component:', () => {
 
     await act(() => Promise.resolve());
 
-    expect(spyOnGetProductsList).toHaveBeenCalledTimes(1);
+    expect(spyOnGetProductsList).toHaveBeenCalledTimes(2);
     expect(getByTestId(`product-table-row-${mockedProduct._id.testApp}`)).toBeDefined();
   });
 });
