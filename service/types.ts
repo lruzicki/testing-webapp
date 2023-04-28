@@ -16,6 +16,7 @@ export type ProductsType = {
   };
   compatibilities: BuildingBlockType[];
   overallCompatibility: number;
+  lastUpdate: number;
 };
 
 export type BuildingBlockEndpointTest = {
