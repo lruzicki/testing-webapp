@@ -151,7 +151,9 @@ exports[`Unit tests for ProductTableRow component: when product compatibilities 
     >
       <p
         class="product-last-update"
-      />
+      >
+        2/12/2023
+      </p>
     </div>
     <div
       data-testid="product-overall-compatibility"

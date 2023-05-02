@@ -90,45 +90,10 @@ describe('Unit tests for ProductTableRow component:', () => {
     expect(getByTestId(REST_COUNT_TEST_ID)).toHaveTextContent('+3');
   });
 
-  it('when product compatibilities timestamp is undefined', () => {
+  it('should last update has proper value', () => {
     const { getByTestId } = render(
       <ProductTableRow
-        product={{
-          ...mockedProduct,
-          compatibilities: [],
-        }}
-      />
-    );
-
-    expect(getByTestId(LAST_UPDATE_TEST_ID)).toHaveTextContent('');
-  });
-
-  it('when product compatibilities timestamp is defined', () => {
-    const { getByTestId } = render(
-      <ProductTableRow
-        product={{
-          ...mockedProduct,
-          compatibilities: [
-            ...mockedProduct.compatibilities,
-            {
-              id: '07112c0a-8263-4717-92ce-c52bca785624',
-              buildingBlock: 'bb-payments',
-              timestamp: 1,
-              saveTime: 1659380963000,
-              testsPassed: 2,
-              testsFailed: 2,
-              compatibility: 0.3455,
-            },
-            {
-              id: '07112c0a-8263-4717-92ce-c52bca785624',
-              buildingBlock: 'bb-payments',
-              timestamp: 1676985138783,
-              saveTime: 1659380963000,
-              testsPassed: 2,
-              testsFailed: 2,
-              compatibility: 0.3455,
-            }],
-        }}
+        product={{ ...mockedProduct }}
       />
     );
 

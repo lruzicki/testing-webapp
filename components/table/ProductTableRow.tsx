@@ -17,7 +17,6 @@ const ProductTableRow = ({ product }: Props) => {
   const bbContentContainer = React.useRef<HTMLDivElement | null>(null);
   const [numberOfHidenBBImages, setNumberOfHidenBBImages] = useState<number>(0);
   const [imageSectionWidth, setImageSectionWidth] = useState<string | undefined>();
-  const [productLastUpdate, setProductLastUpdate] = useState<string>('');
   const [isSubTableOpen, setSubTableOpen] = useState<boolean>(false);
 
   const router = useRouter();
@@ -50,15 +49,6 @@ const ProductTableRow = ({ product }: Props) => {
     () => window.addEventListener('resize', debounce(getContainerSize, 20)),
     [getContainerSize]
   );
-
-  useEffect(() => {
-    const sortedTimeStamp = product.compatibilities.map((bb) => bb.saveTime).sort().reverse()[0];
-    if (sortedTimeStamp) {
-      setProductLastUpdate(new Date(sortedTimeStamp).toLocaleDateString(locale));
-    } else {
-      setProductLastUpdate('');
-    }
-  }, [product.compatibilities, locale]);
 
   const handleShowSubTable = () => {
     setSubTableOpen(!isSubTableOpen);
@@ -124,7 +114,9 @@ const ProductTableRow = ({ product }: Props) => {
           </div>
         </div>
         <div data-testid='product-last-update'>
-          <p className='product-last-update'>{productLastUpdate}</p>
+          <p className='product-last-update'>
+            {product.lastUpdate ? new Date(product.lastUpdate).toLocaleDateString(locale) : ''}
+          </p>
         </div>
         <div data-testid='product-overall-compatibility'>
           <p>{`${Math.floor(product.overallCompatibility*100)}%`}</p>
