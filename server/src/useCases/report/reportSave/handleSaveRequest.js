@@ -125,8 +125,9 @@ module.exports = class ReportUploadRequestHandler {
         streamline.createReadStream(this.req.files.report[0].buffer),
       );
       if (this.isJSONFormat(firstLine)) {
+        let rawdata = this.req.files.report[0].buffer.toString();
         const memStream = new MemoryStream();
-        await jsonToMessages(firstLine, memStream);
+        await jsonToMessages(rawdata, memStream);
         memStream.end(); // End the memorystream writing
         const rl = readline.createInterface({
           input: streamline.createReadStream(memStream.read()),

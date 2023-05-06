@@ -1,7 +1,9 @@
 /* eslint-disable no-underscore-dangle */
 /* eslint-disable no-param-reassign */
 /* eslint-disable no-console */
-const { mapQueryToSorting } = require('../requestUtils');
+const {
+  mapQueryToSorting,
+} = require('../requestUtils');
 
 module.exports = class ReportGetProductDetailsRequestHandler {
   constructor(request, response) {
@@ -11,8 +13,13 @@ module.exports = class ReportGetProductDetailsRequestHandler {
   }
 
   async getProductDetails(repository) {
-    const { limit, offset } = this.req.query;
-    const { id } = this.req.params;
+    const {
+      limit,
+      offset,
+    } = this.req.query;
+    const {
+      id,
+    } = this.req.params;
 
     const mapQueryToMongo = {
       'sort.name': 'endpoint',
@@ -22,7 +29,9 @@ module.exports = class ReportGetProductDetailsRequestHandler {
     };
     const sorting = mapQueryToSorting(this.req.query, mapQueryToMongo);
 
-    repository.aggregateBBDetailsByProductId({ id }, sorting, async (err, result) => {
+    repository.aggregateBBDetailsByProductId({
+      id,
+    }, sorting, async (err, result) => {
       if (err) {
         console.error(err);
         this.res.status(500).send(`Failed to fetch detailed report summary. Details: \n\t${err}`);
@@ -31,19 +40,23 @@ module.exports = class ReportGetProductDetailsRequestHandler {
 
       const aggregatedResult = result[0];
 
-      const paginatedAggregatedData = offset !== undefined
-        ? aggregatedResult.data.slice(offset, limit + offset)
-        : aggregatedResult.data.slice(0, limit);
+      if (!aggregatedResult) {
+        this.res.status(404).send(`Report with ID ${id} not found or has incorrect data structure`);
+      } else {
+        const paginatedAggregatedData = offset !== undefined
+          ? aggregatedResult.data.slice(offset, limit + offset)
+          : aggregatedResult.data.slice(0, limit);
 
-      // build response object
-      const finalResult = {};
-      Object.assign(finalResult, {
-        compatibilities: aggregatedResult.compatibilities,
-        data: paginatedAggregatedData,
-        count: aggregatedResult.data.length,
-      });
+        // build response object
+        const finalResult = {};
+        Object.assign(finalResult, {
+          compatibilities: aggregatedResult.compatibilities,
+          data: paginatedAggregatedData,
+          count: aggregatedResult.data.length,
+        });
 
-      this.res.json(finalResult);
+        this.res.json(finalResult);
+      }
     });
   }
 };
