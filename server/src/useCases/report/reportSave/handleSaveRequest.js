@@ -1,9 +1,11 @@
+/* eslint-disable class-methods-use-this */
 /* eslint-disable no-console */
 const streamline = require('streamifier');
-
+const { jsonToMessages } = require('@cucumber/json-to-messages');
 const readline = require('readline');
 const yaml = require('js-yaml');
 const { validate } = require('jsonschema');
+const MemoryStream = require('memorystream');
 const TestCaseBuilder = require('./reportBuilder/testCaseBuilder');
 
 const RequestSchema = {
@@ -68,13 +70,34 @@ module.exports = class ReportUploadRequestHandler {
     return true;
   }
 
-  async loadData() {
-    const rl = readline.createInterface({
-      input: streamline.createReadStream(this.req.files.report[0].buffer),
-      crlfDelay: Infinity,
-    });
+  async readFirstLine(stream) {
+    return new Promise((resolve, reject) => {
+      const rl = readline.createInterface({
+        input: stream,
+        crlfDelay: Infinity,
+      });
 
+      rl.once('line', (line) => {
+        rl.close();
+        resolve(line);
+      });
+
+      rl.once('error', (err) => {
+        rl.close();
+        reject(err);
+      });
+    });
+  }
+
+  isJSONFormat(line) {
+    return line[0] === '[';
+  }
+
+  async loadData() {
     const items = [];
+    const errors = [];
+
+    const rl = await this.loadReportFromJsonFormatBuffer() || await this.loadReportFromBuffer();
     // eslint-disable-next-line no-restricted-syntax
     for await (const line of rl) {
       try {
@@ -84,11 +107,44 @@ module.exports = class ReportUploadRequestHandler {
         const fixedLine = line.substring(indexOfFirst);
         items.push(JSON.parse(fixedLine));
       } catch (e) {
-        console.error(e);
+        console.log(e.stack);
+        errors.push(e);
       }
     }
 
+    if (errors.length > 0) {
+      throw new Error(`Failed to parse report, errors:\n${errors}`);
+    }
+
     return items;
+  }
+
+  async loadReportFromJsonFormatBuffer() {
+    try {
+      const firstLine = await this.readFirstLine(
+        streamline.createReadStream(this.req.files.report[0].buffer),
+      );
+      if (this.isJSONFormat(firstLine)) {
+        const memStream = new MemoryStream();
+        await jsonToMessages(firstLine, memStream);
+        memStream.end(); // End the memorystream writing
+        const rl = readline.createInterface({
+          input: streamline.createReadStream(memStream.read()),
+          crlfDelay: Infinity,
+        });
+        return rl;
+      }
+    } catch (e) {
+      console.log(e.stack);
+    }
+    return null;
+  }
+
+  async loadReportFromBuffer() {
+    return readline.createInterface({
+      input: streamline.createReadStream(this.req.files.report[0].buffer),
+      crlfDelay: Infinity,
+    });
   }
 
   async loadProductInfo() {
@@ -127,7 +183,8 @@ module.exports = class ReportUploadRequestHandler {
           res.status(400).send(`Error inserting report: ${err}`);
         }
       } else {
-        console.log(`Added a new report with id ${result.insertedId}`);
+        // eslint-disable-next-line no-underscore-dangle
+        console.log(`Added a new report with id ${result._id}`);
         res.status(201).send({ success: true });
       }
     });

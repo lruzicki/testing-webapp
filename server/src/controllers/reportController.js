@@ -2,6 +2,7 @@ const ReportUploadRequestHandler = require('../useCases/report/reportSave/handle
 const ReportProductGetRequestHandler = require('../useCases/report/productCompatibility/handleGetProductRequest');
 const ProductCountRequestHandler = require('../useCases/report/productCount/handleGetProductCountRequest');
 const ProductDetailsRequestHandler = require('../useCases/report/productTestCases/handleGetProductDetailsRequest');
+const { default500Error } = require('./controllerUtils');
 
 const reportController = (reportDbRepository, reportDbRepositoryImpl) => {
   const repository = reportDbRepository(reportDbRepositoryImpl);
@@ -14,25 +15,25 @@ const reportController = (reportDbRepository, reportDbRepositoryImpl) => {
 
     new ReportUploadRequestHandler(req, res)
       .saveData(repository)
-      .catch((err) => res.status(500).send(`Unexpected exception occurred: ${err}`));
+      .catch((err) => default500Error(res, err));
   };
 
   const getProductCompatibility = (req, res) => {
     new ReportProductGetRequestHandler(req, res)
       .getReports(repository)
-      .catch((err) => res.status(500).send(`Unexpected exception occurred: ${err}`));
+      .catch((err) => default500Error(res, err));
   };
 
   const getProductsCount = (req, res) => {
     new ProductCountRequestHandler(req, res)
       .getProductsCount(repository)
-      .catch((err) => res.status(500).send(`Unexpected exception occurred: ${err}`));
+      .catch((err) => default500Error(res, err));
   };
 
   const getProductDetails = (req, res) => {
     new ProductDetailsRequestHandler(req, res)
       .getProductDetails(repository)
-      .catch((err) => res.status(500).send(`Unexpected exception occurred: ${err}`));
+      .catch((err) => default500Error(res, err));
   };
 
   return {
