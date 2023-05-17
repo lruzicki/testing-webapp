@@ -1,4 +1,7 @@
-import { ResultTableSortByType } from '../components/table/types';
+import {
+  ResultTableSortByType,
+  SoftwaresTableSortByType,
+} from '../components/table/types';
 import { BuildingBlockTestSummary, ProductsListType } from './types';
 
 const baseUrl = 'http://34.238.75.167:5000';
@@ -6,13 +9,29 @@ const baseUrl = 'http://34.238.75.167:5000';
 type Success<T> = { status: true; data: T };
 type Failure = { status: false; error: Error };
 
-export const getData = async (offset: number) => {
-  return await fetch(`${baseUrl}/report/?limit=20&offset=${offset}`, {
-    method: 'get',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+const handleFieldsToSort = (
+  sortBy: ResultTableSortByType | SoftwaresTableSortByType
+) =>
+  Object.values(sortBy)
+    .filter((order) => order.order !== null)
+    .map((sortProperty) => `sort.${sortProperty.field}=${sortProperty.order}`)
+    .join('&');
+
+export const getSoftwaresData = async (
+  offset: number,
+  sortBy: SoftwaresTableSortByType
+) => {
+  const sortedParameters = handleFieldsToSort(sortBy);
+
+  return await fetch(
+    `${baseUrl}/report/?limit=20&offset=${offset}&${sortedParameters}`,
+    {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
     .then((response) => {
       if (!response.ok) {
         throw new Error(response.statusText);
@@ -27,7 +46,7 @@ export const getData = async (offset: number) => {
     });
 };
 
-export const getProductListCount = async () => {
+export const getSoftwareListCount = async () => {
   return await fetch(`${baseUrl}/report/count`, {
     method: 'get',
     headers: {
@@ -58,17 +77,17 @@ export const getBuildingBlockTestResults = async (
   buildingBlockId: string,
   sortBy: ResultTableSortByType
 ) => {
-  const sortParameters = Object.values(sortBy)
-    .filter((order) => order.order !== null)
-    .map((sortProperty) => `sort.${sortProperty.field}=${sortProperty.order}`)
-    .join('&');
+  const sortedParameters = handleFieldsToSort(sortBy);
 
-  return await fetch(`${baseUrl}/report/${buildingBlockId}?${sortParameters}`, {
-    method: 'get',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-  })
+  return await fetch(
+    `${baseUrl}/report/${buildingBlockId}?${sortedParameters}`,
+    {
+      method: 'get',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    }
+  )
     .then((response) => {
       if (!response.ok) {
         throw new Error(response.statusText);
