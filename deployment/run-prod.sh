@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 cd "$(dirname "$0")"
 
 # Do not use the override compose file, which is intended for development
