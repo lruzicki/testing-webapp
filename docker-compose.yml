@@ -29,8 +29,8 @@ services:
         context: ./server
         dockerfile: ./Dockerfile
       command: dev
-      ports:
-        - 5000:5000
+      expose:
+        - "5000"
       environment:
         MONGO_USERNAME: ${MONGO_USERNAME:-root}
         MONGO_PASSOWORD: ${MONGO_PASSOWORD:-P@ssw00rd!}
@@ -39,6 +39,8 @@ services:
         MONGO_DATABASE: ${MONGO_DATABASE:-test_execution_result}
         API_KEY_BB: ${API_KEY_BB:-asudbq827ebsadon}
         PORT: ${BACKEND_PORT:-5000}
+        VIRTUAL_HOST: api.testing.govstack.global
+        LETSENCRYPT_HOST: api.testing.govstack.global
       depends_on:
         - mongo
       networks:
