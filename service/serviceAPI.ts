@@ -4,7 +4,7 @@ import {
 } from '../components/table/types';
 import { BuildingBlockTestSummary, ProductsListType } from './types';
 
-const baseUrl = 'http://34.238.75.167:5000';
+const baseUrl = 'https://34.238.75.167:5000';
 
 type Success<T> = { status: true; data: T };
 type Failure = { status: false; error: Error };
