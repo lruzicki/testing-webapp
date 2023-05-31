@@ -45,6 +45,7 @@ services:
         - mongo
       networks:
         - backend
+        - default
 
 networks:
   backend:
