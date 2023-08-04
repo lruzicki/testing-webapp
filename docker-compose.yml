@@ -7,6 +7,12 @@ services:
       environment:
         VIRTUAL_HOST: testing.govstack.global
         LETSENCRYPT_HOST: testing.govstack.global
+      logging: 
+        driver: "json-file"
+        options:
+          max-size: 50mb
+          max-files: 3
+
 
     mongo:
       image: mongo
@@ -21,6 +27,12 @@ services:
         MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSOWORD:-P@ssw00rd!}
       networks:
         - backend
+      logging:
+        driver: "json-file"
+        options:
+          max-size: 50mb
+          max-files: 3
+
 
     backend:
       image: testing-webapp-server
@@ -46,6 +58,12 @@ services:
       networks:
         - backend
         - default
+      logging:
+        driver: "json-file"
+        options:
+          max-size: 50mb
+          max-files: 3
+
 
 networks:
   backend:
