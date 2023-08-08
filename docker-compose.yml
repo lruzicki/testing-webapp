@@ -10,8 +10,7 @@ services:
       logging: 
         driver: "json-file"
         options:
-          max-size: 50mb
-          max-files: 3
+          max-size: "50mb"
 
 
     mongo:
@@ -30,8 +29,7 @@ services:
       logging:
         driver: "json-file"
         options:
-          max-size: 50mb
-          max-files: 3
+          max-size: "50mb"
 
 
     backend:
@@ -61,8 +59,7 @@ services:
       logging:
         driver: "json-file"
         options:
-          max-size: 50mb
-          max-files: 3
+          max-size: "50mb"
 
 
 networks:
