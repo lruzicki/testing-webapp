@@ -26,7 +26,7 @@ jobs:
       - checkout
       - add_ssh_keys:
           fingerprints:
-            - "MMFgO7cByzCLim20LX74yoKk9xEY/tQSUfsB1psmPt8"
+            - "SHA256:MMFgO7cByzCLim20LX74yoKk9xEY/tQSUfsB1psmPt8"
       - run:
           command: echo 'testing.govstack.global ecdsa-sha2-nistp256 AAAAC3NzaC1lZDI1NTE5AAAAIP1G9AC3OysP3RMhfHMmLp++aEEcE+K3k3EGm16OexnG' >> ~/.ssh/known_hosts
           name: Add known host for SSH
