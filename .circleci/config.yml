@@ -28,10 +28,7 @@ jobs:
           fingerprints:
             - "d1:b2:46:4e:a2:e8:3b:10:0b:49:78:06:fa:92:25:52"
       - run:
-          command: ssh-keygen -f "/home/circleci/.ssh/known_hosts" -R "testing.govstack.global"
-          name: Clear old ssh key
-      - run:
-          command: echo 'testing.govstack.global ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIP1G9AC3OysP3RMhfHMmLp++aEEcE+K3k3EGm16OexnG' >> ~/.ssh/known_hosts
+          command: echo 'testing.govstack.global ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG6hbFgK+t08bwLN63F/YgpDP8K24F74zg2QapCKQAxv' >> ~/.ssh/known_hosts
           name: Add known host for SSH
       - run:
           command: bash deployment/deploy.sh
