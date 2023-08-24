@@ -1,5 +1,11 @@
-import React, { useCallback } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
+
+const Spinner = () => (
+  <div className="spinner">
+    <div className="loader"></div>
+  </div>
+);
 
 const InfiniteScrollCustomLoader = () => {
   const { formatMessage } = useIntl();
@@ -7,11 +13,16 @@ const InfiniteScrollCustomLoader = () => {
     (id: string) => formatMessage({ id }),
     [formatMessage]
   );
+  const [isMounted, setIsMounted] = useState(false);
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+  if (!isMounted) return null;
 
   return (
-    <p className='data-loader-message' data-testid='scroll-loader'>
-      {format('app.scroll-loader.message')}
-    </p>
+    <div className='data-loader-message' data-testid='scroll-loader'>
+      <Spinner/> {format('app.scroll-loader.message')}
+    </div>
   );
 };
 

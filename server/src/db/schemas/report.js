@@ -105,6 +105,15 @@ const TestReportSchema = new mongoose.Schema({
   sourceBranch: String,
 });
 
+TestReportSchema.index({
+  'finish.timestamp.seconds': -1,
+  buildingBlock: 1,
+  testSuite: 1,
+  testApp: 1,
+  sourceBranch: 1,
+  saveTime: -1,
+});
+
 const ReportModel = mongoose.model('Report', TestReportSchema);
 
 module.exports = ReportModel;
