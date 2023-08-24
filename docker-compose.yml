@@ -2,11 +2,12 @@ version: '3'
 services:
     web:
       build: .
-      expose:
-        - "3003"
+      ports:
+        - 3003:3003
       environment:
         VIRTUAL_HOST: testing.govstack.global
         LETSENCRYPT_HOST: testing.govstack.global
+        API_URL: ${API_URL:-http://localhost:5000}
       logging: 
         driver: "json-file"
         options:
