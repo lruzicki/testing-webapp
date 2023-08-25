@@ -1,194 +1,116 @@
-const getLatestReportPipeline = () => [{
-  $match: {
-    'finish.timestamp.seconds': {
-      $exists: 1,
-    },
-    buildingBlock: {
-      $exists: 1,
-    },
-    testSuite: {
-      $exists: 1,
-    },
-    testApp: {
-      $exists: 1,
-    },
-    sourceBranch: {
-      $exists: 1,
-    },
-    saveTime: {
-      $exists: 1,
+const getLatestReportPipeline = () => [
+  {
+    $match: {
+      'finish.timestamp.seconds': { $exists: 1 },
+      buildingBlock: { $exists: 1 },
+      testSuite: { $exists: 1 },
+      testApp: { $exists: 1 },
+      sourceBranch: { $exists: 1 },
+      saveTime: { $exists: 1 },
     },
   },
-},
-{
-  $group: {
-    _id: {
-      buildingBlock: '$buildingBlock',
-      testSuite: '$testSuite',
-      testApp: '$testApp',
-      sourceBranch: '$sourceBranch',
+  {
+    $sort: {
+      'finish.timestamp.seconds': 1,
     },
-    latest: {
-      $last: {
-        date: '$finish.timestamp.seconds',
-        saveTime: '$saveTime',
-        id: '$_id',
-        testCases: '$testCases',
+  },
+  {
+    $group: {
+      _id: {
+        buildingBlock: '$buildingBlock',
+        testSuite: '$testSuite',
+        testApp: '$testApp',
+        sourceBranch: '$sourceBranch',
+      },
+      latest: {
+        $last: {
+          date: '$finish.timestamp.seconds',
+          saveTime: '$saveTime',
+          id: '$_id',
+          testCases: '$testCases',
+        },
       },
     },
   },
-},
-{
-  $group: {
-    _id: {
-      testApp: '$_id.testApp',
-      testSuite: '$_id.testSuite',
-      sourceBranch: '$_id.sourceBranch',
-    },
-    compatibilities: {
-      $push: {
-        id: '$latest.id',
-        buildingBlock: '$_id.buildingBlock',
-        timestamp: '$latest.date',
-        saveTime: '$latest.saveTime',
-        testsPassed: {
-          $size: {
-            $filter: {
-              input: '$latest.testCases',
-              as: 'case',
-              cond: {
-                $eq: ['$$case.passed', true],
-              },
-            },
+  {
+    $addFields: {
+      passedTests: {
+        $size: {
+          $filter: {
+            input: '$latest.testCases',
+            as: 'case',
+            cond: { $eq: ['$$case.passed', true] },
           },
         },
-        testsFailed: {
-          $size: {
-            $filter: {
-              input: '$latest.testCases',
-              as: 'case',
-              cond: {
-                $eq: ['$$case.passed', false],
-              },
-            },
-          },
-        },
-        compatibility: {
-          $let: {
-            vars: {
-              sumPassed: {
-                $size: {
-                  $filter: {
-                    input: '$latest.testCases',
-                    as: 'case',
-                    cond: {
-                      $eq: ['$$case.passed', true],
-                    },
-                  },
-                },
-              },
-              sumFailed: {
-                $size: {
-                  $filter: {
-                    input: '$latest.testCases',
-                    as: 'case',
-                    cond: {
-                      $eq: ['$$case.passed', false],
-                    },
-                  },
-                },
-              },
-            },
-            in: {
-              $round: [{
-                $divide: [
-                  '$$sumPassed',
-                  {
-                    $cond: {
-                      if: {
-                        $gt: [{
-                          $add: ['$$sumPassed', '$$sumFailed'],
-                        }, 0],
-                      },
-                      then: {
-                        $add: ['$$sumPassed', '$$sumFailed'],
-                      },
-                      else: 1,
-                    },
-                  },
-                ],
-              },
-              4,
-              ],
-            },
+      },
+      failedTests: {
+        $size: {
+          $filter: {
+            input: '$latest.testCases',
+            as: 'case',
+            cond: { $eq: ['$$case.passed', false] },
           },
         },
       },
     },
   },
-},
-// Order compatibilities by buildingBlock labels
-{
-  $unwind: '$compatibilities',
-},
-{
-  $sort: {
-    'compatibilities.buildingBlock': 1,
-  },
-},
-{
-  $group: {
-    _id: '$_id',
-    compatibilities: {
-      $push: '$compatibilities',
-    },
-  },
-},
-// Calculate overall compatibility
-{
-  $set: {
-    overallCompatibility: {
-      $let: {
-        vars: {
-          sumPassed: {
-            $sum: '$compatibilities.testsPassed',
-          },
-          sumFailed: {
-            $sum: '$compatibilities.testsFailed',
-          },
-        },
-        in: {
-          $round: [{
-            $divide: [
-              '$$sumPassed',
+  {
+    $addFields: {
+      compatibility: {
+        $cond: {
+          if: { $gt: [{ $add: ['$passedTests', '$failedTests'] }, 0] },
+          then: {
+            $round: [
               {
-                $cond: {
-                  if: {
-                    $gt: [{
-                      $add: ['$$sumPassed', '$$sumFailed'],
-                    }, 0],
-                  },
-                  then: {
-                    $add: ['$$sumPassed', '$$sumFailed'],
-                  },
-                  else: 1,
-                },
-              },
-            ],
+                $divide: ['$passedTests', { $add: ['$passedTests', '$failedTests'] }],
+              }, 4],
           },
-          4,
-          ],
+          else: 0,
         },
       },
     },
-    lastUpdate: { $max: '$compatibilities.saveTime' },
   },
-},
-{
-  $sort: {
-    _id: 1,
+  {
+    $group: {
+      _id: {
+        testApp: '$_id.testApp',
+        testSuite: '$_id.testSuite',
+        sourceBranch: '$_id.sourceBranch',
+      },
+      compatibilities: {
+        $push: {
+          id: '$latest.id',
+          buildingBlock: '$_id.buildingBlock',
+          timestamp: '$latest.date',
+          saveTime: '$latest.saveTime',
+          testsPassed: '$passedTests',
+          testsFailed: '$failedTests',
+          compatibility: '$compatibility',
+        },
+      },
+    },
   },
-},
+  {
+    $unwind: '$compatibilities',
+  },
+  {
+    $sort: { 'compatibilities.buildingBlock': 1 },
+  },
+  {
+    $group: {
+      _id: '$_id',
+      compatibilities: {
+        $push: '$compatibilities',
+      },
+      overallCompatibility: {
+        $avg: '$compatibilities.compatibility',
+      },
+      lastUpdate: { $max: '$compatibilities.saveTime' },
+    },
+  },
+  {
+    $sort: { _id: 1 },
+  },
 ];
 
 const sortLatestReports = (sorting) => [
@@ -197,7 +119,16 @@ const sortLatestReports = (sorting) => [
   },
 ];
 
+const branchReports = (branchName) => [
+  {
+    $match: {
+      sourceBranch: branchName,
+    },
+  },
+];
+
 module.exports = {
   getLatestReportPipeline,
   sortLatestReports,
+  branchReports,
 };

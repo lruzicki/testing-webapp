@@ -4,8 +4,8 @@ const reportRepository = (repository) => {
     return repository.aggregateCompatibilityByProduct(filters, sorting, callback);
   }
 
-  function productsCount(callback) {
-    return repository.productsCount(callback);
+  function productsCount(filters, callback) {
+    return repository.productsCount(filters, callback);
   }
 
   function aggregateBBDetailsByProductId(id, sorting, callback) {

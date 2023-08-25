@@ -10,6 +10,7 @@ COPY . .
 #Install dependencies
 RUN yarn install
 
+RUN yarn build
 #Running the app
-CMD ["yarn","dev"]
+CMD ["yarn","start"]
 

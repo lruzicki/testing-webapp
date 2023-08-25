@@ -27,7 +27,7 @@ describe('Unit tests for ProductTable component:', () => {
 
     await act(() => Promise.resolve());
 
-    expect(spyOnGetProductsList).toHaveBeenCalledTimes(2);
+    expect(spyOnGetProductsList).toHaveBeenCalledTimes(1);
     expect(container).toMatchSnapshot();
   });
 
@@ -40,7 +40,7 @@ describe('Unit tests for ProductTable component:', () => {
 
     await act(() => Promise.resolve());
 
-    expect(spyOnGetProductsList).toHaveBeenCalledTimes(2);
+    expect(spyOnGetProductsList).toHaveBeenCalledTimes(1);
     expect(getByTestId(`product-table-row-${mockedProduct._id.testApp}`)).toBeDefined();
   });
 });

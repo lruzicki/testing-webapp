@@ -2,11 +2,19 @@
 
 exports[`Unit tests for InfiniteScrollCustomLoader component: should render the InfiniteScrollCustomLoader component and match snapshot 1`] = `
 <div>
-  <p
+  <div
     class="data-loader-message"
     data-testid="scroll-loader"
   >
+    <div
+      class="spinner"
+    >
+      <div
+        class="loader"
+      />
+    </div>
+     
     Loading more data...
-  </p>
+  </div>
 </div>
 `;

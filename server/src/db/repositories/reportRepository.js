@@ -1,7 +1,7 @@
 const ReportModel = require('../schemas/report');
 
 const { getReportDetailsPipeline, sortReportDetails } = require('../pipelines/reportDetails');
-const { getLatestReportPipeline, sortLatestReports } = require('../pipelines/latestReports');
+const { getLatestReportPipeline, sortLatestReports, branchReports } = require('../pipelines/latestReports');
 
 function addSortingToPipeline(sorting, aggregation, sortFunction) {
   const sort = !!sorting && Object.keys(sorting).length !== 0;
@@ -16,7 +16,11 @@ const repository = () => {
   };
 
   const aggregateCompatibilityByProduct = (filters, sorting, callback) => {
-    let aggregation = getLatestReportPipeline();
+    let aggregation = [];
+    if (filters.branch !== undefined) {
+      aggregation = aggregation.concat(branchReports(filters.branch));
+    }
+    aggregation = aggregation.concat(getLatestReportPipeline());
     aggregation = addSortingToPipeline(sorting, aggregation, sortLatestReports);
     aggregation = ReportModel.aggregate(aggregation);
 
@@ -37,8 +41,13 @@ const repository = () => {
     ReportModel.aggregate(sortedAggregation).exec(callback);
   };
 
-  const productsCount = (callback) => {
-    ReportModel.aggregate(getLatestReportPipeline())
+  const productsCount = (filters, callback) => {
+    let aggregation = [];
+    if (filters.branch !== undefined) {
+      aggregation = aggregation.concat(branchReports(filters.branch));
+    }
+    aggregation = aggregation.concat(getLatestReportPipeline());
+    ReportModel.aggregate(aggregation)
       .append([{ $count: 'count' }])
       .exec(callback);
   };

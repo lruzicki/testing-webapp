@@ -50,6 +50,17 @@ const ProductTableRow = ({ product }: Props) => {
     [getContainerSize]
   );
 
+  useEffect(() => {
+    const debouncedResize = debounce(getContainerSize, 30);
+    window.addEventListener('resize', debouncedResize);
+
+    return () => window.removeEventListener('resize', debouncedResize);
+  }, [getContainerSize]);
+
+  const bbTooltips = useMemo(() => {
+    return product.compatibilities.map(bb => format(bb.buildingBlock));
+  }, [product.compatibilities, format]);
+
   const handleShowSubTable = () => {
     setSubTableOpen(!isSubTableOpen);
   };
@@ -88,12 +99,10 @@ const ProductTableRow = ({ product }: Props) => {
                 <div
                   data-tooltip-id='text-tooltip'
                   data-tooltip-offset={-1}
-                  data-tooltip-content={format(bb.buildingBlock)}
+                  data-tooltip-content={bbTooltips[bbIdx]}
                   key={`bb-image-${bbIdx}`}
                 >
-                  <BBImage
-                    imagePath={bb.buildingBlock}
-                  />
+                  <BBImage imagePath={bb.buildingBlock} />
                   <TextTooltip customStyle='bb-icon-tooltip'/>
                 </div>
               ))}
