@@ -35,7 +35,7 @@ const baseFetch = async (url: string): Promise<ProductsListType> => {
 export const getSoftwaresData = async (
   offset: number,
   sortBy: SoftwaresTableSortByType,
-  branch: string
+  branch?: string
 ): Promise<Success<ProductsListType> | Failure> => {
   try {
     const url = new URL(`${baseUrl}/report/`);
@@ -60,7 +60,7 @@ export const getSoftwaresData = async (
   }
 };
 
-export const getSoftwareListCount = async (branch: string): Promise<Success<number> | Failure> => {
+export const getSoftwareListCount = async (branch?: string): Promise<Success<number> | Failure> => {
   try {
     const url = new URL(`${baseUrl}/report/count`);
 

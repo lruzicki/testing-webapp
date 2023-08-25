@@ -42,7 +42,7 @@ const ProductTable = () => {
           setProductListLength(count.data);
         }
       } catch {
-        setError('Failed to fetch data');
+        setError('dataFetchFail');
       } finally {
         setLoading(false); // set loading to false once data is fetched or error occurs
       }
@@ -59,7 +59,7 @@ const ProductTable = () => {
         setProductsList((prev) => [...prev, ...data.data]);
       }
     } catch {
-      setError('Failed to load more data');
+      setError('dataLoadFail');
     }
   }, [productsList, sortBy]);
 
