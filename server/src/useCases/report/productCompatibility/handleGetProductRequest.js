@@ -9,7 +9,7 @@ module.exports = class ReportGetProductRequestHandler {
   }
 
   async getReports(repository) {
-    const { limit, offset } = this.req.query;
+    const { limit, offset, branch } = this.req.query;
     const mapQueryToMongo = {
       'sort.testApp': '_id.testApp',
       'sort.testSuite': '_id.testSuite',
@@ -19,7 +19,8 @@ module.exports = class ReportGetProductRequestHandler {
     };
     const sorting = mapQueryToSorting(this.req.query, mapQueryToMongo);
 
-    repository.aggregateCompatibilityByProduct({ limit, offset }, sorting, async (err, result) => {
+    const filters = { limit, offset, branch };
+    repository.aggregateCompatibilityByProduct(filters, sorting, async (err, result) => {
       if (err) {
         console.error(err);
         this.res.status(500).send(`Failed to fetch report summary. Details: \n\t${err}`);

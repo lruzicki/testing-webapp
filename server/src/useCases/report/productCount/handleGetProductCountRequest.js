@@ -9,7 +9,8 @@ module.exports = class ProductCountRequestHandler {
   }
 
   async getProductsCount(repository) {
-    repository.productsCount((err, result) => {
+    const { branch } = this.req.query;
+    repository.productsCount({ branch }, (err, result) => {
       if (err) {
         console.error(err);
         this.res.status(500).send(`Failed to fetch products count. Details: \n\t${err}`);

@@ -10,6 +10,11 @@ const getLatestReportPipeline = () => [
     },
   },
   {
+    $sort: {
+      'finish.timestamp.seconds': 1,
+    },
+  },
+  {
     $group: {
       _id: {
         buildingBlock: '$buildingBlock',
@@ -114,7 +119,16 @@ const sortLatestReports = (sorting) => [
   },
 ];
 
+const branchReports = (branchName) => [
+  {
+    $match: {
+      sourceBranch: branchName,
+    },
+  },
+];
+
 module.exports = {
   getLatestReportPipeline,
   sortLatestReports,
+  branchReports,
 };

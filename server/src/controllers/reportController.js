@@ -5,7 +5,6 @@ const ProductDetailsRequestHandler = require('../useCases/report/productTestCase
 const { default500Error } = require('./controllerUtils');
 const ReportGetBuildingBlocksRequestHandler = require('../useCases/report/buildingBlocks/handleGetBuildingBlocksRequest');
 
-
 const reportController = (reportDbRepository, reportDbRepositoryImpl) => {
   const repository = reportDbRepository(reportDbRepositoryImpl);
 
