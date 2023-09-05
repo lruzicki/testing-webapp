@@ -8,7 +8,6 @@ type Props = {
 };
 
 const TextTooltip = ({ customStyle, isOpen }: Props) => {
-  // State to control tooltip visibility
 
   return (
     <div

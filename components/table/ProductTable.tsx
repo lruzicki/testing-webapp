@@ -31,7 +31,7 @@ const ProductTable = () => {
 
   const handleScrollEnd = debounce(() => {
     setIsScrolling(false);
-  }, 0.00005); // The function will be called if there's no scroll event for 150ms.
+  }, 0.00005);
 
   const handleScroll = () => {
     setIsScrolling(true);
