@@ -61,12 +61,8 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
               width="18"
             />
             <div
-              class="tooltipTriggerArea"
-            >
-              <div
-                class="text-tooltip"
-              />
-            </div>
+              class="text-tooltip"
+            />
           </div>
         </div>
         <div>
