@@ -41,3 +41,5 @@ next-env.d.ts
 # Deployment .env file
 deployment/.env
 
+
+*/.env.example

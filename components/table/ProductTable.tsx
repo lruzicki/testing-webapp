@@ -1,7 +1,9 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState, useRef } from 'react';
 import { useIntl } from 'react-intl';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import isEqual from 'lodash/isEqual';
+import ReactTooltip from 'react-tooltip';
+import debounce from 'lodash.debounce';
 import { getSoftwaresData, getSoftwareListCount } from '../../service/serviceAPI';
 import { ProductsType } from '../../service/types';
 import InfiniteScrollCustomLoader from '../InfiniteScrollLoader';
@@ -22,9 +24,19 @@ const ProductTable = () => {
   const [error, setError] = useState<string | null>(null);
   const [sortBy, setSortBy] = useState<SoftwaresTableSortByType>(defaultSortBy);
   const [loading, setLoading] = useState(true);
+  const [isScrolling, setIsScrolling] = useState(false);
 
   const { formatMessage } = useIntl();
   const format = useCallback((id: string) => formatMessage({ id }), [formatMessage]);
+
+  const handleScrollEnd = debounce(() => {
+    setIsScrolling(false);
+  }, 0.00005); // The function will be called if there's no scroll event for 150ms.
+
+  const handleScroll = () => {
+    setIsScrolling(true);
+    handleScrollEnd();
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -92,12 +104,13 @@ const ProductTable = () => {
                 scrollableTarget='scrollableDiv'
                 dataLength={productsList.length}
                 next={handleLoadMoreData}
+                onScroll={handleScroll}
                 hasMore={productListLength > productsList.length}
                 loader={<InfiniteScrollCustomLoader />}
                 style={{ overflowX: 'hidden' }}
               >
                 {productsList.map((product, index) => (
-                  <ProductTableRow product={product} key={index} />
+                  <ProductTableRow product={product} key={index} isScrolling={isScrolling} />
                 ))}
               </InfiniteScroll>
             </>

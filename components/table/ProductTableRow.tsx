@@ -11,9 +11,10 @@ import SubTable from './SubTable';
 
 type Props = {
   product: ProductsType;
+  isScrolling: boolean;
 };
 
-const ProductTableRow = ({ product }: Props) => {
+const ProductTableRow = ({ product, isScrolling }: Props) => {
   const bbContentContainer = React.useRef<HTMLDivElement | null>(null);
   const [numberOfHidenBBImages, setNumberOfHidenBBImages] = useState<number>(0);
   const [imageSectionWidth, setImageSectionWidth] = useState<string | undefined>();
@@ -97,13 +98,16 @@ const ProductTableRow = ({ product }: Props) => {
             <div className='table-bb-image' style={{ width: imageSectionWidth ?? '75%' }} >
               {product.compatibilities.map((bb, bbIdx) => (
                 <div
+                  className="imageWrapper"
                   data-tooltip-id='text-tooltip'
-                  data-tooltip-offset={-1}
+                  data-tooltip-offset={1}
                   data-tooltip-content={bbTooltips[bbIdx]}
                   key={`bb-image-${bbIdx}`}
                 >
                   <BBImage imagePath={bb.buildingBlock} />
-                  <TextTooltip customStyle='bb-icon-tooltip'/>
+                  <div className='tooltipTriggerArea'>
+                    <TextTooltip customStyle='bb-icon-tooltip' isOpen={!isScrolling}/>
+                  </div>
                 </div>
               ))}
             </div>
