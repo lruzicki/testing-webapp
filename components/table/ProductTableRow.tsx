@@ -105,9 +105,7 @@ const ProductTableRow = ({ product, isScrolling }: Props) => {
                   key={`bb-image-${bbIdx}`}
                 >
                   <BBImage imagePath={bb.buildingBlock} />
-                  <div className='tooltipTriggerArea'>
-                    <TextTooltip customStyle='bb-icon-tooltip' isOpen={!isScrolling}/>
-                  </div>
+                  <TextTooltip customStyle='bb-icon-tooltip' isOpen={!isScrolling}/>
                 </div>
               ))}
             </div>
