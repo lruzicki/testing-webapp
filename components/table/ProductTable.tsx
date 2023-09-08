@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useState } from 'react';
 import { useIntl } from 'react-intl';
 import InfiniteScroll from 'react-infinite-scroll-component';
 import isEqual from 'lodash/isEqual';
-import debounce from 'lodash.debounce';
 import { getSoftwaresData, getSoftwareListCount } from '../../service/serviceAPI';
 import { ProductsType } from '../../service/types';
 import InfiniteScrollCustomLoader from '../InfiniteScrollLoader';
