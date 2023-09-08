@@ -11,10 +11,9 @@ import SubTable from './SubTable';
 
 type Props = {
   product: ProductsType;
-  isScrolling: boolean;
 };
 
-const ProductTableRow = ({ product, isScrolling }: Props) => {
+const ProductTableRow = ({ product }: Props) => {
   const bbContentContainer = React.useRef<HTMLDivElement | null>(null);
   const [numberOfHidenBBImages, setNumberOfHidenBBImages] = useState<number>(0);
   const [imageSectionWidth, setImageSectionWidth] = useState<string | undefined>();
@@ -105,7 +104,7 @@ const ProductTableRow = ({ product, isScrolling }: Props) => {
                   key={`bb-image-${bbIdx}`}
                 >
                   <BBImage imagePath={bb.buildingBlock} />
-                  <TextTooltip customStyle='bb-icon-tooltip' isOpen={!isScrolling}/>
+                  <TextTooltip customStyle='bb-icon-tooltip'/>
                 </div>
               ))}
             </div>

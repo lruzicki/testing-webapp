@@ -7,7 +7,7 @@ type Props = {
   isOpen?: boolean;
 };
 
-const TextTooltip = ({ customStyle, isOpen }: Props) => {
+const TextTooltip = ({ customStyle }: Props) => {
 
   return (
     <div
@@ -16,10 +16,7 @@ const TextTooltip = ({ customStyle, isOpen }: Props) => {
       <Tooltip
         id='text-tooltip'
         className={classNames('text-tooltip-body', customStyle)}
-        // closeOnScroll is part of V5 API, types 4.x.x don't include this parameter
-        // @ts-ignore
         closeOnScroll={true}
-        hidden={isOpen}
       />
     </div>
   );
