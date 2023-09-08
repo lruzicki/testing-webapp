@@ -97,8 +97,9 @@ const ProductTableRow = ({ product }: Props) => {
             <div className='table-bb-image' style={{ width: imageSectionWidth ?? '75%' }} >
               {product.compatibilities.map((bb, bbIdx) => (
                 <div
+                  className="imageWrapper"
                   data-tooltip-id='text-tooltip'
-                  data-tooltip-offset={-1}
+                  data-tooltip-offset={1}
                   data-tooltip-content={bbTooltips[bbIdx]}
                   key={`bb-image-${bbIdx}`}
                 >

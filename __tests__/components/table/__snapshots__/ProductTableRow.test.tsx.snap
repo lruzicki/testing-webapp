@@ -43,9 +43,10 @@ exports[`Unit tests for ProductTableRow component: should render the ProductTabl
           style="width: 0px;"
         >
           <div
+            class="imageWrapper"
             data-tooltip-content="Messaging"
             data-tooltip-id="text-tooltip"
-            data-tooltip-offset="-1"
+            data-tooltip-offset="1"
           >
             <img
               alt="Logo for: bb-messaging"
