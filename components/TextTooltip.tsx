@@ -4,7 +4,6 @@ import { Tooltip } from 'react-tooltip';
 
 type Props = {
   customStyle?: string;
-  isOpen?: boolean;
 };
 
 const TextTooltip = ({ customStyle }: Props) => {
