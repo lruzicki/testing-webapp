@@ -1,0 +1,9 @@
+Host prod-server
+  HostName main.govstack.global
+  User ubuntu
+  IdentityFile ~/.ssh/id_rsa
+
+Host staging-server
+  HostName 
+  User ubuntu
+  IdentityFile ~/.ssh/id_rsa_staging
