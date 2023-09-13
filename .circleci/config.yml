@@ -1,6 +1,5 @@
 version: 2.1
 
-# See: https://circleci.com/docs/2.0/orb-intro/
 orbs:
   node: circleci/node@5.0.3
 
@@ -19,6 +18,7 @@ jobs:
       - run:
           command: yarn test
           name: Run YARN tests
+
   deploy:
     docker:
       - image: cimg/base:2023.03
@@ -27,15 +27,28 @@ jobs:
       - add_ssh_keys:
           fingerprints:
             - "d1:b2:46:4e:a2:e8:3b:10:0b:49:78:06:fa:92:25:52"
+            # Add your new test server's SSH fingerprint here
+            - "staging fingerpring"
       - run:
-          command: echo 'testing.govstack.global ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIG6hbFgK+t08bwLN63F/YgpDP8K24F74zg2QapCKQAxv' >> ~/.ssh/known_hosts
+          command: cp ./ssh-config ~/.ssh/config
+          name: Setup SSH Config
+      - run:
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "main" ]; then
+              ssh-keyscan prod-server >> ~/.ssh/known_hosts
+            elif [ "${CIRCLE_BRANCH}" == "development" ]; then
+              ssh-keyscan staging-server >> ~/.ssh/known_hosts
+            fi
           name: Add known host for SSH
       - run:
-          command: bash deployment/deploy.sh
-          name: Deploy to test server
+          command: |
+            if [ "${CIRCLE_BRANCH}" == "main" ]; then
+              bash deployment/deploy.sh
+            elif [ "${CIRCLE_BRANCH}" == "development" ]; then
+              bash deployment/deploy.sh
+            fi
+          name: Deploy based on branch
 
-# Invoke jobs via workflows
-# See: https://circleci.com/docs/2.0/configuration-reference/#workflows
 workflows:
   build_test_deploy:
     jobs:
@@ -47,4 +60,4 @@ workflows:
              branches:
                only:
                  - main
-
+                 - development
