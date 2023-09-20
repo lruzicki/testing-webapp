@@ -1,18 +1,22 @@
 #!/bin/bash
 
-# Check branch
-CURRENT_BRANCH=$(git rev-parse --abbrev-ref HEAD)
+if [ "$#" -ne 1 ]; then
+    echo "Usage: ./deploy.sh [staging|prod]"
+    exit 1
+fi
 
-if [ "${CURRENT_BRANCH}" == "main" ]; then
+DEPLOY_ENV=$1
+
+if [ "${DEPLOY_ENV}" == "staging" ]; then
   DEPLOYMENT_USER="ubuntu"
-  DEPLOYMENT_HOST="main.govstack.global"
+  DEPLOYMENT_HOST="staging.testing.govstack.global"
   DEPLOYMENT_DIR="/opt/main-webapp"
-elif [ "${CURRENT_BRANCH}" == "development" ]; then
+elif [ "${DEPLOY_ENV}" == "prod" ]; then
   DEPLOYMENT_USER="ubuntu"
-  DEPLOYMENT_HOST=""
-  DEPLOYMENT_DIR=""
+  DEPLOYMENT_HOST="testing.govstack.global"
+  DEPLOYMENT_DIR="/opt/main-webapp"
 else
-  echo "Unknown branch, operation aborted."
+  echo "Unknown deployment environment, operation aborted."
   exit 1
 fi
 
