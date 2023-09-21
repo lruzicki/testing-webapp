@@ -36,9 +36,9 @@ jobs:
       - run:
           command: |
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
-              ssh-keyscan prod-server >> ~/.ssh/known_hosts
+              ssh-keyscan testing.govstack.global >> ~/.ssh/known_hosts
             elif [ "${CIRCLE_BRANCH}" == "development" ]; then
-              ssh-keyscan staging-server >> ~/.ssh/known_hosts
+              ssh-keyscan staging.testing.govstack.global >> ~/.ssh/known_hosts
             fi
           name: Add known host for SSH
       - run:
