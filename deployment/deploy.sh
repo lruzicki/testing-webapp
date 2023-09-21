@@ -29,4 +29,4 @@ ssh "${SSH}" "git --git-dir ${DEPLOYMENT_DIR}/.git --work-tree ${DEPLOYMENT_DIR}
 ssh "${SSH}" "git --git-dir ${DEPLOYMENT_DIR}/.git --work-tree ${DEPLOYMENT_DIR} pull origin main"
 
 # Start the app
-ssh "${SSH}" "${DEPLOYMENT_DIR}/deployment/run-prod.sh"
+ssh "${SSH}" "${DEPLOYMENT_DIR}/deployment/run-app.sh" "$DEPLOY_ENV"
