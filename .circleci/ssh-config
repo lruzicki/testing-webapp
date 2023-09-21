@@ -1,0 +1,7 @@
+Host prod-server
+  HostName testing.govstack.global
+  User ubuntu
+
+Host staging-server
+  HostName staging.testing.govstack.global
+  User ubuntu
