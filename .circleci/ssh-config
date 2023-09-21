@@ -1,9 +1,7 @@
 Host prod-server
   HostName testing.govstack.global
   User ubuntu
-  IdentityFile ~/.ssh/id_rsa
 
 Host staging-server
   HostName staging.testing.govstack.global
   User ubuntu
-  IdentityFile ~/.ssh/id_rsa_staging
