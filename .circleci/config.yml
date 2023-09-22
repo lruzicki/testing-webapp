@@ -31,9 +31,6 @@ jobs:
             - "d1:b2:46:4e:a2:e8:3b:10:0b:49:78:06:fa:92:25:52"
             - "0a:51:56:fd:81:33:42:19:7d:59:13:af:43:1f:cf:1e"
       - run:
-          command: cp .circleci/ssh-config ~/.ssh/config
-          name: Setup SSH Config
-      - run:
           command: |
             if [ "${CIRCLE_BRANCH}" == "main" ]; then
               ssh-keyscan testing.govstack.global >> ~/.ssh/known_hosts
