@@ -5,16 +5,16 @@ if [ "$#" -ne 1 ]; then
     exit 1
 fi
 
+DEPLOYMENT_DIR="/opt/testing-webapp"
+
 DEPLOY_ENV=$1
 
 if [ "${DEPLOY_ENV}" == "staging" ]; then
   DEPLOYMENT_USER="ubuntu"
   DEPLOYMENT_HOST="staging.testing.govstack.global"
-  DEPLOYMENT_DIR="/opt/main-webapp"
 elif [ "${DEPLOY_ENV}" == "prod" ]; then
   DEPLOYMENT_USER="ubuntu"
   DEPLOYMENT_HOST="testing.govstack.global"
-  DEPLOYMENT_DIR="/opt/main-webapp"
 else
   echo "Unknown deployment environment, operation aborted."
   exit 1
