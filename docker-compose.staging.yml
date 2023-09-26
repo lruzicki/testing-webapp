@@ -36,7 +36,8 @@ services:
     environment:
         VIRTUAL_HOST: staging.testing.govstack.global
         LETSENCRYPT_HOST: staging.testing.govstack.global
-  
+        API_URL: api.staging.testing.govstack.global
+
   backend:
     environment:
         API_KEY_BB: ${API_KEY_BB:-O7VKGLW47I6e}
