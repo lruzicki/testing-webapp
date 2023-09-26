@@ -12,19 +12,11 @@ DEPLOY_ENV=$1
 if [ "${DEPLOY_ENV}" == "staging" ]; then
   DEPLOYMENT_USER="ubuntu"
   DEPLOYMENT_HOST="staging.testing.govstack.global"
-<<<<<<< Updated upstream
-elif [ "${DEPLOY_ENV}" == "prod" ]; then
-  DEPLOYMENT_USER="ubuntu"
-  DEPLOYMENT_HOST="testing.govstack.global"
-=======
-  DEPLOYMENT_DIR="/opt/main-webapp"
   BRANCH="develop"
 elif [ "${DEPLOY_ENV}" == "prod" ]; then
   DEPLOYMENT_USER="ubuntu"
   DEPLOYMENT_HOST="testing.govstack.global"
-  DEPLOYMENT_DIR="/opt/main-webapp"
   BRANCH="main"
->>>>>>> Stashed changes
 else
   echo "Unknown deployment environment, operation aborted."
   exit 1
