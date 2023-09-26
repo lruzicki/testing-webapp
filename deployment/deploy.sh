@@ -27,7 +27,7 @@ SSH="${DEPLOYMENT_USER}@${DEPLOYMENT_HOST}"
 cd "$(dirname "$0")"
 
 # Update the git repository on the deployment host
-ssh "${SSH}" "git --git-dir ${DEPLOYMENT_DIR}/.git --work-tree ${DEPLOYMENT_DIR} git fetch"
+ssh "${SSH}" "git --git-dir ${DEPLOYMENT_DIR}/.git --work-tree ${DEPLOYMENT_DIR} fetch"
 ssh "${SSH}" "git --git-dir ${DEPLOYMENT_DIR}/.git --work-tree ${DEPLOYMENT_DIR} checkout ${BRANCH}"
 ssh "${SSH}" "git --git-dir ${DEPLOYMENT_DIR}/.git --work-tree ${DEPLOYMENT_DIR} reset --hard origin/${BRANCH}"
 ssh "${SSH}" "git --git-dir ${DEPLOYMENT_DIR}/.git --work-tree ${DEPLOYMENT_DIR} pull origin ${BRANCH}"
