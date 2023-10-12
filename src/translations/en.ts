@@ -1,5 +1,6 @@
 // All guidelines for the translations can be found in the file README.md
 export const en = {
+  'app.api-testing.label': 'API testing',
   'app.definition.description': `This web application is used to show how candidate products align with
     the technical specifications that have been developed by [Govstack](https://www.govstack.global/)
     for various [Building Blocks](https://govstack.gitbook.io/specification/). For each
@@ -13,12 +14,14 @@ export const en = {
   'app.definition.title': 'GovStack Building Block Compliance Platform',
   'app.error_fetching_data.message':
     'Error fetching data. Please try again later.',
+  'app.help.label': 'Help',
   'app.tests_passed.label': 'Tests Passed',
   'app.tests_failed.label': 'Tests Failed',
   'app.compatibility.label': 'Compatibility',
   'app.scroll-loader.message': 'Loading more data...',
   'app.scenario.label': 'Scenario:',
   'app.search': 'Software Name',
+  'app.software-compliance-testing.label': 'Software Compliance Testing',
 
   'building_block.label': 'Building Block',
   'building_block.plural.label': 'Building Blocks',

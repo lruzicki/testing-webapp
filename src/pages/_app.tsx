@@ -7,6 +7,7 @@ import '../components/LoadingBar.less';
 import '../components/TestStepsView.less';
 import '../components/TestSummary.less';
 import '../components/header/Header.less';
+import '../components/header/HeaderMenuButton.less';
 import MainLayout from '../components/mainLayout/MainLayout';
 import '../components/mainLayout/MainLayout.less';
 import '../components/shared/SearchInput.less';
