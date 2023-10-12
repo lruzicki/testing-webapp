@@ -2,7 +2,8 @@ import { useRouter } from 'next/router';
 import React, { useCallback } from 'react';
 import '../../public/images/logo.png';
 import { useIntl } from 'react-intl';
-import { RiQuestionLine } from 'react-icons/ri';
+// should be added in the scope of TECH-957
+// import { RiQuestionLine } from 'react-icons/ri';
 import HeaderMenuButton from './HeaderMenuButton';
 
 const Header = () => {
@@ -42,10 +43,11 @@ const Header = () => {
           />
         </div>
         <div className="header-help">
-          <div className="header-help-section">
+          {/* should be added in the scope of TECH-957 */}
+          {/* <div className="header-help-section">
             <RiQuestionLine />
             <p>{format('app.help.label')}</p>
-          </div>
+          </div> */}
         </div>
       </div>
     </div>
