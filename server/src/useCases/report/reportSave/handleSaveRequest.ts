@@ -93,11 +93,11 @@ export default class ReportUploadRequestHandler {
   isRequestValid(): boolean {
     const validationResult: ValidatorResult = validate(this.req, RequestSchema);
     if (validationResult.errors.length > 0) {
-      this.sendValidationError(validationResult.errors);
-      return false;
+        this.sendValidationError(validationResult.errors);
+        return false;
     }
     return true;
-  }
+}
 
   async readFirstLine(stream: NodeJS.ReadableStream): Promise<string> {
     return new Promise((resolve, reject) => {
