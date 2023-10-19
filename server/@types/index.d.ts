@@ -1,0 +1,1 @@
+type ErrorType = Error | null;
