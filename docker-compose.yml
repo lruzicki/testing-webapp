@@ -37,7 +37,7 @@ services:
       image: testing-webapp-server
       restart: always
       build:
-        context: ./server
+        context: ./backend
         dockerfile: ./Dockerfile
       command: dev
       expose:
